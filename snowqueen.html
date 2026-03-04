@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Снежная королева — Оркестр 1703</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="light-page">
+    <header class="site-header">
+        <div class="header-inner">
+          <a href="/" class="logo">
+            <img src="images/logo-shirokij.png" alt="Оркестр 1703 логотип">
+          </a>
+          
+          <nav class="main-nav" aria-label="Main navigation">
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="afisha.html">Афиша</a></li>
+              <li><a href="about.html">О нас</a></li>
+              <li><a href="gallery.html">Галерея</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </nav>
+          <button type="button" class="burger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+          </button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+          <button type="button" class="mobile-menu-close" aria-label="Close menu">Закрыть</button>
+          <nav class="mobile-nav" aria-label="Mobile navigation">
+            <ul>
+              <li><a href="#home">Главная</a></li>
+              <li><a href="afisha.html">Афиша</a></li>
+              <li><a href="#about">О нас</a></li>
+              <li><a href="#gallery">Галерея</a></li>
+              <li><a href="#contacts">Контакты</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section 
+    class="concert-hero" 
+    style="background-image: url('images/snowqueen-about.jpg');"
+  >
+    <div class="concert-hero-overlay"></div>
+  
+    <div class="concert-hero-content">
+      <h1 class="concert-title">Снежная Королева</h1>
+      <p class="concert-subtitle">Одноактный театральный концерт</p>
+  
+      <div class="concert-meta">
+        <span class="concert-datee">22 декабря</span>
+        <span class="concert-timee">20:00</span>
+      </div>
+  
+      <a href="#" class="btn btn-primary concert-btn">
+        Купить билеты
+      </a>
+    </div>
+  </section>
+
+    <!-- ABOUT -->
+    <section class="concert-about">
+      <div class="concert-about-inner">
+        <div class="concert-about-image">
+          <img src="images/snowqueen-about.jpg" alt="">
+        </div>
+        <div class="concert-about-text">
+          <h2>О концерте</h2>
+          <p>
+            В этом театрализованном концерте оркестр оживляет
+            вечную сказку Андерсена через музыку, повествование
+            и визуальный ряд.
+          </p>
+          <p>
+            Зрители пройдут путь от уютного дома до ледяного дворца,
+            где звучание оркестра создаёт атмосферу магии и глубины.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTICIPANTS -->
+    <section class="concert-participants">
+      <h2>Участники</h2>
+
+      <div class="participants-grid">
+
+        <div class="participant-card">
+          <img src="images/GrigoriyFedorovIgraet.jpg" alt="">
+          <div class="participant-info">
+            <h3>Георгий Фёдоров</h3>
+            <span>Музыка</span>
+          </div>
+        </div>
+
+        <div class="participant-card">
+          <img src="images/aliceinwonderlandNH.jpg" alt="">
+          <div class="participant-info">
+            <h3>Анастасия Лазарева</h3>
+            <span>Рассказчик</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- UPCOMING DATES -->
+    <section class="concert-dates">
+      <h2>Другие дни концерта</h2>
+
+
+      <div class="other-dates">
+        <div class="date-small-card">
+          <h4>15 января</h4>
+          <p>Анненкирхе</p>
+          <a href="#" class="btn btn-primary btn-small">Купить</a>
+        </div>
+
+        <div class="date-small-card">
+          <h4>3 февраля</h4>
+          <p>Капелла</p>
+          <a href="#" class="btn btn-primary btn-small">Купить</a>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-col-logo">
+        <a href="/" class="footer-logo">
+          <img src="images/logo-shirokij.png" alt="Оркестр 1703 логотип">
+        </a>
+      </div>
+      <nav class="footer-col footer-col-nav" aria-label="Footer navigation">
+        <h3 class="footer-col-title">Навигация</h3>
+        <ul>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#events">Афиша</a></li>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#gallery">Галерея</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col footer-col-contacts">
+        <h3 class="footer-col-title">Контакты</h3>
+        <p class="footer-contact"><span class="footer-contact-label">Телефон:</span> 8 800 555 35 35</p>
+        <p class="footer-contact"><span class="footer-contact-label">Email:</span> orchestra1703@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 Оркестр 1703. Все права защищены.</p>
+    </div>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

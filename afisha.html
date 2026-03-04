@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Афиша — Оркестр 1703</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+          <a href="/" class="logo">
+            <img src="images/logo-shirokij.png" alt="Оркестр 1703 логотип">
+          </a>
+          
+          <nav class="main-nav" aria-label="Main navigation">
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="afisha.html">Афиша</a></li>
+              <li><a href="about.html">О нас</a></li>
+              <li><a href="gallery.html">Галерея</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </nav>
+          <button type="button" class="burger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+          </button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+          <button type="button" class="mobile-menu-close" aria-label="Close menu">Закрыть</button>
+          <nav class="mobile-nav" aria-label="Mobile navigation">
+            <ul>
+              <li><a href="#home">Главная</a></li>
+              <li><a href="#events">Афиша</a></li>
+              <li><a href="#about">О нас</a></li>
+              <li><a href="#gallery">Галерея</a></li>
+              <li><a href="#contacts">Контакты</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+  <main class="events-page">
+
+    <section class="events-hero">
+      <h1 class="events-title">Афиша</h1>
+
+      <div class="events-month-switcher">
+        <button class="month-arrow" id="prevMonth">&#8249;</button>
+        <span class="current-month" id="currentMonth">03.2025</span>
+        <button class="month-arrow" id="nextMonth">&#8250;</button>
+      </div>
+    <section class="events-list">
+        <ul class="concert-list" id="eventsContainer"></ul>
+      
+        <div class="events-more">
+          <button class="btn btn-secondary" id="loadMoreBtn">
+            Еще
+          </button>
+        </div>
+      </section>
+    <!-- <section class="events-list">
+        <ul class="concert-list">
+            <li class="concert-card">
+              <div class="concert-card-thumb">
+                <img src="images/GrigoriyFedorovIgraet.jpg" alt="Снежная королева">
+              </div>
+            
+              <div class="concert-card-content">
+                <p class="concert-card-meta">
+                  <span class="concert-date">27 ЯНВАРЯ</span>
+                  <span class="concert-time">19:00</span>
+                </p>
+                <h3 class="concert-card-title">МУЗЫКА ИЗ КИНО НА ОРГАНЕ</h3>
+              </div>
+            
+              <div class="concert-card-actions">
+                <a href="#" class="btn btn-secondary btn-card">Подробнее</a>
+                <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
+              </div>
+            </li>
+            <li class="concert-card">
+              <div class="concert-card-thumb">
+                <img src="images/aliceinwonderlandNH.jpg" alt="Снежная королева">
+              </div>
+              <div class="concert-card-content">
+                <p class="concert-card-meta">
+                  <span class="concert-date">20 ФЕВРАЛЯ</span>
+                  <span class="concert-time">19:00</span>
+                </p>
+                <h3 class="concert-card-title">СКАЗОЧНЫЙ МИР РУССКОЙ КЛАССИКИ</h3>
+              </div>
+              <div class="concert-card-actions">
+                <a href="#" class="btn btn-secondary btn-card">Подробнее</a>
+                <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
+              </div>
+            </li>
+            <li class="concert-card">
+                <div class="concert-card-thumb">
+                  <img src="images/aliceinwonderlandNH.jpg" alt="Снежная королева">
+                </div>
+                <div class="concert-card-content">
+                  <p class="concert-card-meta">
+                    <span class="concert-date">20 ФЕВРАЛЯ</span>
+                    <span class="concert-time">19:00</span>
+                  </p>
+                  <h3 class="concert-card-title">СКАЗОЧНЫЙ МИР РУССКОЙ КЛАССИКИ</h3>
+                </div>
+                <div class="concert-card-actions">
+                  <a href="#" class="btn btn-secondary btn-card">Подробнее</a>
+                  <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
+                </div>
+              </li>
+              <li class="concert-card">
+                <div class="concert-card-thumb">
+                  <img src="images/aliceinwonderlandNH.jpg" alt="Снежная королева">
+                </div>
+                <div class="concert-card-content">
+                  <p class="concert-card-meta">
+                    <span class="concert-date">20 ФЕВРАЛЯ</span>
+                    <span class="concert-time">19:00</span>
+                  </p>
+                  <h3 class="concert-card-title">СКАЗОЧНЫЙ МИР РУССКОЙ КЛАССИКИ</h3>
+                </div>
+                <div class="concert-card-actions">
+                  <a href="#" class="btn btn-secondary btn-card">Подробнее</a>
+                  <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
+                </div>
+              </li>
+              <li class="concert-card">
+                <div class="concert-card-thumb">
+                  <img src="images/aliceinwonderlandNH.jpg" alt="Снежная королева">
+                </div>
+                <div class="concert-card-content">
+                  <p class="concert-card-meta">
+                    <span class="concert-date">20 ФЕВРАЛЯ</span>
+                    <span class="concert-time">19:00</span>
+                  </p>
+                  <h3 class="concert-card-title">СКАЗОЧНЫЙ МИР РУССКОЙ КЛАССИКИ</h3>
+                </div>
+                <div class="concert-card-actions">
+                  <a href="#" class="btn btn-secondary btn-card">Подробнее</a>
+                  <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
+                </div>
+              </li>
+            <li class="concert-card">
+              <div class="concert-card-thumb">
+                <img src="images/NyagaNewHolland.jpg" alt="Снежная королева">
+              </div>
+              <div class="concert-card-content">
+                <p class="concert-card-meta">
+                  <span class="concert-date">28 ФЕВРАЛЯ</span>
+                  <span class="concert-time">20:00</span>
+                </p>
+                <h3 class="concert-card-title">АЛИСА В СТРАНЕ ЧУДЕС</h3>
+              </div>
+              <div class="concert-card-actions">
+                <a href="#" class="btn btn-secondary btn-card">Подробнее</a>
+                <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
+              </div>
+            </li>
+          </ul>
+    </section> -->
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-col-logo">
+        <a href="/" class="footer-logo">
+          <img src="images/logo-shirokij.png" alt="Оркестр 1703 логотип">
+        </a>
+      </div>
+      <nav class="footer-col footer-col-nav" aria-label="Footer navigation">
+        <h3 class="footer-col-title">Навигация</h3>
+        <ul>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#events">Афиша</a></li>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#gallery">Галерея</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col footer-col-contacts">
+        <h3 class="footer-col-title">Контакты</h3>
+        <p class="footer-contact"><span class="footer-contact-label">Телефон:</span> 8 800 555 35 35</p>
+        <p class="footer-contact"><span class="footer-contact-label">Email:</span> orchestra1703@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 Оркестр 1703. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
