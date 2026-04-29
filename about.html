@@ -19,6 +19,7 @@
           <li><a href="index.html">Главная</a></li>
           <li><a href="afisha.html">Афиша</a></li>
           <li><a href="about.html">О нас</a></li>
+          <li><a href="index.html#programs">Программы</a></li>
           <li><a href="gallery.html">Галерея</a></li>
           <li><a href="contacts.html">Контакты</a></li>
         </ul>
@@ -38,6 +39,7 @@
           <li><a href="#home">Главная</a></li>
           <li><a href="#events">Афиша</a></li>
           <li><a href="#about">О нас</a></li>
+          <li><a href="index.html#programs">Программы</a></li>
           <li><a href="#gallery">Галерея</a></li>
           <li><a href="#contacts">Контакты</a></li>
         </ul>
@@ -67,7 +69,9 @@
         <div class="members-grid">
           <article class="member-card">
             <div class="member-photo">
-              <img src="images/15tysrubley.jpg" alt="Алексей Петров — дирижер оркестра 1703">
+              <span class="photo-halftone">
+                <img src="images/15tysrubley.jpg" alt="Алексей Петров — дирижер оркестра 1703">
+              </span>
               <div class="member-overlay">
                 <h3 class="member-name">Георгий Федоров</h3>
                 <p class="member-role">Художественный руководитель, композитор</p>
@@ -80,7 +84,9 @@
 
           <article class="member-card">
             <div class="member-photo">
-              <img src="images/NyagaNewHolland.jpg" alt="Мария Иванова — первая скрипка оркестра 1703">
+              <span class="photo-halftone">
+                <img src="images/NyagaNewHolland.jpg" alt="Мария Иванова — первая скрипка оркестра 1703">
+              </span>
               <div class="member-overlay">
                 <h3 class="member-name">Мария Мариева</h3>
                 <p class="member-role">Первая скрипка</p>
@@ -93,7 +99,9 @@
 
           <article class="member-card">
             <div class="member-photo">
-              <img src="images/aliceinwonderlandNH.jpg" alt="Игорь Смирнов — пианист оркестра 1703">
+              <span class="photo-halftone">
+                <img src="images/aliceinwonderlandNH.jpg" alt="Игорь Смирнов — пианист оркестра 1703">
+              </span>
               <div class="member-overlay">
                 <h3 class="member-name">Игорь Игорев</h3>
                 <p class="member-role">Фортепиано</p>
@@ -106,7 +114,9 @@
 
           <article class="member-card">
             <div class="member-photo">
-              <img src="images/GrigoriyFedorovIgraet.jpg" alt="Екатерина Волкова — виолончелистка оркестра 1703">
+              <span class="photo-halftone">
+                <img src="images/GrigoriyFedorovIgraet.jpg" alt="Екатерина Волкова — виолончелистка оркестра 1703">
+              </span>
               <div class="member-overlay">
                 <h3 class="member-name">Екатерина Буйкова</h3>
                 <p class="member-role">Виолончель</p>
@@ -119,7 +129,9 @@
 
           <article class="member-card">
             <div class="member-photo">
-              <img src="images/NyagaNewHolland.jpg" alt="Дмитрий Орлов — духовые инструменты, оркестр 1703">
+              <span class="photo-halftone">
+                <img src="images/NyagaNewHolland.jpg" alt="Дмитрий Орлов — духовые инструменты, оркестр 1703">
+              </span>
               <div class="member-overlay">
                 <h3 class="member-name">Дмитрий Хустин</h3>
                 <p class="member-role">Духовые</p>
@@ -132,7 +144,9 @@
 
           <article class="member-card">
             <div class="member-photo">
-              <img src="images/aliceinwonderlandNH.jpg" alt="Анна Кузнецова — арфа, оркестр 1703">
+              <span class="photo-halftone">
+                <img src="images/aliceinwonderlandNH.jpg" alt="Анна Кузнецова — арфа, оркестр 1703">
+              </span>
               <div class="member-overlay">
                 <h3 class="member-name">Анна Павлова</h3>
                 <p class="member-role">Арфа</p>
@@ -157,11 +171,12 @@
       <nav class="footer-col footer-col-nav" aria-label="Footer navigation">
         <h3 class="footer-col-title">Навигация</h3>
         <ul>
-          <li><a href="#home">Главная</a></li>
-          <li><a href="#events">Афиша</a></li>
-          <li><a href="#about">О нас</a></li>
-          <li><a href="#gallery">Галерея</a></li>
-          <li><a href="#contacts">Контакты</a></li>
+          <li><a href="index.html#home">Главная</a></li>
+          <li><a href="afisha.html">Афиша</a></li>
+          <li><a href="index.html#programs">Программы</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="gallery.html">Галерея</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
       <div class="footer-col footer-col-contacts">
@@ -175,6 +190,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

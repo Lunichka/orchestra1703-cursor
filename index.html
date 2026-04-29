@@ -17,6 +17,7 @@
         <ul>
           <li><a href="index.html">Главная</a></li>
           <li><a href="afisha.html">Афиша</a></li>
+          <li><a href="#programs">Программы</a></li>
           <li><a href="about.html">О нас</a></li>
           <li><a href="gallery.html">Галерея</a></li>
           <li><a href="contacts.html">Контакты</a></li>
@@ -34,33 +35,40 @@
         <ul>
           <li><a href="#home">Главная</a></li>
           <li><a href="afisha.html">Афиша</a></li>
-          <li><a href="#about">О нас</a></li>
-          <li><a href="#gallery">Галерея</a></li>
-          <li><a href="#contacts">Контакты</a></li>
+          <li><a href="#programs">Программы</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="gallery.html">Галерея</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <section class="hero" id="home">
+    <div class="hero-parallax-layer parallax-layer" data-parallax-speed="0.18" aria-hidden="true">
+      <div class="scribble-blob"></div>
+    </div>
+
     <div class="hero-inner">
-      <h1 class="hero-title">Самый нестандартный<br>оркестр России</h1>
-      <p class="hero-subtitle">Микс юмора, искусства и незабываемой музыки</p>
+      <h1 class="hero-title reveal">Самый нестандартный<br>оркестр России</h1>
+      <p class="hero-subtitle reveal">Микс юмора, искусства и незабываемой музыки</p>
       <div class="hero-buttons">
-        <a href="#events" class="btn btn-primary">Купить билеты</a>
-        <!-- <a href="#about" class="btn btn-secondary">Secondary action</a> -->
+        <a href="#events" class="btn btn-primary reveal">Купить билеты</a>
+        <a href="#programs" class="btn btn-secondary reveal">Смотреть программы</a>
       </div>
     </div>
   </section>
 
   <main class="main-content">
     <section class="concerts-section" id="events">
-      <h2 class="concerts-section-title">Ближайшие концерты</h2>
-      <p class="concerts-section-subtitle">Следите за концертами в наших социальных сетях</p>
+      <h2 class="concerts-section-title reveal">Ближайшие концерты</h2>
+      <p class="concerts-section-subtitle reveal">Следите за концертами в наших социальных сетях</p>
       <ul class="concert-list">
-        <li class="concert-card">
+        <li class="concert-card reveal">
           <div class="concert-card-thumb">
-            <img src="images/GrigoriyFedorovIgraet.jpg" alt="Снежная королева">
+            <span class="photo-halftone">
+              <img src="images/GrigoriyFedorovIgraet.jpg" alt="Снежная королева">
+            </span>
           </div>
         
           <div class="concert-card-content">
@@ -76,9 +84,11 @@
             <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
           </div>
         </li>
-        <li class="concert-card">
+        <li class="concert-card reveal">
           <div class="concert-card-thumb">
-            <img src="images/aliceinwonderlandNH.jpg" alt="Снежная королева">
+            <span class="photo-halftone">
+              <img src="images/aliceinwonderlandNH.jpg" alt="Снежная королева">
+            </span>
           </div>
           <div class="concert-card-content">
             <p class="concert-card-meta">
@@ -92,9 +102,11 @@
             <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
           </div>
         </li>
-        <li class="concert-card">
+        <li class="concert-card reveal">
           <div class="concert-card-thumb">
-            <img src="images/NyagaNewHolland.jpg" alt="Снежная королева">
+            <span class="photo-halftone">
+              <img src="images/NyagaNewHolland.jpg" alt="Снежная королева">
+            </span>
           </div>
           <div class="concert-card-content">
             <p class="concert-card-meta">
@@ -113,10 +125,83 @@
         <a href="#events" class="btn btn-view-all">Смотреть все концерты</a>
       </div>
     </section>
+
+    <!-- CONCERT PROGRAMS (NEW) -->
+    <section class="programs-section" id="programs">
+      <h2 class="section-heading reveal">Программы концертов</h2>
+      <p class="section-subheading reveal">
+        Выберите программу и откройте полную страницу: состав, длительность, музыкальный треклист.
+      </p>
+
+      <div class="programs-grid">
+        <a
+          class="program-card reveal"
+          href="programs/program-nebesnye-arki.html"
+          aria-label="Открыть программу Небесные арки"
+        >
+          <div class="program-card-inner">
+            <div class="program-card-media">
+              <span class="photo-halftone">
+                <img src="images/aliceinwonderlandNH.jpg" alt="Небесные арки">
+              </span>
+            </div>
+            <div class="program-card-body">
+              <h3 class="program-card-title">Небесные арки</h3>
+              <div class="program-card-meta">
+                <span>Сатирическая симфония</span>
+                <span>90 минут</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a
+          class="program-card reveal"
+          href="programs/program-skazka-v-treh-aktah.html"
+          aria-label="Открыть программу Сказка в трёх актах"
+        >
+          <div class="program-card-inner">
+            <div class="program-card-media">
+              <span class="photo-halftone">
+                <img src="images/GrigoriyFedorovIgraet.jpg" alt="Сказка в трёх актах">
+              </span>
+            </div>
+            <div class="program-card-body">
+              <h3 class="program-card-title">Сказка в трёх актах</h3>
+              <div class="program-card-meta">
+                <span>Оркестр + рассказ</span>
+                <span>75 минут</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a
+          class="program-card reveal"
+          href="programs/program-organ-i-svet.html"
+          aria-label="Открыть программу Орган и свет"
+        >
+          <div class="program-card-inner">
+            <div class="program-card-media">
+              <span class="photo-halftone">
+                <img src="images/NyagaNewHolland.jpg" alt="Орган и свет">
+              </span>
+            </div>
+            <div class="program-card-body">
+              <h3 class="program-card-title">Орган и свет</h3>
+              <div class="program-card-meta">
+                <span>Кино-ремиксы</span>
+                <span>60 минут</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
     <section class="media-section" id="gallery">
       <div class="media-section-inner">
     
-        <h2 class="media-section-title">
+        <h2 class="media-section-title reveal">
           Атмосфера наших концертов
         </h2>
     
@@ -128,11 +213,13 @@
           <button class="media-arrow media-arrow-right" aria-label="Следующее">
             ›
           </button>
-          <img 
-            src="images/NyagaNewHolland.jpg" 
-            alt="Музыка из кино на органе — дирижёр Алексей Ньяга"
-            class="featured-media-img"
-          >
+          <span class="photo-halftone">
+            <img
+              src="images/NyagaNewHolland.jpg"
+              alt="Музыка из кино на органе — дирижёр Алексей Ньяга"
+              class="featured-media-img"
+            >
+          </span>
     
           <div class="featured-media-overlay">
             <h3 class="featured-media-title">
@@ -145,29 +232,35 @@
         </article>
     
         <div class="media-thumbnails">
-          <img 
-          src="images/aliceinwonderlandNH.jpg"
-          class="media-thumb"
-          data-title="Алиса в стране чудес"
-          data-subtitle="Оркестр 1703"
-          alt=""
-        >
+          <span class="photo-halftone">
+            <img 
+              src="images/aliceinwonderlandNH.jpg"
+              class="media-thumb"
+              data-title="Алиса в стране чудес"
+              data-subtitle="Оркестр 1703"
+              alt=""
+            >
+          </span>
         
-        <img 
-          src="images/GrigoriyFedorovIgraet.jpg"
-          class="media-thumb"
-          data-title="Григорий Фёдоров"
-          data-subtitle="Солист концерта"
-          alt=""
-        >
+          <span class="photo-halftone">
+            <img 
+              src="images/GrigoriyFedorovIgraet.jpg"
+              class="media-thumb"
+              data-title="Григорий Фёдоров"
+              data-subtitle="Солист концерта"
+              alt=""
+            >
+          </span>
         
-        <img 
-          src="images/NyagaNewHolland.jpg"
-          class="media-thumb"
-          data-title="Музыка из кино на органе"
-          data-subtitle="Дирижёр Алексей Ньяга"
-          alt=""
-        >
+          <span class="photo-halftone">
+            <img 
+              src="images/NyagaNewHolland.jpg"
+              class="media-thumb"
+              data-title="Музыка из кино на органе"
+              data-subtitle="Дирижёр Алексей Ньяга"
+              alt=""
+            >
+          </span>
         </div>
     
         <div class="media-dots">
@@ -178,7 +271,54 @@
     
       </div>
     </section>
+
+    <section class="video-section" id="videos">
+      <h2 class="reveal">Видео</h2>
+
+      <div class="video-grid">
+        <div class="video-card reveal">
+          <h3>YouTube: «Музыка из кино»</h3>
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            title="YouTube video"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="video-card reveal">
+          <h3>VK: «Орган и свет»</h3>
+          <iframe
+            src="https://vk.com/video_ext.php?oid=-1&id=VIDEO_ID&hash=VIDEO_HASH"
+            title="VK video"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="press">
+      <h2 class="reveal">О нас в СМИ</h2>
     
+      <div class="press-list">
+        <a href="#" class="reveal">
+          <div style="font-size: 20px; margin-bottom: 6px;">Интервью на РБК</div>
+          <div style="color: rgba(20, 49, 39, 0.72); font-weight: 750;">
+            «Юмор как музыкальный инструмент»
+          </div>
+        </a>
+        <a href="#" class="reveal">
+          <div style="font-size: 20px; margin-bottom: 6px;">Статья в Афише</div>
+          <div style="color: rgba(20, 49, 39, 0.72); font-weight: 750;">
+            «Как рождается театральная классика»
+          </div>
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -193,9 +333,10 @@
         <ul>
           <li><a href="#home">Главная</a></li>
           <li><a href="#events">Афиша</a></li>
-          <li><a href="#about">О нас</a></li>
-          <li><a href="#gallery">Галерея</a></li>
-          <li><a href="#contacts">Контакты</a></li>
+          <li><a href="#programs">Программы</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="gallery.html">Галерея</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
       <div class="footer-col footer-col-contacts">
@@ -209,6 +350,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

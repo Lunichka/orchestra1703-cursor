@@ -216,7 +216,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       li.innerHTML = `
         <div class="concert-card-thumb">
-          <img src="${event.image}" alt="${event.title}">
+          <span class="photo-halftone">
+            <img src="${event.image}" alt="${event.title}">
+          </span>
         </div>
 
         <div class="concert-card-content">
@@ -278,4 +280,64 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   renderEvents();
+})();
+
+// =====================================
+// Brand motion (GSAP): reveals + parallax
+// =====================================
+(function () {
+  function safeInitGsap() {
+    if (!window.gsap || !window.ScrollTrigger) return false;
+    if (safeInitGsap._done) return true;
+    safeInitGsap._done = true;
+
+    window.gsap.registerPlugin(window.ScrollTrigger);
+
+    // Entrance animations for marked elements
+    window.gsap.utils.toArray(".reveal").forEach(function (el, index) {
+      window.gsap.fromTo(
+        el,
+        { autoAlpha: 0, y: 28 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          delay: index * 0.03,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+
+    // Parallax: move decorative layers with scroll
+    window.gsap.utils.toArray(".parallax-layer").forEach(function (layer) {
+      var speed = parseFloat(layer.getAttribute("data-parallax-speed") || "0.18");
+      if (isNaN(speed)) speed = 0.18;
+
+      window.gsap.to(layer, {
+        y: -220 * speed,
+        ease: "none",
+        scrollTrigger: {
+          trigger: layer,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
+
+    return true;
+  }
+
+  // If GSAP is loaded later (CDN), wait briefly.
+  var attempts = 0;
+  var timer = window.setInterval(function () {
+    attempts += 1;
+    if (safeInitGsap()) window.clearInterval(timer);
+    if (attempts > 30) window.clearInterval(timer);
+  }, 100);
 })();
