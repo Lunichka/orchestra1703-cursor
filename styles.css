@@ -1,6 +1,36 @@
 /* =========================
    BASE
 ========================= */
+@font-face {
+  font-family: 'DRUZHOK';
+  src: url('./fonts/DRUZHOK.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* Чтобы текст не пропадал, пока шрифт грузится */
+}
+@font-face {
+  font-family: 'Despair Display';
+  src: url('./fonts/DespairDisplay-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Steppe';
+  src: url('./fonts/Steppe-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Steppe';
+  src: url('./fonts/Steppe-SemiBold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 body {
   font-family: "Inter", sans-serif;
@@ -13,7 +43,7 @@ body {
   }
   
   h1, h2, h3 {
-    font-family: "Steppe-SemiBold", sans-serif;
+    font-family:  "Despair Display", Georgia, "Times New Roman", serif;
   }
 }
 
@@ -106,17 +136,21 @@ img {
   font-size: 32px;
   line-height: 1.2;
   margin-bottom: 20px;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .hero-subtitle {
   font-size: 16px;
   margin-bottom: 32px;
+  text-align: left;
 }
 
 .hero-buttons {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  text-align: left;
 }
 
 /* =========================
@@ -146,6 +180,7 @@ img {
 
 .concerts-section {
   padding: 60px 20px;
+  margin: 20px;
 }
 
 .concerts-section-title {
@@ -173,7 +208,7 @@ img {
 .concert-card {
   background: #181818;
   border-radius: 14px;
-  padding: 20px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -182,11 +217,29 @@ img {
 .concert-card-title {
   font-size: 20px;
   font-weight: 600;
+  font-family: "DRUZHOK", "Despair Display", Georgia, "Times New Roman", serif;
 }
 
 .concert-date {
-  color: #000;
+  color: inherit;
   letter-spacing: 0.5px;
+  font-family: "Despair Display", Georgia, "Times New Roman", serif;
+}
+
+.concert-datee {
+  color: inherit;
+  letter-spacing: 0.5px;
+  font-family: "Despair Display", Georgia, "Times New Roman", serif;
+}
+
+.concert-meta {
+  margin: 10px;
+}
+
+.concert-title {
+  font-family: "DRUZHOK", "Despair Display", Georgia, "Times New Roman", serif;
+  font-weight: 900;
+  letter-spacing: 0.2px;
 }
 
 .concert-time {
@@ -196,6 +249,10 @@ img {
 .concert-card-actions {
   display: flex;
   gap: 10px;
+}
+
+.concert-participants-title {
+  text-align: center;
 }
 
 /* =========================
@@ -388,11 +445,15 @@ body {
 
 /* High-contrast serif headings */
 h1,
-h2,
+h2 {
+  font-family: "Despair Display", Georgia, "Times New Roman", serif;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
 h3,
 h4 {
-  font-family: "Druzhok", "Despair Display", "Playfair Display", Georgia, "Times New Roman",
-    serif;
+  font-family: "DRUZHOK", "Despair Display", Georgia, "Times New Roman", serif;
   font-weight: 800;
   letter-spacing: 0.2px;
 }
@@ -782,8 +843,31 @@ body.is-menu-open {
   text-align: center;
 }
 
+@media (max-width: 767px) {
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-buttons {
+    align-items: center;
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-copy {
+  text-align: left;
+}
+
 .hero-title {
-  font-size: 56px;
+  font-size: 36px;
   line-height: 1.02;
   margin: 0 0 18px;
   color: var(--text);
@@ -791,19 +875,135 @@ body.is-menu-open {
 }
 
 .hero-subtitle {
-  margin: 0 auto 28px;
+  margin: 0 0 30px;
   max-width: 720px;
   color: var(--muted);
   font-size: 18px;
   line-height: 1.7;
   font-weight: 650;
+  padding-left: 37px;
 }
 
 .hero-buttons {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
+  padding-left: 27px;
+}
+
+.hero-media {
+  display: grid;
+  place-items: center;
+}
+
+.hero-media-blob {
+  width: min(400px, 62vw);
+  aspect-ratio: 1 / 1;
+  /* Убираем фиксированный 80%, заменяем на начальную форму блоба */
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; 
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: var(--shadow);
+  position: relative;
+  transform: translateZ(0);
+  
+  /* Убираем clip-path совсем — он режет края и не дает скруглять */
+  /* clip-path: polygon(...); <— УДАЛИТЬ ЭТО */
+
+  /* Запускаем две анимации сразу: полет и морфинг формы */
+  animation: 
+    heroFloat 5.2s ease-in-out infinite,
+    blobMorph 8s ease-in-out infinite alternate;
+}
+
+/* Анимация изменения формы (плавное перетекание) */
+@keyframes blobMorph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  33% {
+    border-radius: 45% 55% 50% 50% / 35% 65% 35% 65%;
+  }
+  66% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+/* Твое оригинальное покачивание (оставляем без изменений) */
+@keyframes heroFloat {
+  0% {
+    transform: translateY(0) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(1deg); /* Чуть увеличил амплитуду для эффекта */
+  }
+  100% {
+    transform: translateY(0) rotate(-0.5deg);
+  }
+}
+
+.hero-bg-glow {
+  position: absolute;
+  width: 400px; /* Размер можно менять */
+  height: 400px;
+  /* Используем цвета из твоего фирменного стиля */
+  background: radial-gradient(circle, rgba(255, 87, 87, 0.15) 0%, transparent 70%);
+  filter: blur(80px); /* Делаем края очень мягкими */
+  border-radius: 50%;
+  z-index: -1; /* Уводим на задний план */
+  
+  /* Начальное положение */
+  top: 5%;
+  left: 15%;
+
+  /* Запускаем бесконечный дрейф */
+  animation: bgDrift 20s ease-in-out infinite alternate;
+}
+
+/* Анимация хаотичного движения */
+@keyframes bgDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(100px, 50px) scale(1.2);
+    background: radial-gradient(circle, rgba(255, 186, 85, 0.15) 0%, transparent 70%);
+  }
+  66% {
+    transform: translate(-50px, 150px) scale(0.8);
+  }
+  100% {
+    transform: translate(50px, -20px) scale(1.1);
+  }
+}
+
+/* Остальные свойства (video и before) остаются как были — они отлично впишутся в новую форму */
+.hero-media-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  position: relative;
+  z-index: 0;
+  filter: contrast(1.05) saturate(0.95);
+}
+
+@keyframes heroFloat {
+  0% {
+    transform: translateY(0) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.6deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-0.5deg);
+  }
 }
 
 .hero-parallax-layer {
@@ -903,6 +1103,7 @@ body.is-menu-open {
   margin: 0;
   font-size: 18px;
   letter-spacing: 0.2px;
+  font-family: "DRUZHOK", "Despair Display", Georgia, "Times New Roman", serif;
 }
 
 .concert-card-meta {
@@ -926,7 +1127,10 @@ body.is-menu-open {
 
 .btn-view-all {
   margin-top: 20px;
-  display: inline-flex;
+display: flex;
+justify-content: center;
+align-items: center;
+  
 }
 
 /* =========================
@@ -1602,6 +1806,7 @@ body.is-menu-open {
 
 .concert-hero-content {
   position: relative;
+  margin: 20px;
   z-index: 1;
   padding: 26px 18px;
   max-width: 780px;
@@ -1648,6 +1853,66 @@ body.is-menu-open {
   border-radius: var(--radius-xl);
 }
 
+/* Snowqueen layout polish (spacing + hierarchy) */
+.concert-about,
+.concert-dates {
+  padding: 10px 20px 26px;
+}
+
+.concert-about-inner {
+  padding: 20px;
+}
+
+.concert-about-text {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.62);
+  padding: 18px 18px;
+}
+
+.concert-about-text h2,
+.concert-dates h2 {
+  margin-top: 0;
+}
+
+/* Other concert dates: premium cards */
+.other-dates {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 20px;
+}
+
+.date-small-card {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: var(--shadow);
+  padding: 16px 16px 14px;
+  text-align: center;
+}
+
+.date-small-card h4 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.date-small-card p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .concert-about,
+  .concert-dates {
+    padding: 14px 20px 34px;
+  }
+
+  .other-dates {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -1662,7 +1927,16 @@ body.is-menu-open {
 
   .hero-buttons {
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
+  }
+
+  .hero-inner {
+    text-align: left;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 34px;
   }
 
   .concert-card {
@@ -1909,4 +2183,152 @@ body.is-menu-open {
 /* Sticky header anchor offset */
 [id] {
   scroll-margin-top: 92px;
+}
+
+/* =========================================
+   MOBILE FIXES (minimal safe overrides)
+========================================= */
+
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* 1) HERO TITLE OVERFLOWS ON MOBILE */
+@media (max-width: 480px) {
+  .hero-copy {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 9.2vw, 44px);
+    line-height: 1.08;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-subtitle {
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 1.6;
+  }
+}
+
+/* 2) HERO BUTTONS SAME SIZE ON MOBILE */
+@media (max-width: 480px) {
+  .hero-buttons {
+    align-items: stretch;
+    padding-left: 0;
+    gap: 14px;
+  }
+
+  .hero-buttons .btn,
+  .hero-buttons a.btn {
+    width: min(340px, 100%);
+    min-height: 48px;
+    justify-content: center;
+  }
+}
+
+/* 3) CONCERTS SECTION NEEDS MORE SPACING (~10px) */
+.concerts-section {
+  padding: 80px 0;
+}
+
+.concerts-section-subtitle {
+  margin-bottom: 46px;
+}
+
+/* 4) "СМОТРЕТЬ ВСЕ КОНЦЕРТЫ" BUTTON LOST STYLES */
+.btn-view-all {
+  display: inline-block;
+  display: block;
+  width: 200px;
+  margin: 30px auto;
+  width: 200px; 
+  padding: 14px 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(20, 49, 39, 0.14);
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-view-all:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 87, 87, 0.35);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+/* 5) FOOTER LOGO TOO LARGE (do not affect header logo) */
+.footer-logo img {
+  height: 54px;
+  width: auto;
+}
+
+/* 6) BURGER MENU LINKS NOT CLICKABLE */
+.mobile-menu::before {
+  pointer-events: none;
+}
+
+.site-header.is-menu-open .mobile-menu,
+.site-header.is-menu-open .mobile-menu * {
+  pointer-events: auto;
+}
+
+/* GitHub Pages/mobile Safari tap fix: ensure menu content sits above any layers */
+.mobile-menu {
+  isolation: isolate;
+}
+
+.mobile-menu-close,
+.mobile-nav {
+  position: relative;
+  z-index: 1;
+}
+
+.mobile-nav a {
+  position: relative;
+  z-index: 1;
+  touch-action: manipulation;
+}
+
+/* 7) CONTACTS PAGE MOBILE VERSION */
+@media (max-width: 900px) {
+  .contacts-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .contacts-page {
+    overflow-x: hidden;
+  }
+
+  .contacts-hero-inner {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .contact-form-row-two {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 8) ABOUT PAGE RIGHT-SIDE GAP ON MOBILE */
+@media (max-width: 768px) {
+  .about-page {
+    overflow-x: hidden;
+  }
+
+  .members-grid {
+    width: 100%;
+    max-width: 100%;
+  }
 }

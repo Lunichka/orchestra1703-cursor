@@ -9,7 +9,7 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="logo">
+      <a href="./index.html" class="logo">
         <img src="images/logo-shirokij.png" alt="Оркестр 1703 логотип">
       </a>
       
@@ -33,7 +33,7 @@
       <button type="button" class="mobile-menu-close" aria-label="Close menu">Закрыть</button>
       <nav class="mobile-nav" aria-label="Mobile navigation">
         <ul>
-          <li><a href="#home">Главная</a></li>
+          <li><a href="index.html#home">Главная</a></li>
           <li><a href="afisha.html">Афиша</a></li>
           <li><a href="#programs">Программы</a></li>
           <li><a href="about.html">О нас</a></li>
@@ -50,11 +50,31 @@
     </div>
 
     <div class="hero-inner">
-      <h1 class="hero-title reveal">Самый нестандартный<br>оркестр России</h1>
-      <p class="hero-subtitle reveal">Микс юмора, искусства и незабываемой музыки</p>
-      <div class="hero-buttons">
-        <a href="#events" class="btn btn-primary reveal">Купить билеты</a>
-        <a href="#programs" class="btn btn-secondary reveal">Смотреть программы</a>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1 class="hero-title reveal">САМЫЙ НЕСТАНДАРТНЫЙ<br>ОРКЕСТР РОССИИ</h1>
+          <p class="hero-subtitle reveal">Микс юмора, искусства и незабываемой музыки</p>
+          <div class="hero-buttons">
+            <a href="#events" class="btn btn-primary reveal">Купить билеты</a>
+            <a href="#programs" class="btn btn-secondary reveal">Смотреть программы</a>
+          </div>
+        </div>
+
+        <div class="hero-media reveal" aria-label="Hero animation">
+          <div class="hero-bg-glow"></div>
+          <div class="hero-media-blob" aria-hidden="true">
+            <video
+              class="hero-media-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            >
+              <source src="assets/video-hero.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -122,7 +142,7 @@
         </li>
       </ul>
       <div class="concerts-section-actions">
-        <a href="#events" class="btn btn-view-all">Смотреть все концерты</a>
+        <a href="afisha.html" class="btn btn-view-all">Смотреть все концерты</a>
       </div>
     </section>
 
@@ -324,15 +344,15 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-col footer-col-logo">
-        <a href="/" class="footer-logo">
+        <a href="./index.html" class="footer-logo">
           <img src="images/logo-shirokij.png" alt="Оркестр 1703 логотип">
         </a>
       </div>
       <nav class="footer-col footer-col-nav" aria-label="Footer navigation">
         <h3 class="footer-col-title">Навигация</h3>
         <ul>
-          <li><a href="#home">Главная</a></li>
-          <li><a href="#events">Афиша</a></li>
+          <li><a href="index.html#home">Главная</a></li>
+          <li><a href="afisha.html">Афиша</a></li>
           <li><a href="#programs">Программы</a></li>
           <li><a href="about.html">О нас</a></li>
           <li><a href="gallery.html">Галерея</a></li>
