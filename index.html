@@ -1,377 +1,1350 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Site Title</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оркестр 1703 — Самый Нестандартный Оркестр</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Dela Gothic One (DRUZHOK), Playfair Display (Despair Display - no italic), Syne & Plus Jakarta Sans (Steppe) -->
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        body {
+            background-color: #efe3da;
+            color: #143127;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Настройка фирменных шрифтов из гайдлайна */
+        .font-druzhok {
+            font-family: 'Dela Gothic One', cursive;
+        }
+        .font-despair {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-style: normal; /* Исключаем курсив по желанию пользователя */
+        }
+        .font-steppe {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+        }
+
+        /* Применение SVG фильтра гравюры/полутонов */
+        .brand-engraving {
+            filter: url(#halftone-engraving);
+            transition: filter 0.3s ease;
+        }
+        .brand-engraving:hover {
+            filter: none; /* Эффект раскрытия цвета при наведении */
+        }
+
+        /* Необруталистические тени и кнопки */
+        .neo-btn {
+            border: 3px solid #143127;
+            box-shadow: 4px 4px 0px 0px #143127;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .neo-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #143127;
+        }
+        .neo-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #143127;
+        }
+
+        .neo-card {
+            border: 3px solid #143127;
+            box-shadow: 6px 6px 0px 0px #143127;
+            background-color: #ffffff;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .neo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 10px 10px 0px 0px #143127;
+        }
+
+        /* Стилизация скроллбара */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #efe3da;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #143127;
+            border-radius: 5px;
+        }
+
+        /* Пульсация каракуль */
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg) scale(1); }
+            50% { transform: rotate(3deg) scale(1.05); }
+        }
+        .scribble-animate {
+            animation: wiggle 6s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="./index.html" class="logo">
-        <img src="images/logo-shirokij.png" alt="Оркестр 1703 логотип">
-      </a>
-      
-      <nav class="main-nav" aria-label="Main navigation">
-        <ul>
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="afisha.html">Афиша</a></li>
-          <li><a href="#programs">Программы</a></li>
-          <li><a href="about.html">О нас</a></li>
-          <li><a href="gallery.html">Галерея</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-      </nav>
-      <button type="button" class="burger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span class="burger-line"></span>
-        <span class="burger-line"></span>
-        <span class="burger-line"></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      <button type="button" class="mobile-menu-close" aria-label="Close menu">Закрыть</button>
-      <nav class="mobile-nav" aria-label="Mobile navigation">
-        <ul>
-          <li><a href="index.html#home">Главная</a></li>
-          <li><a href="afisha.html">Афиша</a></li>
-          <li><a href="#programs">Программы</a></li>
-          <li><a href="about.html">О нас</a></li>
-          <li><a href="gallery.html">Галерея</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <div id="root"></div>
 
-  <section class="hero" id="home">
-    <div class="hero-parallax-layer parallax-layer" data-parallax-speed="0.18" aria-hidden="true">
-      <div class="scribble-blob"></div>
-    </div>
+    <!-- Этот SVG-фильтр в реальном времени переводит любые изображения/видео в фирменную гравюру (Тёмно-зеленый #143127 + Кремовый #efe3da) -->
+    <svg class="hidden" width="0" height="0">
+        <filter id="halftone-engraving" color-interpolation-filters="sRGB">
+            <!-- Шаг 1: Повышаем контраст исходника -->
+            <feComponentTransfer>
+                <feFuncR type="linear" slope="2" intercept="-0.5"/>
+                <feFuncG type="linear" slope="2" intercept="-0.5"/>
+                <feFuncB type="linear" slope="2" intercept="-0.5"/>
+            </feComponentTransfer>
+            <!-- Шаг 2: Обесцвечиваем в монохром -->
+            <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/>
+            <!-- Шаг 3: Маппинг цветов на фирменную палитру #143127 (темный) и #efe3da (светлый) -->
+            <feComponentTransfer>
+                <feFuncR type="table" tableValues="0.078 0.937"/>
+                <feFuncG type="table" tableValues="0.192 0.89"/>
+                <feFuncB type="table" tableValues="0.153 0.855"/>
+            </feComponentTransfer>
+        </filter>
+    </svg>
 
-    <div class="hero-inner">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1 class="hero-title reveal">САМЫЙ НЕСТАНДАРТНЫЙ<br>ОРКЕСТР РОССИИ</h1>
-          <p class="hero-subtitle reveal">Микс юмора, искусства и незабываемой музыки</p>
-          <div class="hero-buttons">
-            <a href="#events" class="btn btn-primary reveal">Купить билеты</a>
-            <a href="#programs" class="btn btn-secondary reveal">Смотреть программы</a>
-          </div>
-        </div>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-        <div class="hero-media reveal" aria-label="Hero animation">
-          <div class="hero-bg-glow"></div>
-          <div class="hero-media-blob" aria-hidden="true">
-            <video
-              class="hero-media-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-            >
-              <source src="assets/video-hero.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        // Инициализация Web Audio API для ретро-синтезатора звуков оркестра
+        let audioCtx = null;
+        const playSynthSound = (frequency, type = 'sine', duration = 0.5) => {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = type;
+                osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+                
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log("Audio Context not started or blocked", e);
+            }
+        };
 
-  <main class="main-content">
-    <section class="concerts-section" id="events">
-      <h2 class="concerts-section-title reveal">Ближайшие концерты</h2>
-      <p class="concerts-section-subtitle reveal">Следите за концертами в наших социальных сетях</p>
-      <ul class="concert-list">
-        <li class="concert-card reveal">
-          <div class="concert-card-thumb">
-            <span class="photo-halftone">
-              <img src="images/GrigoriyFedorovIgraet.jpg" alt="Снежная королева">
-            </span>
-          </div>
-        
-          <div class="concert-card-content">
-            <p class="concert-card-meta">
-              <span class="concert-date">27 ЯНВАРЯ</span>
-              <span class="concert-time">19:00</span>
-            </p>
-            <h3 class="concert-card-title">МУЗЫКА ИЗ КИНО НА ОРГАНЕ</h3>
-          </div>
-        
-          <div class="concert-card-actions">
-            <a href="#" class="btn btn-secondary btn-card">Подробнее</a>
-            <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
-          </div>
-        </li>
-        <li class="concert-card reveal">
-          <div class="concert-card-thumb">
-            <span class="photo-halftone">
-              <img src="images/aliceinwonderlandNH.jpg" alt="Снежная королева">
-            </span>
-          </div>
-          <div class="concert-card-content">
-            <p class="concert-card-meta">
-              <span class="concert-date">20 ФЕВРАЛЯ</span>
-              <span class="concert-time">19:00</span>
-            </p>
-            <h3 class="concert-card-title">СКАЗОЧНЫЙ МИР РУССКОЙ КЛАССИКИ</h3>
-          </div>
-          <div class="concert-card-actions">
-            <a href="#" class="btn btn-secondary btn-card">Подробнее</a>
-            <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
-          </div>
-        </li>
-        <li class="concert-card reveal">
-          <div class="concert-card-thumb">
-            <span class="photo-halftone">
-              <img src="images/NyagaNewHolland.jpg" alt="Снежная королева">
-            </span>
-          </div>
-          <div class="concert-card-content">
-            <p class="concert-card-meta">
-              <span class="concert-date">28 ФЕВРАЛЯ</span>
-              <span class="concert-time">20:00</span>
-            </p>
-            <h3 class="concert-card-title">CНЕЖНАЯ КОРОЛЕВА</h3>
-          </div>
-          <div class="concert-card-actions">
-            <a href="snowqueen.html" class="btn btn-secondary btn-card">Подробнее</a>
-            <a href="#" class="btn btn-primary btn-card">Купить билеты</a>
-          </div>
-        </li>
-      </ul>
-      <div class="concerts-section-actions">
-        <a href="afisha.html" class="btn btn-view-all">Смотреть все концерты</a>
-      </div>
-    </section>
+        // Декоративные векторные каракули из брендбука
+        const ScribbleDecoration = ({ className = "", type = 1 }) => {
+            if (type === 1) {
+                return (
+                    <svg className={`scribble-animate ${className}`} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 100 C 40 20, 160 20, 180 100 C 160 180, 40 180, 20 100 Z" stroke="#ff5757" strokeWidth="4" strokeLinecap="round"/>
+                        <path d="M50 100 C 70 50, 130 50, 150 100" stroke="#ffba55" strokeWidth="3" strokeDasharray="5 5"/>
+                    </svg>
+                );
+            }
+            return (
+                <svg className={`scribble-animate ${className}`} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke="#ffba55" strokeWidth="5" strokeLinecap="round"/>
+                    <path d="M30 120 Q 72.5 190, 115 120 T 170 120" stroke="#ff5757" strokeWidth="3"/>
+                </svg>
+            );
+        };
 
-    <!-- CONCERT PROGRAMS (NEW) -->
-    <section class="programs-section" id="programs">
-      <h2 class="section-heading reveal">Программы концертов</h2>
-      <p class="section-subheading reveal">
-        Выберите программу и откройте полную страницу: состав, длительность, музыкальный треклист.
-      </p>
-
-      <div class="programs-grid">
-        <a
-          class="program-card reveal"
-          href="programs/program-nebesnye-arki.html"
-          aria-label="Открыть программу Небесные арки"
-        >
-          <div class="program-card-inner">
-            <div class="program-card-media">
-              <span class="photo-halftone">
-                <img src="images/aliceinwonderlandNH.jpg" alt="Небесные арки">
-              </span>
+        const Lightbox = ({ item, onClose }) => (
+            <div className="fixed inset-0 bg-[#143127]/95 z-50 flex items-center justify-center p-4" onClick={onClose}>
+                <div className="max-w-4xl w-full bg-[#efe3da] p-6 rounded-3xl border-4 border-[#143127] relative" onClick={e => e.stopPropagation()}>
+                    <button onClick={onClose} className="absolute -top-4 -right-4 bg-[#ff5757] text-[#efe3da] border-4 border-[#143127] w-12 h-12 rounded-full font-steppe flex items-center justify-center hover:bg-[#ffba55] transition-colors">✕</button>
+                    <img src={item.img} alt={item.title} className="w-full h-auto rounded-2xl border-4 border-[#143127] brand-engraving mb-4" />
+                    <span className="bg-[#ffba55] text-[#143127] border-2 border-[#143127] px-3 py-1 rounded-full text-xs font-steppe uppercase mb-2 inline-block">{item.category}</span>
+                    <h3 className="font-druzhok text-2xl mb-1 text-[#143127]">{item.title}</h3>
+                    <p className="text-[#143127]/80">{item.desc}</p>
+                </div>
             </div>
-            <div class="program-card-body">
-              <h3 class="program-card-title">Небесные арки</h3>
-              <div class="program-card-meta">
-                <span>Сатирическая симфония</span>
-                <span>90 минут</span>
-              </div>
+        );
+
+        // Интерактивный выбор мест в зрительном зале (схема зала в цветах бренда)
+        const TicketModal = ({ concert, onClose }) => {
+            const [selectedSeats, setSelectedSeats] = useState([]);
+            const [bought, setBought] = useState(false);
+            
+            const rows = 6;
+            const seatsPerRow = 10;
+            const price = concert.price || 1500;
+
+            const toggleSeat = (row, seat) => {
+                const seatId = `${row}-${seat}`;
+                if (selectedSeats.includes(seatId)) {
+                    setSelectedSeats(selectedSeats.filter(s => s !== seatId));
+                    playSynthSound(300, 'sine', 0.1);
+                } else {
+                    setSelectedSeats([...selectedSeats, seatId]);
+                    playSynthSound(500, 'sine', 0.15);
+                }
+            };
+
+            const handlePurchase = () => {
+                setBought(true);
+                playSynthSound(800, 'triangle', 0.4);
+                setTimeout(() => {
+                    playSynthSound(1000, 'sine', 0.5);
+                }, 150);
+            };
+
+            return (
+                <div className="fixed inset-0 bg-[#143127]/90 z-50 flex items-center justify-center p-4">
+                    <div className="max-w-2xl w-full bg-[#efe3da] p-8 rounded-3xl border-4 border-[#143127] relative max-h-[90vh] overflow-y-auto">
+                        <button onClick={onClose} className="absolute top-4 right-4 bg-[#ff5757] text-[#efe3da] border-4 border-[#143127] w-10 h-10 rounded-full flex items-center justify-center font-bold hover:bg-[#ffba55] transition-colors">✕</button>
+                        
+                        {!bought ? (
+                            <>
+                                <span className="bg-[#ff5757] text-white px-3 py-1 rounded-full text-xs font-steppe uppercase">{concert.tag}</span>
+                                <h3 className="font-druzhok text-3xl mt-2 mb-1 text-[#143127]">{concert.title}</h3>
+                                <p className="text-sm text-[#143127]/70 font-steppe mb-6">{concert.date} • {concert.time} • {concert.venue}</p>
+
+                                <div className="w-full bg-[#143127] text-[#efe3da] text-center py-2 rounded-xl font-steppe text-xs uppercase tracking-widest mb-8 border-2 border-[#ffba55]">
+                                    СЦЕНА ОРКЕСТРА
+                                </div>
+
+                                <div className="flex flex-col gap-3 justify-center items-center mb-8">
+                                    {Array.from({ length: rows }).map((_, rIdx) => (
+                                        <div key={rIdx} className="flex gap-2 items-center">
+                                            <span className="w-4 text-xs font-steppe text-[#143127]/50">{rIdx + 1}</span>
+                                            {Array.from({ length: seatsPerRow }).map((_, sIdx) => {
+                                                const seatId = `${rIdx + 1}-${sIdx + 1}`;
+                                                const isSelected = selectedSeats.includes(seatId);
+                                                const isTaken = (rIdx * sIdx) % 7 === 1 || (rIdx + sIdx) % 9 === 0;
+                                                return (
+                                                    <button
+                                                        key={sIdx}
+                                                        disabled={isTaken}
+                                                        onClick={() => toggleSeat(rIdx + 1, sIdx + 1)}
+                                                        className={`w-6 h-6 rounded-md border-2 border-[#143127] transition-all flex items-center justify-center text-[8px] font-bold
+                                                            ${isTaken ? 'bg-[#143127]/20 border-dashed cursor-not-allowed text-[#143127]/20' : 
+                                                              isSelected ? 'bg-[#ff5757] text-[#efe3da] scale-110 shadow-sm' : 'bg-[#ffffff] hover:bg-[#ffba55] text-[#143127]'}
+                                                        `}
+                                                        title={`Ряд ${rIdx + 1}, Место ${sIdx + 1}`}
+                                                    >
+                                                        {sIdx + 1}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="flex gap-4 justify-center text-xs font-steppe mb-6 text-[#143127]">
+                                    <div className="flex items-center gap-1">
+                                        <div className="w-4 h-4 bg-white border-2 border-[#143127] rounded"></div> Свободно
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <div className="w-4 h-4 bg-[#ff5757] border-2 border-[#143127] rounded"></div> Выбрано
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <div className="w-4 h-4 bg-[#143127]/20 border-2 border-dashed border-[#143127]/20 rounded"></div> Занято
+                                    </div>
+                                </div>
+
+                                <div className="border-t-4 border-dashed border-[#143127] pt-6 flex justify-between items-center">
+                                    <div>
+                                        <p className="text-xs font-steppe text-[#143127]/60">Выбрано мест: {selectedSeats.length}</p>
+                                        <p className="text-2xl font-druzhok text-[#143127]">{selectedSeats.length * price} ₽</p>
+                                    </div>
+                                    <button 
+                                        onClick={handlePurchase}
+                                        disabled={selectedSeats.length === 0}
+                                        className={`px-6 py-3 rounded-xl font-steppe text-sm uppercase tracking-wider neo-btn transition-all 
+                                            ${selectedSeats.length === 0 ? 'bg-gray-400 opacity-50 cursor-not-allowed shadow-none border-gray-500 text-gray-700' : 'bg-[#ff5757] text-white'}`}
+                                    >
+                                        Оформить заказ
+                                    </button>
+                                </div>
+                            </>
+                        ) : (
+                            <div className="text-center py-12">
+                                <span className="text-6xl block mb-4">🎟️</span>
+                                <h4 className="font-druzhok text-3xl text-[#143127] mb-2">УСПЕШНО ЗАБРОНИРОВАНО!</h4>
+                                <p className="font-steppe text-sm text-[#143127]/70 mb-6">Ваши билеты отправлены на почту. Ждем вас в зале!</p>
+                                <button onClick={onClose} className="px-6 py-3 bg-[#143127] text-white font-steppe uppercase text-xs rounded-xl neo-btn">Отлично</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const Layout = ({ children, currentPage, setPage }) => (
+            <div className="min-h-screen flex flex-col relative">
+                <header className="border-b-4 border-[#143127] bg-[#efe3da] px-6 py-5 flex justify-between items-center sticky top-0 z-40">
+                    <div onClick={() => setPage('home')} className="bg-[#ff5757] text-[#efe3da] px-5 py-2.5 rounded-xl border-3 border-[#143127] font-druzhok text-xl cursor-pointer hover:bg-[#ffba55] transition-colors select-none flex items-center gap-1">
+                        17<span className="text-[#143127]">f</span>03
+                    </div>
+                    <nav className="hidden md:flex gap-8 font-steppe text-xs font-extrabold uppercase tracking-widest text-[#143127]">
+                        {[
+                            { id: 'home', label: 'Главная' },
+                            { id: 'afisha', label: 'Афиша' },
+                            { id: 'about', label: 'О нас' },
+                            { id: 'gallery', label: 'Галерея' },
+                            { id: 'contacts', label: 'Контакты' }
+                        ].map(item => (
+                            <button 
+                                key={item.id} 
+                                onClick={() => {
+                                    setPage(item.id);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }} 
+                                className={`pb-1 border-b-2 hover:text-[#ff5757] transition-all ${currentPage === item.id ? 'border-[#ff5757] text-[#ff5757]' : 'border-transparent'}`}
+                            >
+                                {item.label}
+                            </button>
+                        ))}
+                    </nav>
+                </header>
+
+                <main className="flex-grow">{children}</main>
+
+                <footer className="border-t-4 border-[#143127] bg-[#efe3da] py-16 px-8 relative overflow-hidden">
+                    <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 relative z-10">
+                        <div>
+                            <div className="bg-[#ff5757] text-[#efe3da] px-4 py-2 rounded-xl border-3 border-[#143127] font-druzhok text-xl w-max mb-6">
+                                17f03
+                            </div>
+                            <p className="text-sm text-[#143127]/80 max-w-sm font-medium leading-relaxed">
+                                Самый нестандартный оркестр России. Микс юмора, искусства, классических канонов и духа свободы Нового Времени.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 className="font-steppe text-sm uppercase tracking-wider text-[#143127]/50 mb-4">Навигация</h4>
+                            <div className="grid grid-cols-2 gap-2 text-sm font-bold text-[#143127]">
+                                <button onClick={() => setPage('home')} className="text-left hover:text-[#ff5757]">Главная</button>
+                                <button onClick={() => setPage('afisha')} className="text-left hover:text-[#ff5757]">Афиша</button>
+                                <button onClick={() => setPage('about')} className="text-left hover:text-[#ff5757]">О нас</button>
+                                <button onClick={() => setPage('gallery')} className="text-left hover:text-[#ff5757]">Галерея</button>
+                                <button onClick={() => setPage('contacts')} className="text-left hover:text-[#ff5757]">Контакты</button>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 className="font-steppe text-sm uppercase tracking-wider text-[#143127]/50 mb-4">Контакты</h4>
+                            <p className="font-druzhok text-lg text-[#143127] mb-2">8 800 555 35 35</p>
+                            <p className="font-steppe text-xs text-[#143127] underline decoration-[#ff5757] decoration-2">orchestra1703@gmail.com</p>
+                        </div>
+                    </div>
+                    <div className="max-w-7xl mx-auto mt-12 pt-8 border-t-2 border-[#143127]/20 text-center text-xs font-steppe text-[#143127]/60">
+                        © 2026 Оркестр 1703. Все права защищены. Дизайн в стиле Swiss Brutalism.
+                    </div>
+                </footer>
             </div>
-          </div>
-        </a>
+        );
 
-        <a
-          class="program-card reveal"
-          href="programs/program-skazka-v-treh-aktah.html"
-          aria-label="Открыть программу Сказка в трёх актах"
-        >
-          <div class="program-card-inner">
-            <div class="program-card-media">
-              <span class="photo-halftone">
-                <img src="images/GrigoriyFedorovIgraet.jpg" alt="Сказка в трёх актах">
-              </span>
-            </div>
-            <div class="program-card-body">
-              <h3 class="program-card-title">Сказка в трёх актах</h3>
-              <div class="program-card-meta">
-                <span>Оркестр + рассказ</span>
-                <span>75 минут</span>
-              </div>
-            </div>
-          </div>
-        </a>
+        const HomePage = ({ setPage, setSelectedEvent }) => {
+            const [uploadedImg, setUploadedImg] = useState(null);
+            const [tempo, setTempo] = useState(1);
+            const [selectedConcert, setSelectedConcert] = useState(null);
+            const canvasRef = useRef(null);
+            
+            const handleImageUpload = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        setUploadedImg(event.target.result);
+                        playSynthSound(440, 'triangle', 0.2);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
 
-        <a
-          class="program-card reveal"
-          href="programs/program-organ-i-svet.html"
-          aria-label="Открыть программу Орган и свет"
-        >
-          <div class="program-card-inner">
-            <div class="program-card-media">
-              <span class="photo-halftone">
-                <img src="images/NyagaNewHolland.jpg" alt="Орган и свет">
-              </span>
-            </div>
-            <div class="program-card-body">
-              <h3 class="program-card-title">Орган и свет</h3>
-              <div class="program-card-meta">
-                <span>Кино-ремиксы</span>
-                <span>60 минут</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
-    <section class="media-section" id="gallery">
-      <div class="media-section-inner">
-    
-        <h2 class="media-section-title reveal">
-          Атмосфера наших концертов
-        </h2>
-    
-        <article class="featured-media">
-          <button class="media-arrow media-arrow-left" aria-label="Предыдущее">
-            ‹
-          </button>
-          
-          <button class="media-arrow media-arrow-right" aria-label="Следующее">
-            ›
-          </button>
-          <span class="photo-halftone">
-            <img
-              src="images/NyagaNewHolland.jpg"
-              alt="Музыка из кино на органе — дирижёр Алексей Ньяга"
-              class="featured-media-img"
-            >
-          </span>
-    
-          <div class="featured-media-overlay">
-            <h3 class="featured-media-title">
-              Музыка из кино на органе
-            </h3>
-            <p class="featured-media-subtitle">
-              Дирижёр Алексей Ньяга
-            </p>
-          </div>
-        </article>
-    
-        <div class="media-thumbnails">
-          <span class="photo-halftone">
-            <img 
-              src="images/aliceinwonderlandNH.jpg"
-              class="media-thumb"
-              data-title="Алиса в стране чудес"
-              data-subtitle="Оркестр 1703"
-              alt=""
-            >
-          </span>
-        
-          <span class="photo-halftone">
-            <img 
-              src="images/GrigoriyFedorovIgraet.jpg"
-              class="media-thumb"
-              data-title="Григорий Фёдоров"
-              data-subtitle="Солист концерта"
-              alt=""
-            >
-          </span>
-        
-          <span class="photo-halftone">
-            <img 
-              src="images/NyagaNewHolland.jpg"
-              class="media-thumb"
-              data-title="Музыка из кино на органе"
-              data-subtitle="Дирижёр Алексей Ньяга"
-              alt=""
-            >
-          </span>
-        </div>
-    
-        <div class="media-dots">
-          <span class="dot active"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-    
-      </div>
-    </section>
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let animationId;
+                let angle = 0;
 
-    <section class="video-section" id="videos">
-      <h2 class="reveal">Видео</h2>
+                const draw = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.strokeStyle = '#143127';
+                    ctx.lineWidth = 3;
+                    
+                    ctx.beginPath();
+                    for (let x = 0; x < canvas.width; x++) {
+                        const y = canvas.height / 2 + Math.sin(x * 0.02 + angle) * 30 * tempo + Math.cos(x * 0.01 - angle) * 15;
+                        if (x === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
 
-      <div class="video-grid">
-        <div class="video-card reveal">
-          <h3>YouTube: «Музыка из кино»</h3>
-          <iframe
-            src="https://www.youtube.com/embed/VIDEO_ID"
-            title="YouTube video"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
+                    ctx.fillStyle = '#ff5757';
+                    ctx.beginPath();
+                    ctx.arc(100 + Math.sin(angle) * 50, canvas.height / 2 - 40 * tempo, 8 * tempo, 0, Math.PI * 2);
+                    ctx.fill();
 
-        <div class="video-card reveal">
-          <h3>VK: «Орган и свет»</h3>
-          <iframe
-            src="https://vk.com/video_ext.php?oid=-1&id=VIDEO_ID&hash=VIDEO_HASH"
-            title="VK video"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-    </section>
+                    ctx.fillStyle = '#ffba55';
+                    ctx.beginPath();
+                    ctx.arc(200 + Math.cos(angle) * 30, canvas.height / 2 + 30 * tempo, 12, 0, Math.PI * 2);
+                    ctx.fill();
 
-    <section class="press">
-      <h2 class="reveal">О нас в СМИ</h2>
-    
-      <div class="press-list">
-        <a href="#" class="reveal">
-          <div style="font-size: 20px; margin-bottom: 6px;">Интервью на РБК</div>
-          <div style="color: rgba(20, 49, 39, 0.72); font-weight: 750;">
-            «Юмор как музыкальный инструмент»
-          </div>
-        </a>
-        <a href="#" class="reveal">
-          <div style="font-size: 20px; margin-bottom: 6px;">Статья в Афише</div>
-          <div style="color: rgba(20, 49, 39, 0.72); font-weight: 750;">
-            «Как рождается театральная классика»
-          </div>
-        </a>
-      </div>
-    </section>
-  </main>
+                    angle += 0.05 * tempo;
+                    animationId = requestAnimationFrame(draw);
+                };
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-col footer-col-logo">
-        <a href="./index.html" class="footer-logo">
-          <img src="images/logo-shirokij.png" alt="Оркестр 1703 логотип">
-        </a>
-      </div>
-      <nav class="footer-col footer-col-nav" aria-label="Footer navigation">
-        <h3 class="footer-col-title">Навигация</h3>
-        <ul>
-          <li><a href="index.html#home">Главная</a></li>
-          <li><a href="afisha.html">Афиша</a></li>
-          <li><a href="#programs">Программы</a></li>
-          <li><a href="about.html">О нас</a></li>
-          <li><a href="gallery.html">Галерея</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-      </nav>
-      <div class="footer-col footer-col-contacts">
-        <h3 class="footer-col-title">Контакты</h3>
-        <p class="footer-contact"><span class="footer-contact-label">Телефон:</span> 8 800 555 35 35</p>
-        <p class="footer-contact"><span class="footer-contact-label">Email:</span> orchestra1703@gmail.com</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copyright">© 2025 Оркестр 1703. Все права защищены.</p>
-    </div>
-  </footer>
+                draw();
+                return () => cancelAnimationFrame(animationId);
+            }, [tempo]);
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="main.js"></script>
+            const nearestConcerts = [
+                {
+                    id: 'snezhanya_koroleva',
+                    title: "СНЕЖНАЯ КОРОЛЕВА",
+                    date: "22 ДЕКАБРЯ",
+                    time: "20:00",
+                    venue: "Планетарий №1",
+                    tag: "Эксперимент",
+                    price: 2200,
+                    img: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=600&auto=format&fit=crop"
+                },
+                {
+                    id: 'alie_parusa',
+                    title: "АЛЫЕ ПАРУСА",
+                    date: "27 ЯНВАРЯ",
+                    time: "19:00",
+                    venue: "Санкт-Петербургская Филармония",
+                    tag: "Классика",
+                    price: 1800,
+                    img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=600&auto=format&fit=crop"
+                },
+                {
+                    id: 'skazochny_mir',
+                    title: "СКАЗОЧНЫЙ МИР РУССКОЙ КЛАССИКИ",
+                    date: "20 ФЕВРАЛЯ",
+                    time: "19:00",
+                    venue: "Капелла",
+                    tag: "Орган",
+                    price: 1500,
+                    img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=600&auto=format&fit=crop"
+                }
+            ];
+
+            return (
+                <div className="relative">
+                    {/* Герой-секция */}
+                    <section className="relative min-h-[85vh] flex items-center justify-center py-20 px-6 border-b-4 border-[#143127] overflow-hidden">
+                        <div className="absolute inset-0 z-0">
+                            <canvas ref={canvasRef} className="w-full h-full object-cover brand-engraving opacity-80" width="800" height="500" />
+                            <div className="absolute inset-0 bg-[#efe3da]/40 pointer-events-none"></div>
+                        </div>
+
+                        <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 relative z-10 items-center">
+                            <div className="space-y-6">
+                                <span className="bg-[#ffba55] text-[#143127] border-3 border-[#143127] px-4 py-2 rounded-xl text-xs font-steppe uppercase inline-block rotate-[-2deg] shadow-[3px_3px_0px_0px_#143127]">
+                                    Тенденции 2026 года
+                                </span>
+                                <h1 className="font-druzhok text-5xl md:text-7xl text-[#143127] leading-none uppercase">
+                                    САМЫЙ <br />
+                                    <span className="text-[#ff5757]">НЕСТАНДАРТНЫЙ</span> <br />
+                                    ОРКЕСТР
+                                </h1>
+                                <p className="font-despair text-2xl text-[#143127]/90 leading-tight">
+                                    Микс классической виртуозности, юмора и бескомпромиссной подачи
+                                </p>
+                                <div className="flex flex-wrap gap-4 pt-4">
+                                    <button onClick={() => setPage('afisha')} className="bg-[#ff5757] text-white px-8 py-4 rounded-xl text-sm font-steppe uppercase tracking-wider neo-btn">
+                                        Купить билеты
+                                    </button>
+                                    <button onClick={() => setPage('about')} className="bg-[#ffffff] text-[#143127] px-8 py-4 rounded-xl text-sm font-steppe uppercase tracking-wider neo-btn">
+                                        Оркестранты
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="relative flex justify-center">
+                                <ScribbleDecoration className="absolute -top-12 -left-12 w-32 h-32 z-0" type={1} />
+                                <div className="w-80 h-80 md:w-[400px] md:h-[400px] rounded-full overflow-hidden border-4 border-[#143127] bg-[#143127] shadow-[10px_10px_0px_0px_#ffba55] relative z-10">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800&auto=format&fit=crop" 
+                                        className="w-full h-full object-cover brand-engraving scale-110" 
+                                        alt="Orchestra Hero"
+                                        onError={(e) => { e.target.src = "https://placehold.co/800x800/143127/efe3da?text=1703"; }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Ближайшие концерты */}
+                    <section className="py-20 px-6 border-b-4 border-[#143127] bg-[#efe3da] relative">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center mb-12">
+                                <h2 className="font-druzhok text-4xl md:text-6xl text-[#143127] mb-2">БЛИЖАЙШИЕ КОНЦЕРТЫ</h2>
+                                <p className="font-despair text-lg text-[#143127]/80">Следите за концертами в наших социальных сетях</p>
+                            </div>
+
+                            <div className="grid md:grid-cols-3 gap-8">
+                                {nearestConcerts.map(concert => (
+                                    <div key={concert.id} className="neo-card p-6 flex flex-col justify-between">
+                                        <div>
+                                            <div className="aspect-[4/3] bg-[#143127] rounded-2xl overflow-hidden border-2 border-[#143127] mb-6 relative">
+                                                <img src={concert.img} className="w-full h-full object-cover brand-engraving" alt={concert.title} />
+                                                <span className="absolute top-4 left-4 bg-[#ff5757] text-white border-2 border-[#143127] px-3 py-1 rounded-full text-[10px] font-steppe uppercase">
+                                                    {concert.tag}
+                                                </span>
+                                            </div>
+                                            <div className="flex justify-between items-center text-xs font-steppe text-[#143127]/60 uppercase mb-2">
+                                                <span>{concert.date}</span>
+                                                <span className="text-[#ff5757] font-bold">{concert.time}</span>
+                                            </div>
+                                            <h3 className="font-despair text-xl text-[#143127] mb-4 min-h-[3.5rem] tracking-tight leading-none uppercase">
+                                                {concert.title}
+                                            </h3>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <button 
+                                                onClick={() => {
+                                                    setSelectedEvent(concert.id);
+                                                    setPage('event');
+                                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                                }}
+                                                className="px-4 py-3 bg-[#efe3da]/50 text-[#143127] text-xs font-steppe uppercase rounded-xl border-2 border-[#143127] hover:bg-[#ffba55] transition-all"
+                                            >
+                                                Подробнее
+                                            </button>
+                                            <button 
+                                                onClick={() => {
+                                                    setSelectedConcert(concert);
+                                                    playSynthSound(600, 'triangle', 0.2);
+                                                }}
+                                                className="flex-grow bg-[#ff5757] text-white py-3 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn"
+                                            >
+                                                Купить билеты
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="text-center mt-12">
+                                <button onClick={() => { setPage('afisha'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="bg-[#143127] text-white px-8 py-4 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn">
+                                    Смотреть все концерты
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Раздел: Видео */}
+                    <section className="py-20 px-6 border-b-4 border-[#143127] bg-[#efe3da]/80 relative">
+                        <div className="max-w-7xl mx-auto">
+                            <h2 className="font-druzhok text-4xl md:text-6xl text-[#143127] text-center mb-12">ВИДЕО</h2>
+                            <div className="grid md:grid-cols-2 gap-8">
+                                {/* YouTube Player */}
+                                <div className="neo-card p-6">
+                                    <h4 className="font-druzhok text-lg text-[#143127] mb-4">YouTube: «Музыка из кино»</h4>
+                                    <div className="aspect-video bg-[#143127] rounded-2xl overflow-hidden relative border-2 border-[#143127]">
+                                        <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=800" className="w-full h-full object-cover brand-engraving opacity-80" alt="YT Video Preview" />
+                                        <div className="absolute inset-0 flex items-center justify-center bg-[#143127]/30 hover:bg-[#143127]/10 transition-colors cursor-pointer group" onClick={() => playSynthSound(440, 'sawtooth', 0.5)}>
+                                            <div className="w-16 h-16 rounded-full bg-[#ff5757] border-3 border-[#143127] flex items-center justify-center neo-btn transition-transform group-hover:scale-110">
+                                                <span className="text-[#efe3da] text-2xl font-bold ml-1">▶</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* VK Player */}
+                                <div className="neo-card p-6">
+                                    <h4 className="font-druzhok text-lg text-[#143127] mb-4">VK: «Орган и свет»</h4>
+                                    <div className="aspect-video bg-[#143127] rounded-2xl overflow-hidden relative border-2 border-[#143127]">
+                                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=800" className="w-full h-full object-cover brand-engraving opacity-80" alt="VK Video Preview" />
+                                        <div className="absolute inset-0 flex items-center justify-center bg-[#143127]/30 hover:bg-[#143127]/10 transition-colors cursor-pointer group" onClick={() => playSynthSound(554, 'square', 0.4)}>
+                                            <div className="w-16 h-16 rounded-full bg-[#ffba55] border-3 border-[#143127] flex items-center justify-center neo-btn transition-transform group-hover:scale-110">
+                                                <span className="text-[#143127] text-2xl font-bold ml-1">▶</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Раздел: СМИ */}
+                    <section className="py-20 px-6 border-b-4 border-[#143127] bg-[#efe3da] relative">
+                        <div className="max-w-4xl mx-auto">
+                            <h2 className="font-druzhok text-4xl md:text-6xl text-[#143127] text-center mb-12">О НАС В СМИ</h2>
+                            
+                            <div className="space-y-6">
+                                <a href="https://rbc.ru" target="_blank" rel="noreferrer" className="block p-6 bg-white rounded-2xl border-3 border-[#143127] shadow-[4px_4px_0px_0px_#143127] hover:shadow-[8px_8px_0px_0px_#143127] hover:-translate-y-1 transition-all">
+                                    <div className="flex justify-between items-center">
+                                        <div>
+                                            <h4 className="font-druzhok text-xl text-[#143127] uppercase">Интервью на РБК</h4>
+                                            <p className="font-despair text-base text-[#143127]/70 mt-1">«Юмор как музыкальный инструмент»</p>
+                                        </div>
+                                        <span className="text-2xl text-[#ff5757] font-bold">→</span>
+                                    </div>
+                                </a>
+
+                                <a href="https://afisha.ru" target="_blank" rel="noreferrer" className="block p-6 bg-white rounded-2xl border-3 border-[#143127] shadow-[4px_4px_0px_0px_#143127] hover:shadow-[8px_8px_0px_0px_#143127] hover:-translate-y-1 transition-all">
+                                    <div className="flex justify-between items-center">
+                                        <div>
+                                            <h4 className="font-druzhok text-xl text-[#143127] uppercase">Статья в Афише</h4>
+                                            <p className="font-despair text-base text-[#143127]/70 mt-1">«Как рождается театральная классика»</p>
+                                        </div>
+                                        <span className="text-2xl text-[#ffba55] font-bold">→</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Раздел: Интерактивный пульт дирижёра и Юмористический саундборд */}
+                    <section className="py-20 px-6 border-b-4 border-[#143127] bg-[#efe3da] relative">
+                        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+                            {/* Дирижер */}
+                            <div className="bg-white p-8 rounded-3xl border-4 border-[#143127] shadow-[8px_8px_0px_0px_#143127] relative">
+                                <h3 className="font-druzhok text-3xl mb-4 text-[#143127]">ПУЛЬТ ДИРИЖЕРА</h3>
+                                <p className="text-sm font-steppe text-[#143127]/80 mb-6 uppercase">Регулируйте темп волны оркестра</p>
+                                
+                                <div className="flex items-center gap-4 mb-6">
+                                    <span className="text-xs font-steppe text-[#143127]">ADAGIO (медленно)</span>
+                                    <input 
+                                        type="range" 
+                                        min="0.2" 
+                                        max="3" 
+                                        step="0.1" 
+                                        value={tempo} 
+                                        onChange={(e) => {
+                                            setTempo(parseFloat(e.target.value));
+                                            playSynthSound(220 * parseFloat(e.target.value), 'sine', 0.1);
+                                        }}
+                                        className="flex-grow accent-[#ff5757] h-3 bg-[#efe3da] rounded-lg cursor-pointer"
+                                    />
+                                    <span className="text-xs font-steppe text-[#143127]">PRESTO (быстро)</span>
+                                </div>
+                                <div className="text-center py-4 bg-[#efe3da]/40 rounded-xl border-2 border-dashed border-[#143127]">
+                                    <p className="text-xs font-steppe text-[#143127] uppercase">Множитель скорости: {tempo.toFixed(1)}x</p>
+                                </div>
+                            </div>
+
+                            {/* Саундборд */}
+                            <div className="bg-white p-8 rounded-3xl border-4 border-[#143127] shadow-[8px_8px_0px_0px_#ffba55]">
+                                <h3 className="font-druzhok text-3xl mb-4 text-[#143127]">ЮМОР-САУНДБОРД</h3>
+                                <p className="text-sm font-steppe text-[#143127]/80 mb-6 uppercase">Классика встречается с хулиганством</p>
+                                
+                                <div className="grid grid-cols-2 gap-4">
+                                    <button onClick={() => playSynthSound(523.25, 'triangle', 0.4)} className="py-4 rounded-xl font-steppe text-xs uppercase neo-btn bg-[#ffba55] text-[#143127]">
+                                        🎻 Альт Соло
+                                    </button>
+                                    <button onClick={() => playSynthSound(880, 'sine', 0.6)} className="py-4 rounded-xl font-steppe text-xs uppercase neo-btn bg-[#efe3da] text-[#143127]">
+                                        🎺 Флейта Вздох
+                                    </button>
+                                    <button onClick={() => playSynthSound(100, 'sawtooth', 0.8)} className="py-4 rounded-xl font-steppe text-xs uppercase neo-btn bg-[#ff5757] text-[#efe3da]">
+                                        📢 Бласт-Гонг
+                                    </button>
+                                    <button onClick={() => {
+                                        playSynthSound(300, 'square', 0.2);
+                                        setTimeout(() => playSynthSound(600, 'sine', 0.2), 100);
+                                    }} className="py-4 rounded-xl font-steppe text-xs uppercase neo-btn bg-[#143127] text-white">
+                                        ⚡ Курьезный Пассаж
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Раздел: Студия гравюр (Image Treatment Lab) */}
+                    <section className="py-20 px-6 bg-[#efe3da] relative overflow-hidden">
+                        <ScribbleDecoration className="absolute -bottom-12 right-6 w-44 h-44 z-0 opacity-40" type={2} />
+                        <div className="max-w-4xl mx-auto bg-white p-12 rounded-3xl border-4 border-[#143127] shadow-[12px_12px_0px_0px_#143127] relative z-10 text-center">
+                            <h2 className="font-druzhok text-4xl mb-2 text-[#143127]">БРЕНД-ГРАВЮР СТУДИЯ</h2>
+                            <p className="font-despair text-xl text-[#143127]/70 mb-8 max-w-xl mx-auto">
+                                Стилизуйте любое личное фото под официальный гравюрный стиль оркестра прямо сейчас!
+                            </p>
+
+                            <div className="grid md:grid-cols-2 gap-8 items-center text-left">
+                                <div className="space-y-4">
+                                    <div className="bg-[#efe3da] p-6 rounded-2xl border-3 border-dashed border-[#143127]">
+                                        <p className="text-xs font-steppe text-[#143127] uppercase mb-4 text-center">Загрузите файл</p>
+                                        <label className="block w-full text-center bg-[#143127] text-white py-3 rounded-xl cursor-pointer font-steppe text-xs uppercase hover:bg-[#ff5757] transition-all">
+                                            Выбрать фото
+                                            <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+                                        </label>
+                                    </div>
+                                    <button 
+                                        onClick={() => {
+                                            setUploadedImg(null);
+                                            playSynthSound(150, 'sawtooth', 0.2);
+                                        }} 
+                                        className="w-full py-3 border-2 border-[#143127] rounded-xl text-xs font-steppe uppercase text-[#143127] hover:bg-[#ff5757] hover:text-white transition-all"
+                                    >
+                                        Сбросить
+                                    </button>
+                                </div>
+
+                                <div className="flex justify-center">
+                                    <div className="w-64 h-64 border-4 border-[#143127] bg-[#efe3da] rounded-2xl shadow-[6px_6px_0px_0px_#ffba55] relative overflow-hidden flex items-center justify-center">
+                                        {uploadedImg ? (
+                                            <img src={uploadedImg} className="w-full h-full object-cover brand-engraving" alt="Uploaded Preview" />
+                                        ) : (
+                                            <div className="text-center p-4">
+                                                <span className="text-4xl block mb-2">📸</span>
+                                                <p className="text-[10px] font-steppe text-[#143127]/50 uppercase">Здесь будет ваша фирменная гравюра</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {selectedConcert && (
+                        <TicketModal 
+                            concert={selectedConcert} 
+                            onClose={() => setSelectedConcert(null)} 
+                        />
+                    )}
+                </div>
+            );
+        };
+
+        const EventPage = ({ eventId, setPage }) => {
+            const [selectedConcert, setSelectedConcert] = useState(null);
+
+            const eventsData = {
+                snezhanya_koroleva: {
+                    title: "СНЕЖНАЯ КОРОЛЕВА",
+                    subtitle: "Одноактный театральный концерт",
+                    date: "22 декабря",
+                    time: "20:00",
+                    tag: "Эксперимент",
+                    price: 2200,
+                    img: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=1200",
+                    venue: "Планетарий №1",
+                    description: "В этом театрализованном концерте оркестр оживляет вечную сказку Андерсена через музыку, повествование и визуальный ряд. Зрители пройдут путь от уютного дома до ледяного дворца, где звучание оркестра создаёт атмосферу магии и глубины.",
+                    participants: [
+                        { name: "Георгий Фёдоров", role: "Музыка", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop", freq: 220, type: "sawtooth" },
+                        { name: "Анастасия Лазарева", role: "Рассказчик", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop", freq: 330, type: "sine" }
+                    ],
+                    otherDates: [
+                        { date: "15 Января", venue: "Анненкирхе" },
+                        { date: "5 Февраля", venue: "Капелла" }
+                    ]
+                },
+                alie_parusa: {
+                    title: "АЛЫЕ ПАРУСА",
+                    subtitle: "Масштабная симфоническая фантазия",
+                    date: "27 января",
+                    time: "19:00",
+                    tag: "Классика",
+                    price: 1800,
+                    img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=1200",
+                    venue: "Санкт-Петербургская Филармония",
+                    description: "Симфоническое приключение по мотивам повести Александра Грина. Погрузитесь в звуковые волны грандиозного оркестрового выступления с ярким духом свободы и надежды.",
+                    participants: [
+                        { name: "Георгий Фёдоров", role: "Композитор", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop", freq: 220, type: "sawtooth" },
+                        { name: "Дмитрий Соколов", role: "Виолончель", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop", freq: 110, type: "triangle" }
+                    ],
+                    otherDates: [
+                        { date: "12 Марта", venue: "Планетарий №1" },
+                        { date: "24 Апреля", venue: "Капелла" }
+                    ]
+                },
+                skazochny_mir: {
+                    title: "СКАЗОЧНЫЙ МИР РУССКОЙ КЛАССИКИ",
+                    subtitle: "Концерт при свечах под куполом",
+                    date: "20 февраля",
+                    time: "19:00",
+                    tag: "Орган",
+                    price: 1500,
+                    img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1200",
+                    venue: "Капелла",
+                    description: "Уникальное сочетание русской классики Мусоргского, Римского-Корсакова и Чайковского с органным звучанием, обволакивающим зрителя в атмосфере полного космического купола.",
+                    participants: [
+                        { name: "Анна Петрова", role: "Флейта, Орган", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop", freq: 659.25, type: "sine" },
+                        { name: "Мария Мариева", role: "Скрипка", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop", freq: 440, type: "sine" }
+                    ],
+                    otherDates: [
+                        { date: "15 Марта", venue: "Планетарий №1" },
+                        { date: "10 Мая", venue: "Анненкирхе" }
+                    ]
+                }
+            };
+
+            const currentEvent = eventsData[eventId] || eventsData.snezhanya_koroleva;
+
+            return (
+                <div className="py-16 px-6 max-w-7xl mx-auto space-y-16">
+                    {/* Кнопка назад */}
+                    <div>
+                        <button onClick={() => setPage('afisha')} className="bg-[#ffffff] text-[#143127] px-6 py-3 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn">
+                            ← Вернуться к афише
+                        </button>
+                    </div>
+
+                    {/* Потрясающий бруталистский Постер-Герой */}
+                    <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+                        {/* Левая часть: Информационная карточка в стиле тикета */}
+                        <div className="lg:col-span-5 bg-white border-4 border-[#143127] shadow-[10px_10px_0px_0px_#143127] p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-[#ffba55] border-l-4 border-b-4 border-[#143127] rounded-bl-3xl flex items-center justify-center font-druzhok text-[#143127] text-2xl rotate-[5deg] origin-top-right">
+                                1703
+                            </div>
+                            
+                            <div className="space-y-6">
+                                <span className="bg-[#ff5757] text-white px-3 py-1.5 rounded-full text-xs font-steppe uppercase tracking-widest inline-block border-2 border-[#143127]">
+                                    {currentEvent.tag}
+                                </span>
+                                <div>
+                                    <h1 className="font-despair text-4xl lg:text-5xl text-[#143127] leading-none uppercase tracking-tight">
+                                        {currentEvent.title}
+                                    </h1>
+                                    <p className="font-steppe text-xs text-[#143127]/60 mt-2 uppercase tracking-wider">
+                                        {currentEvent.subtitle}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="border-t-4 border-dashed border-[#143127] pt-8 mt-8 space-y-4">
+                                <div className="flex justify-between items-end">
+                                    <div>
+                                        <p className="text-[10px] font-steppe uppercase tracking-widest text-[#143127]/50">ДАТА И ВРЕМЯ</p>
+                                        <p className="font-druzhok text-2xl text-[#143127]">{currentEvent.date}</p>
+                                        <p className="font-steppe text-xs font-extrabold text-[#ff5757]">{currentEvent.time}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-[10px] font-steppe uppercase tracking-widest text-[#143127]/50">ПЛОЩАДКА</p>
+                                        <p className="font-steppe text-sm text-[#143127] underline decoration-[#ffba55] decoration-2">{currentEvent.venue}</p>
+                                    </div>
+                                </div>
+
+                                <button 
+                                    onClick={() => setSelectedConcert(currentEvent)} 
+                                    className="w-full bg-[#ff5757] text-white py-4 rounded-2xl font-steppe uppercase tracking-wider text-sm neo-btn block text-center"
+                                >
+                                    Купить билеты от {currentEvent.price} ₽
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Правая часть: Огромный Гравюрный Артворк */}
+                        <div className="lg:col-span-7 relative group">
+                            <ScribbleDecoration className="absolute -bottom-8 -right-8 w-32 h-32 z-10 pointer-events-none" type={2} />
+                            <div className="w-full h-full min-h-[400px] bg-[#143127] border-4 border-[#143127] rounded-3xl overflow-hidden shadow-[10px_10px_0px_0px_#ffba55] relative">
+                                <img 
+                                    src={currentEvent.img} 
+                                    className="w-full h-full object-cover brand-engraving" 
+                                    alt={currentEvent.title} 
+                                />
+                                <div className="absolute inset-0 bg-[#143127]/10 pointer-events-none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Раздел: О концерте */}
+                    <section className="bg-white p-8 md:p-12 rounded-3xl border-4 border-[#143127] shadow-[8px_8px_0px_0px_#143127] relative">
+                        <span className="absolute -top-5 left-8 bg-[#ffba55] text-[#143127] border-3 border-[#143127] px-6 py-2 rounded-xl text-xs font-steppe uppercase font-bold shadow-[2px_2px_0px_0px_#143127]">
+                            О КОНЦЕРТЕ
+                        </span>
+                        <p className="font-steppe text-lg md:text-xl text-[#143127] leading-relaxed font-semibold pt-4">
+                            {currentEvent.description}
+                        </p>
+                    </section>
+
+                    {/* Раздел: Участники */}
+                    <section className="space-y-8">
+                        <h2 className="font-druzhok text-3xl md:text-5xl text-[#143127] text-center">УЧАСТНИКИ</h2>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {currentEvent.participants.map((p, idx) => (
+                                <div key={idx} className="neo-card p-6 flex flex-col md:flex-row gap-6 items-center">
+                                    <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#143127] shrink-0">
+                                        <img src={p.img} className="w-full h-full object-cover brand-engraving" alt={p.name} />
+                                    </div>
+                                    <div className="space-y-3 text-center md:text-left flex-grow">
+                                        <h3 className="font-druzhok text-xl text-[#143127] uppercase leading-none">{p.name}</h3>
+                                        <span className="bg-[#ffba55] text-[#143127] border-2 border-[#143127] px-3 py-1 rounded-full text-[10px] font-steppe uppercase inline-block">
+                                            {p.role}
+                                        </span>
+                                        <div className="pt-2">
+                                            <button 
+                                                onClick={() => playSynthSound(p.freq, p.type, 0.6)}
+                                                className="bg-[#ff5757] text-white px-4 py-2 rounded-xl text-[10px] font-steppe uppercase tracking-wider neo-btn inline-block"
+                                            >
+                                                🔊 Послушать соло
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Раздел: Другие дни концерта (В виде перфорированных ретро-билетов!) */}
+                    <section className="space-y-8">
+                        <h2 className="font-druzhok text-3xl md:text-5xl text-[#143127] text-center">ДРУГИЕ ДНИ КОНЦЕРТА</h2>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {currentEvent.otherDates.map((item, idx) => (
+                                <div key={idx} className="bg-white border-4 border-[#143127] rounded-3xl p-6 shadow-[6px_6px_0px_0px_#143127] flex justify-between items-center relative overflow-hidden">
+                                    {/* Круглые перфорированные вырезы по бокам для эффекта билета */}
+                                    <div className="absolute top-1/2 -left-4 w-8 h-8 rounded-full border-r-4 border-[#143127] bg-[#efe3da] -translate-y-1/2"></div>
+                                    <div className="absolute top-1/2 -right-4 w-8 h-8 rounded-full border-l-4 border-[#143127] bg-[#efe3da] -translate-y-1/2"></div>
+
+                                    <div className="pl-6">
+                                        <p className="font-despair text-2xl text-[#143127] uppercase leading-none">{item.date}</p>
+                                        <p className="font-steppe text-xs text-[#143127]/60 mt-1 uppercase tracking-wider">{item.venue}</p>
+                                    </div>
+
+                                    <div className="pr-6">
+                                        <button 
+                                            onClick={() => setSelectedConcert({ ...currentEvent, date: item.date, venue: item.venue })}
+                                            className="bg-[#ff5757] text-white px-6 py-3 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn"
+                                        >
+                                            Купить
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {selectedConcert && (
+                        <TicketModal 
+                            concert={selectedConcert} 
+                            onClose={() => setSelectedConcert(null)} 
+                        />
+                    )}
+                </div>
+            );
+        };
+
+        const AfishaPage = ({ setPage, setSelectedEvent }) => {
+            const [selectedConcert, setSelectedConcert] = useState(null);
+            const [activeFilter, setActiveFilter] = useState('Все');
+
+            const concerts = [
+                {
+                    id: 'snezhanya_koroleva',
+                    title: "СНЕЖНАЯ КОРОЛЕВА",
+                    date: "22 Декабря 2026",
+                    time: "20:00",
+                    venue: "Планетарий №1",
+                    tag: "Эксперимент",
+                    price: 2200,
+                    img: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=600&auto=format&fit=crop"
+                },
+                {
+                    id: 'alie_parusa',
+                    title: "АЛЫЕ ПАРУСА",
+                    date: "27 Января 2026",
+                    time: "19:00",
+                    venue: "Санкт-Петербургская Филармония",
+                    tag: "Классика",
+                    price: 1800,
+                    img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=600&auto=format&fit=crop"
+                },
+                {
+                    id: 'skazochny_mir',
+                    title: "СКАЗОЧНЫЙ МИР РУССКОЙ КЛАССИКИ",
+                    date: "20 Февраля 2026",
+                    time: "19:00",
+                    venue: "Капелла",
+                    tag: "Орган",
+                    price: 1500,
+                    img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=600&auto=format&fit=crop"
+                }
+            ];
+
+            const filteredConcerts = activeFilter === 'Все' 
+                ? concerts 
+                : concerts.filter(c => c.tag === activeFilter);
+
+            return (
+                <div className="py-16 px-6 max-w-7xl mx-auto">
+                    <div className="text-center mb-16 relative">
+                        <ScribbleDecoration className="absolute -top-12 left-1/4 w-24 h-24 opacity-35" type={1} />
+                        <h1 className="font-druzhok text-5xl md:text-7xl text-[#143127] mb-4">АФИША</h1>
+                        <p className="font-despair text-2xl text-[#143127]/80">Особое расписание концертов мартовского сезона</p>
+                        
+                        <div className="flex justify-center items-center gap-4 mt-6">
+                            <button onClick={() => playSynthSound(300, 'triangle', 0.1)} className="w-10 h-10 border-2 border-[#143127] rounded-full flex items-center justify-center font-bold hover:bg-[#ffba55]">‹</button>
+                            <span className="font-steppe text-sm uppercase tracking-widest bg-white px-4 py-2 rounded-xl border-2 border-[#143127] shadow-[2px_2px_0px_0px_#143127]">03.2026</span>
+                            <button onClick={() => playSynthSound(400, 'triangle', 0.1)} className="w-10 h-10 border-2 border-[#143127] rounded-full flex items-center justify-center font-bold hover:bg-[#ffba55]">›</button>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 justify-center mb-12">
+                        {['Все', 'Классика', 'Эксперимент', 'Орган'].map(f => (
+                            <button
+                                key={f}
+                                onClick={() => {
+                                    setActiveFilter(f);
+                                    playSynthSound(440, 'sine', 0.1);
+                                }}
+                                className={`px-5 py-2.5 rounded-full border-2 border-[#143127] text-xs font-steppe uppercase tracking-wider transition-all
+                                    ${activeFilter === f ? 'bg-[#ff5757] text-[#efe3da] shadow-[3px_3px_0px_0px_#143127]' : 'bg-white text-[#143127] hover:bg-[#ffba55]'}`}
+                            >
+                                {f}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {filteredConcerts.map(concert => (
+                            <div key={concert.id} className="neo-card p-6 flex flex-col justify-between">
+                                <div>
+                                    <div className="aspect-[4/3] bg-gray-200 rounded-2xl overflow-hidden border-2 border-[#143127] mb-6 relative">
+                                        <img src={concert.img} className="w-full h-full object-cover brand-engraving" alt={concert.title} />
+                                        <span className="absolute top-4 left-4 bg-[#ff5757] text-white border-2 border-[#143127] px-3 py-1 rounded-full text-[10px] font-steppe uppercase">
+                                            {concert.tag}
+                                        </span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-xs font-steppe text-[#143127]/60 uppercase mb-2">
+                                        <span>{concert.date}</span>
+                                        <span className="text-[#ff5757] font-bold">{concert.time}</span>
+                                    </div>
+                                    <h3 className="font-despair text-2xl text-[#143127] mb-4 min-h-[3.5rem] tracking-tight leading-none uppercase">
+                                        {concert.title}
+                                    </h3>
+                                    <p className="text-xs font-steppe text-[#143127]/70 uppercase mb-6">{concert.venue}</p>
+                                </div>
+                                <div className="flex gap-3">
+                                    <button 
+                                        onClick={() => {
+                                            setSelectedEvent(concert.id);
+                                            setPage('event');
+                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                        }}
+                                        className="px-4 py-3 bg-[#efe3da]/50 text-[#143127] text-xs font-steppe uppercase rounded-xl border-2 border-[#143127] hover:bg-[#ffba55] transition-all"
+                                    >
+                                        Подробнее
+                                    </button>
+                                    <button 
+                                        onClick={() => {
+                                            setSelectedConcert(concert);
+                                            playSynthSound(500, 'triangle', 0.2);
+                                        }} 
+                                        className="flex-grow bg-[#ff5757] text-white py-3.5 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn"
+                                    >
+                                        Купить билеты
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {selectedConcert && (
+                        <TicketModal 
+                            concert={selectedConcert} 
+                            onClose={() => setSelectedConcert(null)} 
+                        />
+                    )}
+                </div>
+            );
+        };
+
+        const AboutPage = () => {
+            const musicians = [
+                {
+                    id: 1,
+                    name: "ГЕОРГИЙ ФЕДОРОВ",
+                    role: "Художественный руководитель, композитор",
+                    desc: "Художественный руководитель оркестра 1703. Соединяет традиции и современный взгляд на симфоническую музыку.",
+                    freq: 261.63,
+                    synthType: "triangle",
+                    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
+                },
+                {
+                    id: 2,
+                    name: "МАРИЯ МАРИЕВА",
+                    role: "Первая скрипка",
+                    desc: "Выпускница консерватории, лауреат международных конкурсов. Отвечает за яркое и выразительное звучание струнной группы.",
+                    freq: 440,
+                    synthType: "sine",
+                    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop"
+                },
+                {
+                    id: 3,
+                    name: "ДМИТРИЙ СОКОЛОВ",
+                    role: "Виолончель, солист",
+                    desc: "Мастер глубокого бархатного звука. Экспрессивно ведет партию низких струнных, добавляя монументальности.",
+                    freq: 110,
+                    synthType: "sawtooth",
+                    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop"
+                },
+                {
+                    id: 4,
+                    name: "АННА ПЕТРОВА",
+                    role: "Флейта, духовые",
+                    desc: "Вносит воздушность и легкость в сумасшедшие аранжировки оркестра. Эксперт по импровизации.",
+                    freq: 659.25,
+                    synthType: "sine",
+                    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop"
+                }
+            ];
+
+            return (
+                <div className="py-16 px-6 max-w-7xl mx-auto">
+                    <div className="mb-12 relative">
+                        <h1 className="font-druzhok text-5xl md:text-7xl text-[#143127] mb-4">УЧАСТНИКИ ОРКЕСТРА 1703</h1>
+                        <p className="font-despair text-2xl text-[#143127]/80 max-w-3xl leading-snug">
+                            Каждое выступление — результат работы целой команды. Познакомьтесь с музыкантами, которые создают атмосферу наших концертов.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {musicians.map(musician => (
+                            <div key={musician.id} className="neo-card p-6 flex flex-col md:flex-row gap-6 items-center">
+                                <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-[#143127] shrink-0">
+                                    <img src={musician.img} className="w-full h-full object-cover brand-engraving" alt={musician.name} />
+                                </div>
+                                <div className="flex-grow space-y-3 text-center md:text-left">
+                                    <h3 className="font-druzhok text-2xl text-[#143127] uppercase leading-none">{musician.name}</h3>
+                                    <span className="bg-[#ffba55] text-[#143127] border-2 border-[#143127] px-3 py-1 rounded-full text-[10px] font-steppe uppercase inline-block">
+                                        {musician.role}
+                                    </span>
+                                    <p className="text-xs font-medium text-[#143127]/80 leading-relaxed">
+                                        {musician.desc}
+                                    </p>
+                                    <button 
+                                        onClick={() => playSynthSound(musician.freq, musician.synthType, 0.8)}
+                                        className="bg-[#ff5757] text-white px-4 py-2 rounded-xl text-[10px] font-steppe uppercase tracking-wider neo-btn inline-block"
+                                    >
+                                        🔊 Послушать Соло
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const GalleryPage = () => {
+            const [selectedFilter, setSelectedFilter] = useState('Все');
+            const [lightboxItem, setLightboxItem] = useState(null);
+
+            const filters = ['Все', 'Выступления', 'Локации', 'Аудитория', 'Закулисье', 'Инструменты'];
+
+            const items = [
+                { id: 1, title: "Оркестр на сцене", category: "Выступления", desc: "Концерт при полном аншлаге", img: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800" },
+                { id: 2, title: "Филармония", category: "Локации", desc: "Исторические стены Питера", img: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=800" },
+                { id: 3, title: "Искры эмоций", category: "Аудитория", desc: "Лица наших любимых слушателей", img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800" },
+                { id: 4, title: "Перед выходом", category: "Закулисье", desc: "Настройка инструментов перед боем", img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=800" },
+                { id: 5, title: "Струнный порыв", category: "Инструменты", desc: "Скрипичные смычки в деле", img: "https://images.unsplash.com/photo-1460061889817-6f1f4b8826f1?q=80&w=800" },
+                { id: 6, title: "Дирижерский жест", category: "Выступления", desc: "Георгий руководит процессом", img: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800" }
+            ];
+
+            const filteredItems = selectedFilter === 'Все'
+                ? items
+                : items.filter(item => item.category === selectedFilter);
+
+            return (
+                <div className="py-16 px-6 max-w-7xl mx-auto">
+                    <div className="text-center mb-16 relative">
+                        <ScribbleDecoration className="absolute top-1/2 left-4 w-32 h-32 opacity-25" type={2} />
+                        <h1 className="font-druzhok text-5xl md:text-7xl text-[#143127] mb-4">ГАЛЕРЕЯ</h1>
+                        <p className="font-despair text-2xl text-[#143127]/80">Моменты с наших концертов и закулисья</p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 justify-center mb-12">
+                        {filters.map(filter => (
+                            <button
+                                key={filter}
+                                onClick={() => {
+                                    setSelectedFilter(filter);
+                                    playSynthSound(500, 'sine', 0.1);
+                                }}
+                                className={`px-5 py-2.5 rounded-full border-2 border-[#143127] text-xs font-steppe uppercase tracking-wider transition-all
+                                    ${selectedFilter === filter ? 'bg-[#ff5757] text-[#efe3da] shadow-[3px_3px_0px_0px_#143127]' : 'bg-white text-[#143127] hover:bg-[#ffba55]'}`}
+                            >
+                                {filter}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {filteredItems.map(item => (
+                            <div 
+                                key={item.id} 
+                                onClick={() => {
+                                    setLightboxItem(item);
+                                    playSynthSound(600, 'triangle', 0.25);
+                                }}
+                                className="neo-card overflow-hidden cursor-pointer group"
+                            >
+                                <div className="aspect-video bg-gray-200 overflow-hidden relative">
+                                    <img src={item.img} className="w-full h-full object-cover brand-engraving group-hover:scale-105 transition-all duration-500" alt={item.title} />
+                                    <div className="absolute inset-0 bg-[#143127]/20 group-hover:bg-[#143127]/0 transition-all pointer-events-none"></div>
+                                </div>
+                                <div className="p-6">
+                                    <span className="bg-[#ffba55] text-[#143127] border-2 border-[#143127] px-3 py-1 rounded-full text-[10px] font-steppe uppercase inline-block mb-3">
+                                        {item.category}
+                                    </span>
+                                    <h3 className="font-druzhok text-xl text-[#143127] uppercase">{item.title}</h3>
+                                    <p className="text-xs text-[#143127]/70 font-medium mt-1">{item.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {lightboxItem && (
+                        <Lightbox item={lightboxItem} onClose={() => setLightboxItem(null)} />
+                    )}
+                </div>
+            );
+        };
+
+        const ContactsPage = () => {
+            const [formData, setFormData] = useState({ name: '', surname: '', email: '', subject: '', message: '' });
+            const [submitted, setSubmitted] = useState(false);
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                setSubmitted(true);
+                playSynthSound(800, 'triangle', 0.5);
+            };
+
+            return (
+                <div className="py-16 px-6 max-w-7xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h1 className="font-druzhok text-5xl md:text-7xl text-[#143127] mb-4">ОСТАВАЙТЕСЬ НА СВЯЗИ</h1>
+                        <p className="font-despair text-2xl text-[#143127]/80">Свяжитесь с нами, чтобы предложить сотрудничество или просто поздороваться!</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-12 gap-8 items-start">
+                        <div className="md:col-span-5 bg-white p-8 rounded-3xl border-4 border-[#143127] shadow-[8px_8px_0px_0px_#143127] space-y-8">
+                            <div>
+                                <h3 className="font-druzhok text-2xl text-[#143127] mb-2 uppercase">Контактная информация</h3>
+                                <p className="text-xs font-steppe text-[#143127]/60 uppercase mb-4">Мы рады вашим письмам</p>
+                                <div className="space-y-3 font-steppe text-sm text-[#143127]">
+                                    <p className="font-bold">📞 Телефон: <a href="tel:88005553535" className="underline hover:text-[#ff5757]">8 800 555 35 35</a></p>
+                                    <p className="font-bold">✉️ Email: <a href="mailto:orchestra1703@gmail.com" className="underline hover:text-[#ff5757]">orchestra1703@gmail.com</a></p>
+                                </div>
+                            </div>
+
+                            <div className="border-t-2 border-[#143127]/20 pt-6">
+                                <h4 className="font-druzhok text-xl text-[#143127] mb-2 uppercase">Мы в социальных сетях</h4>
+                                <p className="text-xs font-steppe text-[#143127]/70 mb-4">Следите за анонсами, репетициями и веселыми роликами оркестра</p>
+                                <div className="flex gap-4">
+                                    <a href="#" className="bg-[#ffba55] text-[#143127] border-2 border-[#143127] px-4 py-2 rounded-xl text-xs font-steppe uppercase neo-btn">ВКонтакте</a>
+                                    <a href="#" className="bg-[#ff5757] text-white border-2 border-[#143127] px-4 py-2 rounded-xl text-xs font-steppe uppercase neo-btn">Telegram</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="md:col-span-7 bg-white p-8 rounded-3xl border-4 border-[#143127] shadow-[8px_8px_0px_0px_#ffba55]">
+                            <h3 className="font-druzhok text-2xl text-[#143127] mb-6 uppercase">Написать нам</h3>
+                            
+                            {!submitted ? (
+                                <form onSubmit={handleSubmit} className="space-y-4 font-steppe text-xs">
+                                    <div className="grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Имя</label>
+                                            <input 
+                                                required
+                                                type="text" 
+                                                placeholder="Ваше имя" 
+                                                value={formData.name}
+                                                onChange={e => setFormData({...formData, name: e.target.value})}
+                                                className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]" 
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Фамилия</label>
+                                            <input 
+                                                required
+                                                type="text" 
+                                                placeholder="Ваша фамилия" 
+                                                value={formData.surname}
+                                                onChange={e => setFormData({...formData, surname: e.target.value})}
+                                                className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]" 
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Email</label>
+                                        <input 
+                                            required
+                                            type="email" 
+                                            placeholder="name@example.com" 
+                                            value={formData.email}
+                                            onChange={e => setFormData({...formData, email: e.target.value})}
+                                            className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]" 
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Тема сообщения</label>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Например, сотрудничество или вопрос о концерте" 
+                                            value={formData.subject}
+                                            onChange={e => setFormData({...formData, subject: e.target.value})}
+                                            className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]" 
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Сообщение</label>
+                                        <textarea 
+                                            required
+                                            rows="4"
+                                            placeholder="Ваше сообщение..." 
+                                            value={formData.message}
+                                            onChange={e => setFormData({...formData, message: e.target.value})}
+                                            className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127] resize-none"
+                                        ></textarea>
+                                    </div>
+                                    <button type="submit" className="w-full bg-[#ff5757] text-white py-4 rounded-xl font-steppe text-xs uppercase tracking-wider neo-btn">
+                                        Отправить письмо
+                                    </button>
+                                </form>
+                            ) : (
+                                <div className="text-center py-12">
+                                    <span className="text-6xl block mb-4">📬</span>
+                                    <h4 className="font-druzhok text-3xl text-[#143127] mb-2">ПИСЬМО ОТПРАВЛЕНО!</h4>
+                                    <p className="font-steppe text-sm text-[#143127]/70">Спасибо за обратную связь. Мы ответим вам в течение 1–2 рабочих дней.</p>
+                                    <button 
+                                        onClick={() => {
+                                            setSubmitted(false);
+                                            setFormData({ name: '', surname: '', email: '', subject: '', message: '' });
+                                        }} 
+                                        className="mt-6 px-6 py-3 bg-[#143127] text-white font-steppe uppercase text-xs rounded-xl neo-btn"
+                                    >
+                                        Написать еще
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [page, setPage] = useState('home');
+            const [selectedEvent, setSelectedEvent] = useState('snezhanya_koroleva');
+
+            return (
+                <Layout currentPage={page} setPage={setPage}>
+                    {page === 'home' && <HomePage setPage={setPage} setSelectedEvent={setSelectedEvent} />}
+                    {page === 'afisha' && <AfishaPage setPage={setPage} setSelectedEvent={setSelectedEvent} />}
+                    {page === 'about' && <AboutPage />}
+                    {page === 'gallery' && <GalleryPage />}
+                    {page === 'contacts' && <ContactsPage />}
+                    {page === 'event' && <EventPage eventId={selectedEvent} setPage={setPage} />}
+                </Layout>
+            );
+        };
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
 </body>
 </html>
