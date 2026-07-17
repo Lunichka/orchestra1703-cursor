@@ -40,6 +40,9 @@
         .font-druzhok {
             font-family: 'Dela Gothic One', cursive;
         }
+        .font-ddruzhok {
+            font-family: 'DRUZHOK', cursive;
+        }
         .font-despair {
             font-family: 'Despair Display', 'Playfair Display', serif;
             font-weight: 900;
@@ -197,7 +200,7 @@
                     <button onClick={onClose} className="absolute -top-4 -right-4 bg-[#ff5757] text-[#efe3da] border-4 border-[#143127] w-12 h-12 rounded-full font-steppe flex items-center justify-center hover:bg-[#ffba55] transition-colors">✕</button>
                     <img src={item.img} alt={item.title} className="w-full h-auto rounded-2xl border-4 border-[#143127] brand-engraving mb-4" />
                     <span className="bg-[#ffba55] text-[#143127] border-2 border-[#143127] px-3 py-1 rounded-full text-xs font-steppe uppercase mb-2 inline-block">{item.category}</span>
-                    <h3 className="font-druzhok text-2xl mb-1 text-[#143127]">{item.title}</h3>
+                    <h3 className="font-ddruzhok text-2xl mb-1 text-[#143127]">{item.title}</h3>
                     <p className="text-[#143127]/80">{item.desc}</p>
                 </div>
             </div>
@@ -336,7 +339,7 @@
             <div className="min-h-screen flex flex-col relative">
                 <header className="border-b-4 border-[#143127] bg-[#efe3da] px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center sticky top-0 z-40">
                     <div onClick={() => navigate('home')} className="bg-[#ff5757] text-[#efe3da] px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl border-3 border-[#143127] font-druzhok text-lg sm:text-xl cursor-pointer hover:bg-[#ffba55] transition-colors select-none flex items-center gap-1">
-                        17<span className="text-[#143127]">f</span>03
+                        1703
                     </div>
                     <nav className="hidden md:flex gap-8 nav-steppe text-xs uppercase tracking-widest text-[#143127]">
                         {navItems.map(item => (
@@ -382,11 +385,9 @@
                     <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 sm:gap-12 relative z-10">
                         <div>
                             <div className="bg-[#ff5757] text-[#efe3da] px-4 py-2 rounded-xl border-3 border-[#efe3da] font-druzhok text-xl w-max mb-6">
-                                17f03
+                                1703
                             </div>
-                            <p className="text-sm text-white/80 max-w-sm font-medium leading-relaxed">
-                                Самый нестандартный оркестр России. Микс юмора, искусства, классических канонов и духа свободы Нового Времени.
-                            </p>
+                         
                         </div>
                         <div>
                             <h4 className="font-steppe text-sm uppercase tracking-wider text-white/50 mb-4">Навигация</h4>
@@ -405,7 +406,7 @@
                         </div>
                     </div>
                     <div className="max-w-7xl mx-auto mt-12 pt-8 border-t-2 border-white/20 text-center text-xs font-steppe text-white/60">
-                        © 2026 Оркестр 1703. Все права защищены. Дизайн в стиле Swiss Brutalism.
+                        © 2026 Оркестр 1703. Все права защищены.
                     </div>
                 </footer>
             </div>
@@ -478,7 +479,7 @@
                     venue: "Планетарий №1",
                     tag: "Эксперимент",
                     price: 2200,
-                    img: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=600&auto=format&fit=crop"
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQLb0YeiNYgl9eneu0AVXUW-nCfRoLoHZ2pVjhpm8RXg&s"
                 },
                 {
                     id: 'alie_parusa',
@@ -488,7 +489,7 @@
                     venue: "Санкт-Петербургская Филармония",
                     tag: "Классика",
                     price: 1800,
-                    img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=600&auto=format&fit=crop"
+                    img: "https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/b533d911-464f-4336-8d88-5a50b75e92ea.jpg"
                 },
                 {
                     id: 'skazochny_mir',
@@ -498,7 +499,7 @@
                     venue: "Капелла",
                     tag: "Орган",
                     price: 1500,
-                    img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=600&auto=format&fit=crop"
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-imcnLJxKfrlTdBIJr6lFZvRufIFcmznsZctSdcIY04eU54u01hbj0sY&s=10"
                 }
             ];
 
@@ -518,10 +519,10 @@
                                 </span>
                                 <h1 className="font-druzhok hero-headline text-3xl sm:text-5xl md:text-7xl text-[#143127] leading-tight md:leading-none uppercase">
                                     САМЫЙ <br />
-                                    <span className="text-[#ff5757]">НЕСТАНДАРТНЫЙ</span> <br />
+                                    <span className="text-[#ff5757] text-5xl">НЕСТАНДАРТНЫЙ</span> <br />
                                     ОРКЕСТР
                                 </h1>
-                                <p className="font-despair text-lg sm:text-xl md:text-2xl text-[#143127]/90 leading-tight">
+                                <p className="font-despair text-md sm:text-xl md:text-2xl text-[#143127]/90 leading-tight">
                                     Микс классической виртуозности, юмора и бескомпромиссной подачи
                                 </p>
                                 <div className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
@@ -538,7 +539,7 @@
                                 <ScribbleDecoration className="absolute -top-12 -left-12 w-32 h-32 z-0 hidden sm:block" type={1} />
                                 <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-[400px] md:h-[400px] rounded-full overflow-hidden border-4 border-[#143127] bg-[#143127] shadow-[10px_10px_0px_0px_#ffba55] relative z-10">
                                     <img 
-                                        src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800&auto=format&fit=crop" 
+                                        src="https://spbdnevnik.ru/uploads/block/image/1228326/__medium_6387e731c43ab1cd2314c8d9768a9885.jpg.jpg" 
                                         className="w-full h-full object-cover brand-engraving scale-110" 
                                         alt="Orchestra Hero"
                                         onError={(e) => { e.target.src = "https://placehold.co/800x800/143127/efe3da?text=1703"; }}
@@ -629,7 +630,7 @@
                                 <div className="neo-card p-6">
                                     <h4 className="font-druzhok text-lg text-[#143127] mb-4">VK: «Орган и свет»</h4>
                                     <div className="aspect-video bg-[#143127] rounded-2xl overflow-hidden relative border-2 border-[#143127]">
-                                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=800" className="w-full h-full object-cover brand-engraving opacity-80" alt="VK Video Preview" />
+                                        <img src="https://n1s1.hsmedia.ru/a9/a1/34/a9a1343a3232d5c9a26bd180119cc261/600x600_21_9023cc17f549ede00e5d165467f9a0d7@3000x2000_0xEbSZLKW1_4430012174824077489.jpg.webp" className="w-full h-full object-cover brand-engraving opacity-80" alt="VK Video Preview" />
                                         <div className="absolute inset-0 flex items-center justify-center bg-[#143127]/30 hover:bg-[#143127]/10 transition-colors cursor-pointer group" onClick={() => playSynthSound(554, 'square', 0.4)}>
                                             <div className="w-16 h-16 rounded-full bg-[#ffba55] border-3 border-[#143127] flex items-center justify-center neo-btn transition-transform group-hover:scale-110">
                                                 <span className="text-[#143127] text-2xl font-bold ml-1">▶</span>
@@ -795,8 +796,8 @@
                     venue: "Планетарий №1",
                     description: "В этом театрализованном концерте оркестр оживляет вечную сказку Андерсена через музыку, повествование и визуальный ряд. Зрители пройдут путь от уютного дома до ледяного дворца, где звучание оркестра создаёт атмосферу магии и глубины.",
                     participants: [
-                        { name: "Георгий Фёдоров", role: "Музыка", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop", freq: 220, type: "sawtooth" },
-                        { name: "Анастасия Лазарева", role: "Рассказчик", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop", freq: 330, type: "sine" }
+                        { name: "Георгий Фёдоров", role: "Музыка", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST3e0E-pKcQadpIo0PWPavgfajvR24kaflhwTSnm1w-E5Glj5qvWgzgTU&s=10", freq: 220, type: "sawtooth" },
+                        { name: "Анастасия Лазарева", role: "Рассказчик", img: "https://sun9-2.userapi.com/s/v1/ig2/ZWkZ4NimK59Vb66KyPWGBYaTq8_makTn7OdClxwmW8IHVx8RuNRCbxQ1-Uc2XF8KoPMkbWwmzSxdlkDyCBgZMdDi.jpg?quality=95&as=32x40,48x60,72x90,108x135,160x200,240x300,360x450,480x600,540x675,640x800,720x900,1080x1350,1280x1600,1440x1800,2048x2560&from=bu&cs=640x0", freq: 330, type: "sine" }
                     ],
                     otherDates: [
                         { date: "15 Января", venue: "Анненкирхе" },
@@ -814,7 +815,7 @@
                     venue: "Санкт-Петербургская Филармония",
                     description: "Симфоническое приключение по мотивам повести Александра Грина. Погрузитесь в звуковые волны грандиозного оркестрового выступления с ярким духом свободы и надежды.",
                     participants: [
-                        { name: "Георгий Фёдоров", role: "Композитор", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop", freq: 220, type: "sawtooth" },
+                        { name: "Георгий Фёдоров", role: "Композитор", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST3e0E-pKcQadpIo0PWPavgfajvR24kaflhwTSnm1w-E5Glj5qvWgzgTU&s=10", freq: 220, type: "sawtooth" },
                         { name: "Дмитрий Соколов", role: "Виолончель", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop", freq: 110, type: "triangle" }
                     ],
                     otherDates: [
@@ -880,8 +881,8 @@
                                 <div className="flex justify-between items-end">
                                     <div>
                                         <p className="text-[10px] font-steppe uppercase tracking-widest text-[#143127]/50">ДАТА И ВРЕМЯ</p>
-                                        <p className="font-druzhok text-2xl text-[#143127]">{currentEvent.date}</p>
-                                        <p className="font-steppe text-xs font-extrabold text-[#ff5757]">{currentEvent.time}</p>
+                                        <p className="font-ddruzhok font-extrabold text-5xl text-[#143127]">{currentEvent.date}</p>
+                                        <p className="font-ddruzhok font-extrabold text-5xl text-[#ff5757]">{currentEvent.time}</p>
                                     </div>
                                     <div className="text-right">
                                         <p className="text-[10px] font-steppe uppercase tracking-widest text-[#143127]/50">ПЛОЩАДКА</p>
@@ -1069,7 +1070,7 @@
                                             {concert.tag}
                                         </span>
                                     </div>
-                                    <div className="flex justify-between items-center text-xs font-steppe text-[#143127]/60 uppercase mb-2">
+                                    <div className="flex justify-between items-center text-xs font-ddruzhok text-[#143127]/60 uppercase mb-2">
                                         <span>{concert.date}</span>
                                         <span className="text-[#ff5757] font-bold">{concert.time}</span>
                                     </div>
@@ -1122,7 +1123,7 @@
                     desc: "Художественный руководитель оркестра 1703. Соединяет традиции и современный взгляд на симфоническую музыку.",
                     freq: 261.63,
                     synthType: "triangle",
-                    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST3e0E-pKcQadpIo0PWPavgfajvR24kaflhwTSnm1w-E5Glj5qvWgzgTU&s=10"
                 },
                 {
                     id: 2,
@@ -1198,11 +1199,11 @@
 
             const items = [
                 { id: 1, title: "Оркестр на сцене", category: "Выступления", desc: "Концерт при полном аншлаге", img: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800" },
-                { id: 2, title: "Филармония", category: "Локации", desc: "Исторические стены Питера", img: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=800" },
-                { id: 3, title: "Искры эмоций", category: "Аудитория", desc: "Лица наших любимых слушателей", img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800" },
+                { id: 2, title: "Филармония", category: "Локации", desc: "Исторические стены Питера", img: "https://avatars.mds.yandex.net/get-afishanew/29882/e7b469472d6f38b19d4e7f9369850bad/orig" },
+                { id: 3, title: "Искры эмоций", category: "Аудитория", desc: "Лица наших любимых слушателей", img: "https://plus.unsplash.com/premium_photo-1664302654457-399bf1bff533?q=80&w=1016&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
                 { id: 4, title: "Перед выходом", category: "Закулисье", desc: "Настройка инструментов перед боем", img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=800" },
-                { id: 5, title: "Струнный порыв", category: "Инструменты", desc: "Скрипичные смычки в деле", img: "https://images.unsplash.com/photo-1460061889817-6f1f4b8826f1?q=80&w=800" },
-                { id: 6, title: "Дирижерский жест", category: "Выступления", desc: "Георгий руководит процессом", img: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800" }
+                { id: 5, title: "Струнный порыв", category: "Инструменты", desc: "Скрипичные смычки в деле", img: "https://images.unsplash.com/photo-1566913485242-694e995731b4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+                { id: 6, title: "Дирижерский жест", category: "Выступления", desc: "Алексей Ньяга руководит процессом", img: "https://www.classicalmusicnews.ru/wp-content/uploads/2018/06/alexei-niaga.jpg" }
             ];
 
             const filteredItems = selectedFilter === 'Все'
