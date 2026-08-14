@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оркестр 1703 — Самый Нестандартный Оркестр</title>
+    <title>Оркестр 1703 — Самый Дружелюбный Оркестр</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Dela Gothic One (DRUZHOK), Playfair Display (Despair Display - no italic), Syne & Plus Jakarta Sans (Steppe) -->
@@ -30,7 +30,11 @@
         }
 
         body {
-            background-color: #efe3da;
+            background-image: url("images/element_bg.png");
+            background-color:#efe3da;
+    background-size: contain;
+    background-position: center;
+    background-repeat: repeat;
             color: #143127;
             font-family: 'Steppe', 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
@@ -85,6 +89,7 @@
             border: 3px solid #143127;
             box-shadow: 6px 6px 0px 0px #143127;
             background-color: #ffffff;
+            background-image: url('images/firmennyi_el.png');
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .neo-card:hover {
@@ -98,9 +103,11 @@
         }
         ::-webkit-scrollbar-track {
             background: #efe3da;
+            background-image: url('images/element_bg.png');
         }
         ::-webkit-scrollbar-thumb {
             background: #143127;
+            background-image: url('images/element_bg.png');
             border-radius: 5px;
         }
 
@@ -114,11 +121,16 @@
         }
 
         @media (max-width: 767px) {
-            .hero-headline {
-                font-size: clamp(1.5rem, 6.5vw, 2rem);
-                line-height: 1.15;
-            }
-        }
+    .hero-headline {
+        font-size: clamp(1.5rem, 6.5vw, 2rem);
+        line-height: 1.15;
+    }
+
+    .hero-headline .span-headline {
+        font-size: clamp(1.5rem, 4.5vw, 2rem);
+        line-height: 1.15;
+    }
+}
     </style>
 </head>
 <body>
@@ -195,7 +207,14 @@
         };
 
         const Lightbox = ({ item, onClose }) => (
-            <div className="fixed inset-0 bg-[#143127]/95 z-50 flex items-center justify-center p-4" onClick={onClose}>
+            <div
+  className="fixed inset-0 z-50 flex items-center justify-center p-4
+             bg-[linear-gradient(rgba(20,49,39,0.9),rgba(20,49,39,0.9)),url('/images/firmennyi_el.png')]
+             bg-cover
+             bg-center
+             bg-no-repeat"
+  onClick={onClose}
+>
                 <div className="max-w-4xl w-full bg-[#efe3da] p-6 rounded-3xl border-4 border-[#143127] relative" onClick={e => e.stopPropagation()}>
                     <button onClick={onClose} className="absolute -top-4 -right-4 bg-[#ff5757] text-[#efe3da] border-4 border-[#143127] w-12 h-12 rounded-full font-steppe flex items-center justify-center hover:bg-[#ffba55] transition-colors">✕</button>
                     <img src={item.img} alt={item.title} className="w-full h-auto rounded-2xl border-4 border-[#143127] brand-engraving mb-4" />
@@ -337,11 +356,14 @@
 
             return (
             <div className="min-h-screen flex flex-col relative">
-                <header className="border-b-4 border-[#143127] bg-[#efe3da] px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center sticky top-0 z-40">
+                <header
+  className="border-b-4 border-[#143127] bg-[#efe3da] bg-[url('/images/element_bg.png')] bg-cover bg-center px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center sticky top-0 z-40"
+>
+
                     <div onClick={() => navigate('home')} className="bg-[#ff5757] text-[#efe3da] px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl border-3 border-[#143127] font-druzhok text-lg sm:text-xl cursor-pointer hover:bg-[#ffba55] transition-colors select-none flex items-center gap-1">
                         1703
                     </div>
-                    <nav className="hidden md:flex gap-8 nav-steppe text-xs uppercase tracking-widest text-[#143127]">
+                    <nav className="hidden md:flex gap-8 nav-despair text-xs uppercase tracking-widest text-[#143127]">
                         {navItems.map(item => (
                             <button 
                                 key={item.id} 
@@ -519,7 +541,7 @@
                                 </span>
                                 <h1 className="font-druzhok hero-headline text-3xl sm:text-5xl md:text-7xl text-[#143127] leading-tight md:leading-none uppercase">
                                     САМЫЙ <br />
-                                    <span className="text-[#ff5757] text-5xl">НЕСТАНДАРТНЫЙ</span> <br />
+                                    <span className="span-headline text-[#ff5757] text-5xl">ДРУЖЕЛЮБНЫЙ</span> <br />
                                     ОРКЕСТР
                                 </h1>
                                 <p className="font-despair text-md sm:text-xl md:text-2xl text-[#143127]/90 leading-tight">
@@ -567,11 +589,11 @@
                                                     {concert.tag}
                                                 </span>
                                             </div>
-                                            <div className="flex justify-between items-center text-xs font-steppe text-[#143127]/60 uppercase mb-2">
+                                            <div className="flex justify-between items-center text-xs font-despair text-[#143127]/60 uppercase mb-2">
                                                 <span>{concert.date}</span>
                                                 <span className="text-[#ff5757] font-bold">{concert.time}</span>
                                             </div>
-                                            <h3 className="font-despair text-xl text-[#143127] mb-4 min-h-[3.5rem] tracking-tight leading-none uppercase">
+                                            <h3 className="font-ddruzhok text-xl text-[#143127] mb-2 min-h-[3.5rem] tracking-tight leading-none uppercase">
                                                 {concert.title}
                                             </h3>
                                         </div>
