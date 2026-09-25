@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,14 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Dela Gothic One (DRUZHOK), Playfair Display (Despair Display - no italic), Syne & Plus Jakarta Sans (Steppe) -->
-    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
     <!-- React & ReactDOM -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
+
     <style>
         @font-face {
             font-family: 'Steppe';
@@ -21,6 +24,7 @@
             font-style: normal;
             font-display: swap;
         }
+
         @font-face {
             font-family: 'Steppe';
             src: url('fonts/Steppe-SemiBold.ttf') format('truetype');
@@ -29,12 +33,20 @@
             font-display: swap;
         }
 
+        @font-face {
+            font-family: 'DRUZHOK';
+            src: url('fonts/DRUZHOK.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
         body {
             background-image: url("images/element_bg.png");
-            background-color:#efe3da;
-    background-size: contain;
-    background-position: center;
-    background-repeat: repeat;
+            background-color: #efe3da;
+            background-size: contain;
+            background-position: center;
+            background-repeat: repeat;
             color: #143127;
             font-family: 'Steppe', 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
@@ -44,18 +56,22 @@
         .font-druzhok {
             font-family: 'Dela Gothic One', cursive;
         }
+
         .font-ddruzhok {
             font-family: 'DRUZHOK', cursive;
         }
+
         .font-despair {
             font-family: 'Despair Display', 'Playfair Display', serif;
             font-weight: 900;
             font-style: normal;
         }
+
         .font-steppe {
             font-family: 'Steppe', 'Syne', sans-serif;
             font-weight: 600;
         }
+
         .nav-steppe {
             font-family: 'Steppe', 'Syne', sans-serif;
             font-weight: 600;
@@ -66,8 +82,10 @@
             filter: url(#halftone-engraving);
             transition: filter 0.3s ease;
         }
+
         .brand-engraving:hover {
-            filter: none; /* Эффект раскрытия цвета при наведении */
+            filter: none;
+            /* Эффект раскрытия цвета при наведении */
         }
 
         /* Необруталистические тени и кнопки */
@@ -76,10 +94,12 @@
             box-shadow: 4px 4px 0px 0px #143127;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
         .neo-btn:hover {
             transform: translate(-2px, -2px);
             box-shadow: 6px 6px 0px 0px #143127;
         }
+
         .neo-btn:active {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0px 0px #143127;
@@ -92,6 +112,7 @@
             background-image: url('images/firmennyi_el.png');
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
         .neo-card:hover {
             transform: translateY(-4px);
             box-shadow: 10px 10px 0px 0px #143127;
@@ -101,10 +122,12 @@
         ::-webkit-scrollbar {
             width: 10px;
         }
+
         ::-webkit-scrollbar-track {
             background: #efe3da;
             background-image: url('images/element_bg.png');
         }
+
         ::-webkit-scrollbar-thumb {
             background: #143127;
             background-image: url('images/element_bg.png');
@@ -113,26 +136,35 @@
 
         /* Пульсация каракуль */
         @keyframes wiggle {
-            0%, 100% { transform: rotate(-3deg) scale(1); }
-            50% { transform: rotate(3deg) scale(1.05); }
+
+            0%,
+            100% {
+                transform: rotate(-3deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(3deg) scale(1.05);
+            }
         }
+
         .scribble-animate {
             animation: wiggle 6s ease-in-out infinite;
         }
 
         @media (max-width: 767px) {
-    .hero-headline {
-        font-size: clamp(1.5rem, 6.5vw, 2rem);
-        line-height: 1.15;
-    }
+            .hero-headline {
+                font-size: clamp(1.5rem, 6.5vw, 2rem);
+                line-height: 1.15;
+            }
 
-    .hero-headline .span-headline {
-        font-size: clamp(1.5rem, 4.5vw, 2rem);
-        line-height: 1.15;
-    }
-}
+            .hero-headline .span-headline {
+                font-size: clamp(1.5rem, 4.5vw, 2rem);
+                line-height: 1.15;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div id="root"></div>
 
@@ -141,17 +173,18 @@
         <filter id="halftone-engraving" color-interpolation-filters="sRGB">
             <!-- Шаг 1: Повышаем контраст исходника -->
             <feComponentTransfer>
-                <feFuncR type="linear" slope="2" intercept="-0.5"/>
-                <feFuncG type="linear" slope="2" intercept="-0.5"/>
-                <feFuncB type="linear" slope="2" intercept="-0.5"/>
+                <feFuncR type="linear" slope="2" intercept="-0.5" />
+                <feFuncG type="linear" slope="2" intercept="-0.5" />
+                <feFuncB type="linear" slope="2" intercept="-0.5" />
             </feComponentTransfer>
             <!-- Шаг 2: Обесцвечиваем в монохром -->
-            <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/>
+            <feColorMatrix type="matrix"
+                values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" />
             <!-- Шаг 3: Маппинг цветов на фирменную палитру #143127 (темный) и #efe3da (светлый) -->
             <feComponentTransfer>
-                <feFuncR type="table" tableValues="0.078 0.937"/>
-                <feFuncG type="table" tableValues="0.192 0.89"/>
-                <feFuncB type="table" tableValues="0.153 0.855"/>
+                <feFuncR type="table" tableValues="0.078 0.937" />
+                <feFuncG type="table" tableValues="0.192 0.89" />
+                <feFuncB type="table" tableValues="0.153 0.855" />
             </feComponentTransfer>
         </filter>
     </svg>
@@ -171,16 +204,16 @@
                 }
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
-                
+
                 osc.type = type;
                 osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-                
+
                 gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
-                
+
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-                
+
                 osc.start();
                 osc.stop(audioCtx.currentTime + duration);
             } catch (e) {
@@ -193,28 +226,28 @@
             if (type === 1) {
                 return (
                     <svg className={`scribble-animate ${className}`} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 100 C 40 20, 160 20, 180 100 C 160 180, 40 180, 20 100 Z" stroke="#ff5757" strokeWidth="4" strokeLinecap="round"/>
-                        <path d="M50 100 C 70 50, 130 50, 150 100" stroke="#ffba55" strokeWidth="3" strokeDasharray="5 5"/>
+                        <path d="M20 100 C 40 20, 160 20, 180 100 C 160 180, 40 180, 20 100 Z" stroke="#ff5757" strokeWidth="4" strokeLinecap="round" />
+                        <path d="M50 100 C 70 50, 130 50, 150 100" stroke="#ffba55" strokeWidth="3" strokeDasharray="5 5" />
                     </svg>
                 );
             }
             return (
                 <svg className={`scribble-animate ${className}`} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke="#ffba55" strokeWidth="5" strokeLinecap="round"/>
-                    <path d="M30 120 Q 72.5 190, 115 120 T 170 120" stroke="#ff5757" strokeWidth="3"/>
+                    <path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke="#ffba55" strokeWidth="5" strokeLinecap="round" />
+                    <path d="M30 120 Q 72.5 190, 115 120 T 170 120" stroke="#ff5757" strokeWidth="3" />
                 </svg>
             );
         };
 
         const Lightbox = ({ item, onClose }) => (
             <div
-  className="fixed inset-0 z-50 flex items-center justify-center p-4
+                className="fixed inset-0 z-50 flex items-center justify-center p-4
              bg-[linear-gradient(rgba(20,49,39,0.9),rgba(20,49,39,0.9)),url('/images/firmennyi_el.png')]
              bg-cover
              bg-center
              bg-no-repeat"
-  onClick={onClose}
->
+                onClick={onClose}
+            >
                 <div className="max-w-4xl w-full bg-[#efe3da] p-6 rounded-3xl border-4 border-[#143127] relative" onClick={e => e.stopPropagation()}>
                     <button onClick={onClose} className="absolute -top-4 -right-4 bg-[#ff5757] text-[#efe3da] border-4 border-[#143127] w-12 h-12 rounded-full font-steppe flex items-center justify-center hover:bg-[#ffba55] transition-colors">✕</button>
                     <img src={item.img} alt={item.title} className="w-full h-auto rounded-2xl border-4 border-[#143127] brand-engraving mb-4" />
@@ -229,7 +262,7 @@
         const TicketModal = ({ concert, onClose }) => {
             const [selectedSeats, setSelectedSeats] = useState([]);
             const [bought, setBought] = useState(false);
-            
+
             const rows = 6;
             const seatsPerRow = 10;
             const price = concert.price || 1500;
@@ -257,7 +290,7 @@
                 <div className="fixed inset-0 bg-[#143127]/90 z-50 flex items-center justify-center p-3 sm:p-4">
                     <div className="max-w-2xl w-full bg-[#efe3da] p-5 sm:p-8 rounded-3xl border-4 border-[#143127] relative max-h-[90vh] overflow-y-auto">
                         <button onClick={onClose} className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[#ff5757] text-[#efe3da] border-4 border-[#143127] w-10 h-10 rounded-full flex items-center justify-center font-bold hover:bg-[#ffba55] transition-colors">✕</button>
-                        
+
                         {!bought ? (
                             <>
                                 <span className="bg-[#ff5757] text-white px-3 py-1 rounded-full text-xs font-steppe uppercase">{concert.tag}</span>
@@ -269,32 +302,32 @@
                                 </div>
 
                                 <div className="overflow-x-auto -mx-1 px-1 mb-6 sm:mb-8">
-                                <div className="flex flex-col gap-2 sm:gap-3 justify-center items-center min-w-max mx-auto">
-                                    {Array.from({ length: rows }).map((_, rIdx) => (
-                                        <div key={rIdx} className="flex gap-1 sm:gap-2 items-center">
-                                            <span className="w-4 text-xs font-steppe text-[#143127]/50">{rIdx + 1}</span>
-                                            {Array.from({ length: seatsPerRow }).map((_, sIdx) => {
-                                                const seatId = `${rIdx + 1}-${sIdx + 1}`;
-                                                const isSelected = selectedSeats.includes(seatId);
-                                                const isTaken = (rIdx * sIdx) % 7 === 1 || (rIdx + sIdx) % 9 === 0;
-                                                return (
-                                                    <button
-                                                        key={sIdx}
-                                                        disabled={isTaken}
-                                                        onClick={() => toggleSeat(rIdx + 1, sIdx + 1)}
-                                                        className={`w-5 h-5 sm:w-6 sm:h-6 rounded-md border-2 border-[#143127] transition-all flex items-center justify-center text-[7px] sm:text-[8px] font-bold
-                                                            ${isTaken ? 'bg-[#143127]/20 border-dashed cursor-not-allowed text-[#143127]/20' : 
-                                                              isSelected ? 'bg-[#ff5757] text-[#efe3da] scale-110 shadow-sm' : 'bg-[#ffffff] hover:bg-[#ffba55] text-[#143127]'}
+                                    <div className="flex flex-col gap-2 sm:gap-3 justify-center items-center min-w-max mx-auto">
+                                        {Array.from({ length: rows }).map((_, rIdx) => (
+                                            <div key={rIdx} className="flex gap-1 sm:gap-2 items-center">
+                                                <span className="w-4 text-xs font-steppe text-[#143127]/50">{rIdx + 1}</span>
+                                                {Array.from({ length: seatsPerRow }).map((_, sIdx) => {
+                                                    const seatId = `${rIdx + 1}-${sIdx + 1}`;
+                                                    const isSelected = selectedSeats.includes(seatId);
+                                                    const isTaken = (rIdx * sIdx) % 7 === 1 || (rIdx + sIdx) % 9 === 0;
+                                                    return (
+                                                        <button
+                                                            key={sIdx}
+                                                            disabled={isTaken}
+                                                            onClick={() => toggleSeat(rIdx + 1, sIdx + 1)}
+                                                            className={`w-5 h-5 sm:w-6 sm:h-6 rounded-md border-2 border-[#143127] transition-all flex items-center justify-center text-[7px] sm:text-[8px] font-bold
+                                                            ${isTaken ? 'bg-[#143127]/20 border-dashed cursor-not-allowed text-[#143127]/20' :
+                                                                    isSelected ? 'bg-[#ff5757] text-[#efe3da] scale-110 shadow-sm' : 'bg-[#ffffff] hover:bg-[#ffba55] text-[#143127]'}
                                                         `}
-                                                        title={`Ряд ${rIdx + 1}, Место ${sIdx + 1}`}
-                                                    >
-                                                        {sIdx + 1}
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-                                    ))}
-                                </div>
+                                                            title={`Ряд ${rIdx + 1}, Место ${sIdx + 1}`}
+                                                        >
+                                                            {sIdx + 1}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 <div className="flex flex-wrap gap-3 sm:gap-4 justify-center text-[10px] sm:text-xs font-steppe mb-6 text-[#143127]">
@@ -314,7 +347,7 @@
                                         <p className="text-xs font-steppe text-[#143127]/60">Выбрано мест: {selectedSeats.length}</p>
                                         <p className="text-2xl font-druzhok text-[#143127]">{selectedSeats.length * price} ₽</p>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={handlePurchase}
                                         disabled={selectedSeats.length === 0}
                                         className={`px-6 py-3 rounded-xl font-steppe text-sm uppercase tracking-wider neo-btn transition-all 
@@ -355,83 +388,83 @@
             };
 
             return (
-            <div className="min-h-screen flex flex-col relative">
-                <header
-  className="border-b-4 border-[#143127] bg-[#efe3da] bg-[url('/images/element_bg.png')] bg-cover bg-center px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center sticky top-0 z-40"
->
-
-                    <div onClick={() => navigate('home')} className="bg-[#ff5757] text-[#efe3da] px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl border-3 border-[#143127] font-druzhok text-lg sm:text-xl cursor-pointer hover:bg-[#ffba55] transition-colors select-none flex items-center gap-1">
-                        1703
-                    </div>
-                    <nav className="hidden md:flex gap-8 nav-despair text-xs uppercase tracking-widest text-[#143127]">
-                        {navItems.map(item => (
-                            <button 
-                                key={item.id} 
-                                onClick={() => navigate(item.id)} 
-                                className={`pb-1 border-b-2 hover:text-[#ff5757] transition-all ${currentPage === item.id ? 'border-[#ff5757] text-[#ff5757]' : 'border-transparent'}`}
-                            >
-                                {item.label}
-                            </button>
-                        ))}
-                    </nav>
-                    <button
-                        type="button"
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        className="md:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 border-2 border-[#143127] rounded-xl bg-white"
-                        aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
-                        aria-expanded={menuOpen}
+                <div className="min-h-screen flex flex-col relative">
+                    <header
+                        className="border-b-4 border-[#143127] bg-[#efe3da] bg-[url('/images/element_bg.png')] bg-cover bg-center px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center sticky top-0 z-40"
                     >
-                        <span className={`block w-5 h-0.5 bg-[#143127] transition-transform ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                        <span className={`block w-5 h-0.5 bg-[#143127] transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
-                        <span className={`block w-5 h-0.5 bg-[#143127] transition-transform ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-                    </button>
-                </header>
 
-                {menuOpen && (
-                    <nav className="md:hidden border-b-4 border-[#143127] bg-[#efe3da] px-4 py-4 flex flex-col gap-3 nav-steppe text-sm uppercase tracking-widest text-[#143127] sticky top-[72px] z-30">
-                        {navItems.map(item => (
-                            <button
-                                key={item.id}
-                                onClick={() => navigate(item.id)}
-                                className={`text-left py-2 px-3 rounded-xl border-2 border-[#143127] transition-all ${currentPage === item.id ? 'bg-[#ff5757] text-white' : 'bg-white hover:bg-[#ffba55]'}`}
-                            >
-                                {item.label}
-                            </button>
-                        ))}
-                    </nav>
-                )}
+                        <div onClick={() => navigate('home')} className="bg-[#ff5757] text-[#efe3da] px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl border-3 border-[#143127] font-druzhok text-lg sm:text-xl cursor-pointer hover:bg-[#ffba55] transition-colors select-none flex items-center gap-1">
+                            1703
+                        </div>
+                        <nav className="hidden md:flex gap-8 nav-despair text-xs uppercase tracking-widest text-[#143127]">
+                            {navItems.map(item => (
+                                <button
+                                    key={item.id}
+                                    onClick={() => navigate(item.id)}
+                                    className={`pb-1 border-b-2 hover:text-[#ff5757] transition-all ${currentPage === item.id ? 'border-[#ff5757] text-[#ff5757]' : 'border-transparent'}`}
+                                >
+                                    {item.label}
+                                </button>
+                            ))}
+                        </nav>
+                        <button
+                            type="button"
+                            onClick={() => setMenuOpen(!menuOpen)}
+                            className="md:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 border-2 border-[#143127] rounded-xl bg-white"
+                            aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+                            aria-expanded={menuOpen}
+                        >
+                            <span className={`block w-5 h-0.5 bg-[#143127] transition-transform ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                            <span className={`block w-5 h-0.5 bg-[#143127] transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
+                            <span className={`block w-5 h-0.5 bg-[#143127] transition-transform ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+                        </button>
+                    </header>
 
-                <main className="flex-grow">{children}</main>
+                    {menuOpen && (
+                        <nav className="md:hidden border-b-4 border-[#143127] bg-[#efe3da] px-4 py-4 flex flex-col gap-3 nav-steppe text-sm uppercase tracking-widest text-[#143127] sticky top-[72px] z-30">
+                            {navItems.map(item => (
+                                <button
+                                    key={item.id}
+                                    onClick={() => navigate(item.id)}
+                                    className={`text-left py-2 px-3 rounded-xl border-2 border-[#143127] transition-all ${currentPage === item.id ? 'bg-[#ff5757] text-white' : 'bg-white hover:bg-[#ffba55]'}`}
+                                >
+                                    {item.label}
+                                </button>
+                            ))}
+                        </nav>
+                    )}
 
-                <footer className="border-t-4 border-[#143127] bg-[#143127] text-white py-12 sm:py-16 px-4 sm:px-8 relative overflow-hidden">
-                    <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 sm:gap-12 relative z-10">
-                        <div>
-                            <div className="bg-[#ff5757] text-[#efe3da] px-4 py-2 rounded-xl border-3 border-[#efe3da] font-druzhok text-xl w-max mb-6">
-                                1703
+                    <main className="flex-grow">{children}</main>
+
+                    <footer className="border-t-4 border-[#143127] bg-[#143127] text-white py-12 sm:py-16 px-4 sm:px-8 relative overflow-hidden">
+                        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 sm:gap-12 relative z-10">
+                            <div>
+                                <div className="bg-[#ff5757] text-[#efe3da] px-4 py-2 rounded-xl border-3 border-[#efe3da] font-druzhok text-xl w-max mb-6">
+                                    1703
+                                </div>
+
                             </div>
-                         
-                        </div>
-                        <div>
-                            <h4 className="font-steppe text-sm uppercase tracking-wider text-white/50 mb-4">Навигация</h4>
-                            <div className="grid grid-cols-2 gap-2 text-sm font-bold text-white">
-                                <button onClick={() => navigate('home')} className="text-left hover:text-[#ffba55]">Главная</button>
-                                <button onClick={() => navigate('afisha')} className="text-left hover:text-[#ffba55]">Афиша</button>
-                                <button onClick={() => navigate('about')} className="text-left hover:text-[#ffba55]">О нас</button>
-                                <button onClick={() => navigate('gallery')} className="text-left hover:text-[#ffba55]">Галерея</button>
-                                <button onClick={() => navigate('contacts')} className="text-left hover:text-[#ffba55]">Контакты</button>
+                            <div>
+                                <h4 className="font-steppe text-sm uppercase tracking-wider text-white/50 mb-4">Навигация</h4>
+                                <div className="grid grid-cols-2 gap-2 text-sm font-bold text-white">
+                                    <button onClick={() => navigate('home')} className="text-left hover:text-[#ffba55]">Главная</button>
+                                    <button onClick={() => navigate('afisha')} className="text-left hover:text-[#ffba55]">Афиша</button>
+                                    <button onClick={() => navigate('about')} className="text-left hover:text-[#ffba55]">О нас</button>
+                                    <button onClick={() => navigate('gallery')} className="text-left hover:text-[#ffba55]">Галерея</button>
+                                    <button onClick={() => navigate('contacts')} className="text-left hover:text-[#ffba55]">Контакты</button>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="font-steppe text-sm uppercase tracking-wider text-white/50 mb-4">Контакты</h4>
+                                <p className="font-druzhok text-lg text-white mb-2">8 800 555 35 35</p>
+                                <p className="font-steppe text-xs text-white underline decoration-[#ff5757] decoration-2">orchestra1703@gmail.com</p>
                             </div>
                         </div>
-                        <div>
-                            <h4 className="font-steppe text-sm uppercase tracking-wider text-white/50 mb-4">Контакты</h4>
-                            <p className="font-druzhok text-lg text-white mb-2">8 800 555 35 35</p>
-                            <p className="font-steppe text-xs text-white underline decoration-[#ff5757] decoration-2">orchestra1703@gmail.com</p>
+                        <div className="max-w-7xl mx-auto mt-12 pt-8 border-t-2 border-white/20 text-center text-xs font-steppe text-white/60">
+                            © 2026 Оркестр 1703. Все права защищены.
                         </div>
-                    </div>
-                    <div className="max-w-7xl mx-auto mt-12 pt-8 border-t-2 border-white/20 text-center text-xs font-steppe text-white/60">
-                        © 2026 Оркестр 1703. Все права защищены.
-                    </div>
-                </footer>
-            </div>
+                    </footer>
+                </div>
             );
         };
 
@@ -440,7 +473,7 @@
             const [tempo, setTempo] = useState(1);
             const [selectedConcert, setSelectedConcert] = useState(null);
             const canvasRef = useRef(null);
-            
+
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
                 if (file) {
@@ -462,10 +495,10 @@
 
                 const draw = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
+
                     ctx.strokeStyle = '#143127';
                     ctx.lineWidth = 3;
-                    
+
                     ctx.beginPath();
                     for (let x = 0; x < canvas.width; x++) {
                         const y = canvas.height / 2 + Math.sin(x * 0.02 + angle) * 30 * tempo + Math.cos(x * 0.01 - angle) * 15;
@@ -560,9 +593,9 @@
                             <div className="relative flex justify-center order-2 mt-4 md:mt-0">
                                 <ScribbleDecoration className="absolute -top-12 -left-12 w-32 h-32 z-0 hidden sm:block" type={1} />
                                 <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-[400px] md:h-[400px] rounded-full overflow-hidden border-4 border-[#143127] bg-[#143127] shadow-[10px_10px_0px_0px_#ffba55] relative z-10">
-                                    <img 
-                                        src="https://spbdnevnik.ru/uploads/block/image/1228326/__medium_6387e731c43ab1cd2314c8d9768a9885.jpg.jpg" 
-                                        className="w-full h-full object-cover brand-engraving scale-110" 
+                                    <img
+                                        src="https://spbdnevnik.ru/uploads/block/image/1228326/__medium_6387e731c43ab1cd2314c8d9768a9885.jpg.jpg"
+                                        className="w-full h-full object-cover brand-engraving scale-110"
                                         alt="Orchestra Hero"
                                         onError={(e) => { e.target.src = "https://placehold.co/800x800/143127/efe3da?text=1703"; }}
                                     />
@@ -598,7 +631,7 @@
                                             </h3>
                                         </div>
                                         <div className="flex gap-2">
-                                            <button 
+                                            <button
                                                 onClick={() => {
                                                     setSelectedEvent(concert.id);
                                                     setPage('event');
@@ -608,7 +641,7 @@
                                             >
                                                 Подробнее
                                             </button>
-                                            <button 
+                                            <button
                                                 onClick={() => {
                                                     setSelectedConcert(concert);
                                                     playSynthSound(600, 'triangle', 0.2);
@@ -668,7 +701,7 @@
                     <section className="py-12 sm:py-20 px-4 sm:px-6 border-b-4 border-[#143127] bg-[#efe3da] relative">
                         <div className="max-w-4xl mx-auto">
                             <h2 className="font-druzhok text-2xl sm:text-4xl md:text-6xl text-[#143127] text-center mb-12">О НАС В СМИ</h2>
-                            
+
                             <div className="space-y-6">
                                 <a href="https://rbc.ru" target="_blank" rel="noreferrer" className="block p-6 bg-white rounded-2xl border-3 border-[#143127] shadow-[4px_4px_0px_0px_#143127] hover:shadow-[8px_8px_0px_0px_#143127] hover:-translate-y-1 transition-all">
                                     <div className="flex justify-between items-center">
@@ -700,15 +733,15 @@
                             <div className="bg-white p-8 rounded-3xl border-4 border-[#143127] shadow-[8px_8px_0px_0px_#143127] relative">
                                 <h3 className="font-druzhok text-3xl mb-4 text-[#143127]">ПУЛЬТ ДИРИЖЕРА</h3>
                                 <p className="text-sm font-steppe text-[#143127]/80 mb-6 uppercase">Регулируйте темп волны оркестра</p>
-                                
+
                                 <div className="flex items-center gap-4 mb-6">
                                     <span className="text-xs font-steppe text-[#143127]">ADAGIO (медленно)</span>
-                                    <input 
-                                        type="range" 
-                                        min="0.2" 
-                                        max="3" 
-                                        step="0.1" 
-                                        value={tempo} 
+                                    <input
+                                        type="range"
+                                        min="0.2"
+                                        max="3"
+                                        step="0.1"
+                                        value={tempo}
                                         onChange={(e) => {
                                             setTempo(parseFloat(e.target.value));
                                             playSynthSound(220 * parseFloat(e.target.value), 'sine', 0.1);
@@ -726,7 +759,7 @@
                             <div className="bg-white p-8 rounded-3xl border-4 border-[#143127] shadow-[8px_8px_0px_0px_#ffba55]">
                                 <h3 className="font-druzhok text-3xl mb-4 text-[#143127]">ЮМОР-САУНДБОРД</h3>
                                 <p className="text-sm font-steppe text-[#143127]/80 mb-6 uppercase">Классика встречается с хулиганством</p>
-                                
+
                                 <div className="grid grid-cols-2 gap-4">
                                     <button onClick={() => playSynthSound(523.25, 'triangle', 0.4)} className="py-4 rounded-xl font-steppe text-xs uppercase neo-btn bg-[#ffba55] text-[#143127]">
                                         🎻 Альт Соло
@@ -766,11 +799,11 @@
                                             <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                                         </label>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => {
                                             setUploadedImg(null);
                                             playSynthSound(150, 'sawtooth', 0.2);
-                                        }} 
+                                        }}
                                         className="w-full py-3 border-2 border-[#143127] rounded-xl text-xs font-steppe uppercase text-[#143127] hover:bg-[#ff5757] hover:text-white transition-all"
                                     >
                                         Сбросить
@@ -794,9 +827,9 @@
                     </section>
 
                     {selectedConcert && (
-                        <TicketModal 
-                            concert={selectedConcert} 
-                            onClose={() => setSelectedConcert(null)} 
+                        <TicketModal
+                            concert={selectedConcert}
+                            onClose={() => setSelectedConcert(null)}
                         />
                     )}
                 </div>
@@ -884,7 +917,7 @@
                             <div className="absolute top-0 right-0 w-24 h-24 bg-[#ffba55] border-l-4 border-b-4 border-[#143127] rounded-bl-3xl flex items-center justify-center font-druzhok text-[#143127] text-2xl rotate-[5deg] origin-top-right">
                                 1703
                             </div>
-                            
+
                             <div className="space-y-6">
                                 <span className="bg-[#ff5757] text-white px-3 py-1.5 rounded-full text-xs font-steppe uppercase tracking-widest inline-block border-2 border-[#143127]">
                                     {currentEvent.tag}
@@ -912,8 +945,8 @@
                                     </div>
                                 </div>
 
-                                <button 
-                                    onClick={() => setSelectedConcert(currentEvent)} 
+                                <button
+                                    onClick={() => setSelectedConcert(currentEvent)}
                                     className="w-full bg-[#ff5757] text-white py-4 rounded-2xl font-steppe uppercase tracking-wider text-sm neo-btn block text-center"
                                 >
                                     Купить билеты от {currentEvent.price} ₽
@@ -925,10 +958,10 @@
                         <div className="lg:col-span-7 relative group">
                             <ScribbleDecoration className="absolute -bottom-8 -right-8 w-32 h-32 z-10 pointer-events-none" type={2} />
                             <div className="w-full h-full min-h-[400px] bg-[#143127] border-4 border-[#143127] rounded-3xl overflow-hidden shadow-[10px_10px_0px_0px_#ffba55] relative">
-                                <img 
-                                    src={currentEvent.img} 
-                                    className="w-full h-full object-cover brand-engraving" 
-                                    alt={currentEvent.title} 
+                                <img
+                                    src={currentEvent.img}
+                                    className="w-full h-full object-cover brand-engraving"
+                                    alt={currentEvent.title}
                                 />
                                 <div className="absolute inset-0 bg-[#143127]/10 pointer-events-none"></div>
                             </div>
@@ -960,7 +993,7 @@
                                             {p.role}
                                         </span>
                                         <div className="pt-2">
-                                            <button 
+                                            <button
                                                 onClick={() => playSynthSound(p.freq, p.type, 0.6)}
                                                 className="bg-[#ff5757] text-white px-4 py-2 rounded-xl text-[10px] font-steppe uppercase tracking-wider neo-btn inline-block"
                                             >
@@ -989,7 +1022,7 @@
                                     </div>
 
                                     <div className="pr-6">
-                                        <button 
+                                        <button
                                             onClick={() => setSelectedConcert({ ...currentEvent, date: item.date, venue: item.venue })}
                                             className="bg-[#ff5757] text-white px-6 py-3 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn"
                                         >
@@ -1002,9 +1035,9 @@
                     </section>
 
                     {selectedConcert && (
-                        <TicketModal 
-                            concert={selectedConcert} 
-                            onClose={() => setSelectedConcert(null)} 
+                        <TicketModal
+                            concert={selectedConcert}
+                            onClose={() => setSelectedConcert(null)}
                         />
                     )}
                 </div>
@@ -1048,8 +1081,8 @@
                 }
             ];
 
-            const filteredConcerts = activeFilter === 'Все' 
-                ? concerts 
+            const filteredConcerts = activeFilter === 'Все'
+                ? concerts
                 : concerts.filter(c => c.tag === activeFilter);
 
             return (
@@ -1058,7 +1091,7 @@
                         <ScribbleDecoration className="absolute -top-12 left-1/4 w-24 h-24 opacity-35" type={1} />
                         <h1 className="font-druzhok text-3xl sm:text-5xl md:text-7xl text-[#143127] mb-4">АФИША</h1>
                         <p className="font-despair text-2xl text-[#143127]/80">Особое расписание концертов мартовского сезона</p>
-                        
+
                         <div className="flex justify-center items-center gap-4 mt-6">
                             <button onClick={() => playSynthSound(300, 'triangle', 0.1)} className="w-10 h-10 border-2 border-[#143127] rounded-full flex items-center justify-center font-bold hover:bg-[#ffba55]">‹</button>
                             <span className="font-steppe text-sm uppercase tracking-widest bg-white px-4 py-2 rounded-xl border-2 border-[#143127] shadow-[2px_2px_0px_0px_#143127]">03.2026</span>
@@ -1102,7 +1135,7 @@
                                     <p className="text-xs font-steppe text-[#143127]/70 uppercase mb-6">{concert.venue}</p>
                                 </div>
                                 <div className="flex gap-3">
-                                    <button 
+                                    <button
                                         onClick={() => {
                                             setSelectedEvent(concert.id);
                                             setPage('event');
@@ -1112,11 +1145,11 @@
                                     >
                                         Подробнее
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={() => {
                                             setSelectedConcert(concert);
                                             playSynthSound(500, 'triangle', 0.2);
-                                        }} 
+                                        }}
                                         className="flex-grow bg-[#ff5757] text-white py-3.5 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn"
                                     >
                                         Купить билеты
@@ -1127,9 +1160,9 @@
                     </div>
 
                     {selectedConcert && (
-                        <TicketModal 
-                            concert={selectedConcert} 
-                            onClose={() => setSelectedConcert(null)} 
+                        <TicketModal
+                            concert={selectedConcert}
+                            onClose={() => setSelectedConcert(null)}
                         />
                     )}
                 </div>
@@ -1199,7 +1232,7 @@
                                     <p className="text-xs font-medium text-[#143127]/80 leading-relaxed">
                                         {musician.desc}
                                     </p>
-                                    <button 
+                                    <button
                                         onClick={() => playSynthSound(musician.freq, musician.synthType, 0.8)}
                                         className="bg-[#ff5757] text-white px-4 py-2 rounded-xl text-[10px] font-steppe uppercase tracking-wider neo-btn inline-block"
                                     >
@@ -1258,8 +1291,8 @@
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredItems.map(item => (
-                            <div 
-                                key={item.id} 
+                            <div
+                                key={item.id}
                                 onClick={() => {
                                     setLightboxItem(item);
                                     playSynthSound(600, 'triangle', 0.25);
@@ -1328,62 +1361,62 @@
 
                         <div className="md:col-span-7 bg-white p-8 rounded-3xl border-4 border-[#143127] shadow-[8px_8px_0px_0px_#ffba55]">
                             <h3 className="font-druzhok text-2xl text-[#143127] mb-6 uppercase">Написать нам</h3>
-                            
+
                             {!submitted ? (
                                 <form onSubmit={handleSubmit} className="space-y-4 font-steppe text-xs">
                                     <div className="grid md:grid-cols-2 gap-4">
                                         <div>
                                             <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Имя</label>
-                                            <input 
+                                            <input
                                                 required
-                                                type="text" 
-                                                placeholder="Ваше имя" 
+                                                type="text"
+                                                placeholder="Ваше имя"
                                                 value={formData.name}
-                                                onChange={e => setFormData({...formData, name: e.target.value})}
-                                                className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]" 
+                                                onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                                className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]"
                                             />
                                         </div>
                                         <div>
                                             <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Фамилия</label>
-                                            <input 
+                                            <input
                                                 required
-                                                type="text" 
-                                                placeholder="Ваша фамилия" 
+                                                type="text"
+                                                placeholder="Ваша фамилия"
                                                 value={formData.surname}
-                                                onChange={e => setFormData({...formData, surname: e.target.value})}
-                                                className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]" 
+                                                onChange={e => setFormData({ ...formData, surname: e.target.value })}
+                                                className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]"
                                             />
                                         </div>
                                     </div>
                                     <div>
                                         <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Email</label>
-                                        <input 
+                                        <input
                                             required
-                                            type="email" 
-                                            placeholder="name@example.com" 
+                                            type="email"
+                                            placeholder="name@example.com"
                                             value={formData.email}
-                                            onChange={e => setFormData({...formData, email: e.target.value})}
-                                            className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]" 
+                                            onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                            className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Тема сообщения</label>
-                                        <input 
-                                            type="text" 
-                                            placeholder="Например, сотрудничество или вопрос о концерте" 
+                                        <input
+                                            type="text"
+                                            placeholder="Например, сотрудничество или вопрос о концерте"
                                             value={formData.subject}
-                                            onChange={e => setFormData({...formData, subject: e.target.value})}
-                                            className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]" 
+                                            onChange={e => setFormData({ ...formData, subject: e.target.value })}
+                                            className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127]"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-[#143127]/60 uppercase mb-2 font-extrabold">Сообщение</label>
-                                        <textarea 
+                                        <textarea
                                             required
                                             rows="4"
-                                            placeholder="Ваше сообщение..." 
+                                            placeholder="Ваше сообщение..."
                                             value={formData.message}
-                                            onChange={e => setFormData({...formData, message: e.target.value})}
+                                            onChange={e => setFormData({ ...formData, message: e.target.value })}
                                             className="w-full p-4 rounded-xl border-3 border-[#143127] bg-[#efe3da]/30 focus:outline-none focus:bg-white text-[#143127] resize-none"
                                         ></textarea>
                                     </div>
@@ -1396,11 +1429,11 @@
                                     <span className="text-6xl block mb-4">📬</span>
                                     <h4 className="font-druzhok text-3xl text-[#143127] mb-2">ПИСЬМО ОТПРАВЛЕНО!</h4>
                                     <p className="font-steppe text-sm text-[#143127]/70">Спасибо за обратную связь. Мы ответим вам в течение 1–2 рабочих дней.</p>
-                                    <button 
+                                    <button
                                         onClick={() => {
                                             setSubmitted(false);
                                             setFormData({ name: '', surname: '', email: '', subject: '', message: '' });
-                                        }} 
+                                        }}
                                         className="mt-6 px-6 py-3 bg-[#143127] text-white font-steppe uppercase text-xs rounded-xl neo-btn"
                                     >
                                         Написать еще
@@ -1432,4 +1465,5 @@
         ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     </script>
 </body>
+
 </html>
