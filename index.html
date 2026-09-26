@@ -35,8 +35,16 @@
 
         @font-face {
             font-family: 'DRUZHOK';
-            src: url('fonts/DRUZHOK.ttf') format('truetype');
+            src: url('./fonts/DRUZHOK.otf') format('opentype');
             font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Despair Display';
+            src: url('./fonts/DispairDisplay-Bold.otf') format('opentype');
+            font-weight: 700;
             font-style: normal;
             font-display: swap;
         }
@@ -54,16 +62,16 @@
 
         /* Настройка фирменных шрифтов из гайдлайна */
         .font-druzhok {
-            font-family: 'Dela Gothic One', cursive;
+            font-family: 'Dela Gothic One';
         }
 
         .font-ddruzhok {
-            font-family: 'DRUZHOK', cursive;
+            font-family: 'DRUZHOK', serif;
         }
 
         .font-despair {
-            font-family: 'Despair Display', 'Playfair Display', serif;
-            font-weight: 900;
+            font-family: 'Despair Display', sans-serif;
+            font-weight: 700;
             font-style: normal;
         }
 
