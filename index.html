@@ -7,7 +7,7 @@
     <title>Оркестр 1703 — Самый Дружелюбный Оркестр</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Dela Gothic One (DRUZHOK), Playfair Display (Despair Display - no italic), Syne & Plus Jakarta Sans (Steppe) -->
+    <!-- Google Fonts: Dela Gothic One (DRUZHOK), Syne & Plus Jakarta Sans (запасные для Steppe). Despair Display и Steppe подключены локально через @font-face -->
     <link
         href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
@@ -1177,46 +1177,50 @@
             );
         };
 
-        const AboutPage = () => {
-            const musicians = [
-                {
-                    id: 1,
-                    name: "ГЕОРГИЙ ФЕДОРОВ",
-                    role: "Художественный руководитель, композитор",
-                    desc: "Художественный руководитель оркестра 1703. Соединяет традиции и современный взгляд на симфоническую музыку.",
-                    freq: 261.63,
-                    synthType: "triangle",
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST3e0E-pKcQadpIo0PWPavgfajvR24kaflhwTSnm1w-E5Glj5qvWgzgTU&s=10"
-                },
-                {
-                    id: 2,
-                    name: "МАРИЯ МАРИЕВА",
-                    role: "Первая скрипка",
-                    desc: "Выпускница консерватории, лауреат международных конкурсов. Отвечает за яркое и выразительное звучание струнной группы.",
-                    freq: 440,
-                    synthType: "sine",
-                    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop"
-                },
-                {
-                    id: 3,
-                    name: "ДМИТРИЙ СОКОЛОВ",
-                    role: "Виолончель, солист",
-                    desc: "Мастер глубокого бархатного звука. Экспрессивно ведет партию низких струнных, добавляя монументальности.",
-                    freq: 110,
-                    synthType: "sawtooth",
-                    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop"
-                },
-                {
-                    id: 4,
-                    name: "АННА ПЕТРОВА",
-                    role: "Флейта, духовые",
-                    desc: "Вносит воздушность и легкость в сумасшедшие аранжировки оркестра. Эксперт по импровизации.",
-                    freq: 659.25,
-                    synthType: "sine",
-                    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop"
-                }
-            ];
+        const musicians = [
+            {
+                id: 1,
+                name: "ГЕОРГИЙ ФЕДОРОВ",
+                role: "Художественный руководитель, композитор",
+                desc: "Художественный руководитель оркестра 1703. Соединяет традиции и современный взгляд на симфоническую музыку.",
+                bio: "Здесь будет краткая биография музыканта: образование, ключевые выступления и путь в оркестре 1703.",
+                freq: 261.63,
+                synthType: "triangle",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST3e0E-pKcQadpIo0PWPavgfajvR24kaflhwTSnm1w-E5Glj5qvWgzgTU&s=10"
+            },
+            {
+                id: 2,
+                name: "МАРИЯ МАРИЕВА",
+                role: "Первая скрипка",
+                desc: "Выпускница консерватории, лауреат международных конкурсов. Отвечает за яркое и выразительное звучание струнной группы.",
+                bio: "Здесь будет краткая биография музыканта: образование, ключевые выступления и путь в оркестре 1703.",
+                freq: 440,
+                synthType: "sine",
+                img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                id: 3,
+                name: "ДМИТРИЙ СОКОЛОВ",
+                role: "Виолончель, солист",
+                desc: "Мастер глубокого бархатного звука. Экспрессивно ведет партию низких струнных, добавляя монументальности.",
+                bio: "Здесь будет краткая биография музыканта: образование, ключевые выступления и путь в оркестре 1703.",
+                freq: 110,
+                synthType: "sawtooth",
+                img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                id: 4,
+                name: "АННА ПЕТРОВА",
+                role: "Флейта, духовые",
+                desc: "Вносит воздушность и легкость в сумасшедшие аранжировки оркестра. Эксперт по импровизации.",
+                bio: "Здесь будет краткая биография музыканта: образование, ключевые выступления и путь в оркестре 1703.",
+                freq: 659.25,
+                synthType: "sine",
+                img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop"
+            }
+        ];
 
+        const AboutPage = ({ setPage, setSelectedMusician }) => {
             return (
                 <div className="py-10 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto">
                     <div className="mb-12 relative">
@@ -1241,14 +1245,53 @@
                                         {musician.desc}
                                     </p>
                                     <button
-                                        onClick={() => playSynthSound(musician.freq, musician.synthType, 0.8)}
+                                        onClick={() => {
+                                            setSelectedMusician(musician.id);
+                                            setPage('musician');
+                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                        }}
                                         className="bg-[#ff5757] text-white px-4 py-2 rounded-xl text-[10px] font-steppe uppercase tracking-wider neo-btn inline-block"
                                     >
-                                        🔊 Послушать Соло
+                                        Подробнее
                                     </button>
                                 </div>
                             </div>
                         ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const MusicianPage = ({ musicianId, setPage }) => {
+            const musician = musicians.find(m => m.id === musicianId) || musicians[0];
+
+            return (
+                <div className="py-10 sm:py-16 px-4 sm:px-6 max-w-5xl mx-auto space-y-12">
+                    <div>
+                        <button onClick={() => { setPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="bg-[#ffffff] text-[#143127] px-6 py-3 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn">
+                            ← Ко всем участникам
+                        </button>
+                    </div>
+
+                    <div className="neo-card p-6 sm:p-10 flex flex-col md:flex-row gap-8 md:gap-10 items-center md:items-start">
+                        <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#143127] shadow-[8px_8px_0px_0px_#ffba55] shrink-0">
+                            <img src={musician.img} className="w-full h-full object-cover brand-engraving" alt={musician.name} />
+                        </div>
+                        <div className="space-y-5 text-center md:text-left">
+                            <h1 className="font-druzhok text-3xl sm:text-4xl md:text-5xl text-[#143127] uppercase leading-none">{musician.name}</h1>
+                            <span className="bg-[#ffba55] text-[#143127] border-2 border-[#143127] px-3 py-1 rounded-full text-[10px] font-steppe uppercase inline-block">
+                                {musician.role}
+                            </span>
+                            <p className="font-steppe text-sm sm:text-base text-[#143127] leading-relaxed">
+                                {musician.bio}
+                            </p>
+                            <button
+                                onClick={() => playSynthSound(musician.freq, musician.synthType, 0.8)}
+                                className="bg-[#ff5757] text-white px-6 py-3 rounded-xl text-xs font-steppe uppercase tracking-wider neo-btn inline-block"
+                            >
+                                🔊 Послушать соло
+                            </button>
+                        </div>
                     </div>
                 </div>
             );
@@ -1457,12 +1500,14 @@
         const App = () => {
             const [page, setPage] = useState('home');
             const [selectedEvent, setSelectedEvent] = useState('snezhanya_koroleva');
+            const [selectedMusician, setSelectedMusician] = useState(1);
 
             return (
                 <Layout currentPage={page} setPage={setPage}>
                     {page === 'home' && <HomePage setPage={setPage} setSelectedEvent={setSelectedEvent} />}
                     {page === 'afisha' && <AfishaPage setPage={setPage} setSelectedEvent={setSelectedEvent} />}
-                    {page === 'about' && <AboutPage />}
+                    {page === 'about' && <AboutPage setPage={setPage} setSelectedMusician={setSelectedMusician} />}
+                    {page === 'musician' && <MusicianPage musicianId={selectedMusician} setPage={setPage} />}
                     {page === 'gallery' && <GalleryPage />}
                     {page === 'contacts' && <ContactsPage />}
                     {page === 'event' && <EventPage eventId={selectedEvent} setPage={setPage} />}
