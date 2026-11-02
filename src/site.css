@@ -1,0 +1,147 @@
+/* Дизайн-система Оркестра 1703 (общая с квизом «Кто ты из мира музыки?»):
+   толстый зелёный контур, жёсткая смещённая тень, бумажное зерно, наклонённые плашки. */
+
+@font-face { font-family: 'Steppe'; src: url('../fonts/Steppe-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Steppe'; src: url('../fonts/Steppe-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Despair Display'; src: url('../fonts/DespairDisplay-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'DRUZHOK'; src: url('../fonts/DRUZHOK.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --green: #143127; --coral: #ff5757; --mustard: #ffba55; --cream: #efe3da; --paper: #fffae7;
+    --edge: 4px; --shadow: 8px;
+  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-cream text-green font-sans antialiased;
+    overflow-x: clip;
+  }
+  /* бумажное зерно поверх всего, как в квизе */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .45; mix-blend-mode: multiply;
+    background-image: radial-gradient(rgba(20, 49, 39, .1) 1px, transparent 1.2px); background-size: 5px 5px;
+  }
+  :focus-visible { outline: 4px solid var(--coral); outline-offset: 4px; border-radius: 6px; }
+  ::selection { background: var(--mustard); color: var(--green); }
+  img, video { max-width: 100%; }
+  h1, h2, h3 { text-wrap: balance; }
+}
+
+@layer components {
+  /* ---------- типографика ---------- */
+  .h-display { @apply font-display uppercase; line-height: .92; letter-spacing: -.01em; }
+  .t-stroke {
+    color: var(--coral); -webkit-text-stroke: var(--edge) var(--green); paint-order: stroke fill;
+    text-shadow: 6px 6px 0 var(--green);
+  }
+  .t-box {
+    @apply bg-mustard; display: inline-block; padding: 0 .14em; border: var(--edge) solid var(--green);
+    box-shadow: 7px 7px 0 var(--green); transform: rotate(2deg);
+  }
+  .sticker {
+    @apply inline-block bg-green text-cream font-sans font-semibold uppercase;
+    font-size: 12px; line-height: 1; letter-spacing: .14em; padding: .8em 1em; transform: rotate(-2deg);
+  }
+  .sticker-mustard { @apply bg-mustard text-green; border: 3px solid var(--green); box-shadow: 3px 3px 0 var(--green); }
+  .chip {
+    @apply inline-block font-sans font-semibold uppercase rounded-full;
+    font-size: 11px; letter-spacing: .1em; padding: .55em 1em; border: 3px solid var(--green);
+  }
+
+  /* ---------- кнопка с «нажатием» в тень (как в квизе) ---------- */
+  .btn {
+    @apply relative inline-flex select-none font-sans font-semibold uppercase no-underline;
+    letter-spacing: .06em; border-radius: 22px; -webkit-tap-highlight-color: transparent;
+  }
+  .btn::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--green);
+    transform: translate(6px, 6px);
+  }
+  .btn > span {
+    @apply relative z-[1] flex w-full items-center justify-center gap-2 text-center;
+    padding: 1em 1.6em; font-size: 14px; line-height: 1.1; border-radius: inherit;
+    border: var(--edge) solid var(--green); background: var(--btn-bg, var(--coral)); color: var(--btn-fg, var(--paper));
+    transition: transform .09s ease-out;
+  }
+  .btn:hover > span { transform: translate(-2px, -2px); }
+  .btn:active > span { transform: translate(6px, 6px); transition-duration: .04s; }
+  @media (hover: none) { .btn:hover > span { transform: none; } }
+  .btn-paper { --btn-bg: var(--paper); --btn-fg: var(--green); }
+  .btn-green { --btn-bg: var(--green); --btn-fg: var(--paper); }
+  .btn-green::before { background: var(--coral); }
+  .btn-mustard { --btn-bg: var(--mustard); --btn-fg: var(--green); }
+  .btn-sm > span { padding: .75em 1.1em; font-size: 12px; }
+  .btn-lg > span { padding: 1.05em 1.9em; font-size: 15px; }
+  .btn-block { @apply flex w-full; }
+
+  /* ---------- карточки ---------- */
+  .card {
+    @apply relative bg-paper; border: var(--edge) solid var(--green); border-radius: 26px;
+    box-shadow: var(--shadow) var(--shadow) 0 var(--green);
+  }
+  .card-hover { transition: transform .15s ease-out, box-shadow .15s ease-out; }
+  .card-hover:hover { transform: translate(-3px, -3px); box-shadow: calc(var(--shadow) + 3px) calc(var(--shadow) + 3px) 0 var(--green); }
+  @media (hover: none) { .card-hover:hover { transform: none; box-shadow: var(--shadow) var(--shadow) 0 var(--green); } }
+  .tilt-l { transform: rotate(-.7deg); }
+  .tilt-r { transform: rotate(.6deg); }
+
+  /* рамка для фото/видео */
+  .frame { @apply relative overflow-hidden bg-green; border: var(--edge) solid var(--green); border-radius: 22px; }
+
+  /* фирменная гравюра: фото в два цвета, на наведении — оригинал */
+  .duotone { filter: url(#duotone); transition: filter .35s ease; }
+  .group:hover .duotone, .duotone:hover { filter: none; }
+  @media (hover: none) { .duotone { filter: url(#duotone); } }
+
+  /* полутон */
+  .halftone { background-image: radial-gradient(var(--dot, rgba(20,49,39,.35)) 1.6px, transparent 1.9px); background-size: 9px 9px; }
+
+  /* билет с перфорацией */
+  .ticket { @apply relative; }
+  .ticket::before, .ticket::after {
+    content: ""; position: absolute; top: 50%; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--cream); border: var(--edge) solid var(--green); transform: translateY(-50%);
+  }
+  .ticket::before { left: -17px; clip-path: inset(0 0 0 50%); }
+  .ticket::after { right: -17px; clip-path: inset(0 50% 0 0); }
+
+  /* бегущая строка */
+  .marquee { @apply overflow-hidden whitespace-nowrap; }
+  .marquee-track { display: inline-flex; animation: marquee 38s linear infinite; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* фирменные росчерки */
+  .squiggle { position: absolute; pointer-events: none; background: url('../images/element_bg.png') center / contain no-repeat; }
+
+  /* поля формы */
+  .field {
+    @apply w-full bg-paper text-green font-sans; font-size: 16px; padding: .9em 1em; border: 3px solid var(--green); border-radius: 16px;
+  }
+  .field:focus { outline: none; box-shadow: 5px 5px 0 var(--coral); }
+  .label { @apply mb-2 block font-sans font-semibold uppercase; font-size: 11px; letter-spacing: .12em; }
+
+  /* появление при прокрутке */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .7s cubic-bezier(.2,.9,.25,1); }
+  .reveal.in { opacity: 1; transform: none; }
+}
+
+@layer utilities {
+  .text-shadow-none { text-shadow: none; }
+}
+
+@media (max-width: 640px) {
+  :root { --edge: 3px; --shadow: 6px; }
+  .t-stroke { text-shadow: 4px 4px 0 var(--green); }
+  .t-box { box-shadow: 5px 5px 0 var(--green); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn > span, .card-hover, .duotone { transition: none; }
+}
