@@ -287,7 +287,9 @@ function Header({ page }) {
   const active = page === 'concert' ? 'afisha' : page;
 
   return (
-    <header className="sticky top-0 z-50 border-b-4 border-green bg-cream/95 backdrop-blur-sm">
+    <>
+    {/* Без backdrop-filter: он ломает position: fixed у меню на мобильных */}
+    <header className="sticky top-0 z-50 border-b-4 border-green bg-cream">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Основное меню">
@@ -318,9 +320,11 @@ function Header({ page }) {
           <span className={'block h-[3px] w-6 bg-green transition-transform ' + (open ? '-translate-y-[9px] -rotate-45' : '')} />
         </button>
       </div>
+    </header>
 
+      {/* Меню — соседний элемент шапки, а не вложенный: так fixed считается от экрана */}
       {open && (
-        <nav id="mobile-menu" className="fixed inset-x-0 bottom-0 top-[76px] z-40 overflow-y-auto border-t-4 border-green bg-cream px-4 pb-10 pt-6 md:hidden" aria-label="Меню">
+        <nav id="mobile-menu" className="fixed inset-0 z-40 overflow-y-auto bg-cream px-4 pb-12 pt-[100px] md:hidden" aria-label="Меню">
           <div className="flex flex-col gap-4">
             {[{ id: '', label: 'Главная' }, ...NAV].map((n, i) => (
               <a
@@ -338,7 +342,7 @@ function Header({ page }) {
           </Btn>
         </nav>
       )}
-    </header>
+    </>
   );
 }
 
@@ -935,7 +939,7 @@ function AboutPage() {
           </div>
           <div className="flex flex-col justify-center">
             <span className="chip self-start bg-mustard">{dir.role}</span>
-            <h2 className="h-display mt-5 text-[clamp(32px,5vw,60px)]">{dir.name}</h2>
+            <h2 className="h-display mt-5 text-[clamp(32px,5vw,60px)] !leading-[1.12] !tracking-[.02em]">{dir.name}</h2>
             <p className="mt-5 max-w-xl text-lg leading-relaxed">{dir.text}</p>
             {interview && (
               <Btn href={interview.url} variant="green" className="mt-8 self-start">

@@ -33,7 +33,8 @@
 
 @layer components {
   /* ---------- типографика ---------- */
-  .h-display { @apply font-display uppercase; line-height: .92; letter-spacing: -.01em; }
+  /* 1.02, а не меньше: иначе точки Ё и дужки Й упираются в строку выше */
+  .h-display { @apply font-display uppercase; line-height: 1.02; letter-spacing: 0; }
   .t-stroke {
     color: var(--coral); -webkit-text-stroke: var(--edge) var(--green); paint-order: stroke fill;
     text-shadow: 6px 6px 0 var(--green);
