@@ -3,7 +3,66 @@
    После правок этого файла: npm run build (см. README.md). */
 
 const { useState, useEffect, useRef, useCallback } = React;
-const SITE = window.SITE || {};
+/* Контент лежит в content/*.json — их редактирует админка (/admin).
+   SITE заполняется при старте, до первой отрисовки (см. конец файла). */
+let SITE = {};
+const CONTENT_FILES = ['concerts', 'news', 'video', 'press', 'about', 'gallery', 'contacts'];
+
+const TRANSLIT = { а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z', и: 'i', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'h', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'sch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu', я: 'ya' };
+const slugify = (s) =>
+  String(s || '')
+    .toLowerCase()
+    .split('')
+    .map((ch) => (TRANSLIT[ch] !== undefined ? TRANSLIT[ch] : ch))
+    .join('')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+/* Обычную ссылку на ролик ВКонтакте или YouTube превращаем в ссылку для встраивания */
+function embedUrl(url) {
+  const u = String(url || '').trim();
+  if (!u) return '';
+  if (/video_ext\.php|youtube\.com\/embed\/|rutube\.ru\/play\/embed/.test(u)) return u;
+  let m = u.match(/(?:vk\.com|vk\.ru|vkvideo\.ru)\/(?:.*[?&]z=)?video(-?\d+)_(\d+)/);
+  if (m) return 'https://vk.com/video_ext.php?oid=' + m[1] + '&id=' + m[2] + '&hd=2';
+  m = u.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/);
+  if (m) return 'https://www.youtube.com/embed/' + m[1];
+  m = u.match(/rutube\.ru\/video\/([\w]+)/);
+  if (m) return 'https://rutube.ru/play/embed/' + m[1];
+  return '';
+}
+
+async function loadContent() {
+  const parts = await Promise.all(
+    CONTENT_FILES.map((name) =>
+      fetch('content/' + name + '.json', { cache: 'no-cache' })
+        .then((r) => (r.ok ? r.json() : {}))
+        .catch(() => ({}))
+    )
+  );
+  const [concerts, news, video, press, about, gallery, contacts] = parts;
+  const { defaultTicketUrl, ...contactInfo } = contacts || {};
+  // у концерта, добавленного в админке без адреса страницы, адрес делается из названия
+  const used = new Set();
+  const list = ((concerts && concerts.concerts) || []).map((c) => {
+    let id = slugify(c.id) || slugify(c.title) || 'concert';
+    while (used.has(id)) id += '-2';
+    used.add(id);
+    return { ...c, id };
+  });
+  return {
+    concerts: list,
+    news: news && news.title ? news : null,
+    video: video || null,
+    press: (press && press.press) || [],
+    about: { lead: (about && about.lead) || '', facts: (about && about.facts) || [] },
+    director: about && about.director && about.director.name ? about.director : null,
+    musicians: (about && about.musicians) || [],
+    gallery: (gallery && gallery.gallery) || [],
+    contacts: contactInfo,
+    defaultTicketUrl: defaultTicketUrl || '',
+  };
+}
 
 /* ================= утилиты ================= */
 
@@ -284,6 +343,10 @@ function Header({ page }) {
   const close = useCallback(() => setOpen(false), []);
   useModal(open, close);
   useEffect(() => setOpen(false), [page]);
+  // На iPhone видео рисуется поверх fixed-слоёв, поэтому под открытым меню прячем страницу целиком
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', open);
+  }, [open]);
   const active = page === 'concert' ? 'afisha' : page;
 
   return (
@@ -324,20 +387,20 @@ function Header({ page }) {
 
       {/* Меню — соседний элемент шапки, а не вложенный: так fixed считается от экрана */}
       {open && (
-        <nav id="mobile-menu" className="fixed inset-0 z-40 overflow-y-auto bg-cream px-4 pb-12 pt-[100px] md:hidden" aria-label="Меню">
-          <div className="flex flex-col gap-4">
+        <nav id="mobile-menu" className="fixed inset-0 z-40 overflow-y-auto bg-cream px-5 pb-10 pt-[92px] md:hidden" aria-label="Меню">
+          <div className="flex flex-col gap-3">
             {[{ id: '', label: 'Главная' }, ...NAV].map((n, i) => (
               <a
                 key={n.id}
                 href={'#/' + n.id}
                 onClick={close}
-                className={'card block px-6 py-5 no-underline ' + (i % 2 ? 'tilt-r' : 'tilt-l') + ' ' + ((active === n.id || (!n.id && active === 'home')) ? 'bg-coral text-paper' : '')}
+                className={'block rounded-[18px] border-[3px] border-green px-5 py-3 no-underline shadow-[4px_4px_0_#143127] ' + (i % 2 ? 'tilt-r' : 'tilt-l') + ' ' + ((active === n.id || (!n.id && active === 'home')) ? 'bg-coral text-paper' : 'bg-paper')}
               >
-                <span className="h-display text-[30px]">{n.label}</span>
+                <span className="h-display text-[22px]">{n.label}</span>
               </a>
             ))}
           </div>
-          <Btn href="#/afisha" variant="green" size="lg" block className="mt-8" onClick={close}>
+          <Btn href="#/afisha" variant="green" block className="mt-6" onClick={close}>
             Купить билеты
           </Btn>
         </nav>
@@ -693,7 +756,7 @@ function HomePage() {
         </section>
       )}
 
-      {video && video.src && (
+      {video && (embedUrl(video.embed) || video.src) && (
         <section className="border-y-4 border-green bg-green py-16 text-paper sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="reveal mb-10 flex flex-wrap items-end justify-between gap-4">
@@ -703,7 +766,11 @@ function HomePage() {
               </div>
             </div>
             <div className="reveal frame -rotate-1 border-paper shadow-[10px_10px_0_#ff5757]">
-              <video className="block aspect-video w-full bg-green" src={video.src} poster={video.poster} controls preload="none" playsInline />
+              {embedUrl(video.embed) ? (
+                <iframe className="block aspect-video w-full bg-green" src={embedUrl(video.embed)} title={video.title || 'Видео'} allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowFullScreen loading="lazy" />
+              ) : (
+                <video className="block aspect-video w-full bg-green" src={video.src} poster={video.poster || undefined} controls preload="none" playsInline />
+              )}
             </div>
             {social('YouTube') && (
               <div className="mt-12 text-center">
@@ -1160,4 +1227,7 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+loadContent().then((data) => {
+  SITE = data;
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+});

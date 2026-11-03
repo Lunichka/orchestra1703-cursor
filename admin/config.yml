@@ -1,0 +1,220 @@
+# Админка сайта Оркестра 1703 (Sveltia CMS)
+# Открывается на https://orchestra1703.com/admin
+# Изменения сохраняются в репозиторий, GitHub Pages обновляет сайт за 1–2 минуты.
+
+backend:
+  name: github
+  repo: Lunichka/orchestra1703-cursor
+  branch: main
+  auth_methods: [token]
+  commit_messages:
+    create: 'Админка: добавлено «{{slug}}»'
+    update: 'Админка: изменено «{{slug}}»'
+    delete: 'Админка: удалено «{{slug}}»'
+    uploadMedia: 'Админка: загружено фото «{{path}}»'
+    deleteMedia: 'Админка: удалено фото «{{path}}»'
+
+site_url: https://orchestra1703.com
+display_url: https://orchestra1703.com
+logo:
+  src: /images/icon-180.png
+
+# Все загруженные фото попадают сюда
+media_folder: images/uploads
+public_folder: /images/uploads
+
+media_libraries:
+  default:
+    config:
+      max_file_size: 15000000
+      slugify_filename: true
+      # Фото сами сжимаются при загрузке: WebP, не шире 1600 px
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1600
+          height: 1600
+
+collections:
+  # ---------------- АФИША ----------------
+  - name: afisha
+    label: Афиша
+    icon: event
+    description: Концерты и их даты. Прошедшие даты сайт скрывает сам.
+    files:
+      - name: concerts
+        label: Концерты
+        file: content/concerts.json
+        format: json
+        fields:
+          - name: concerts
+            label: Программы
+            label_singular: программу
+            widget: list
+            collapsed: true
+            summary: '{{fields.title}} — {{fields.venue}}'
+            add_to_top: true
+            fields:
+              - { name: title, label: Название, widget: string }
+              - name: sessions
+                label: Даты
+                label_singular: дату
+                widget: list
+                summary: '{{fields.date}} в {{fields.time}}'
+                hint: Одна строка — один концерт. Площадку и ссылку на билеты можно указать для конкретной даты, если они отличаются.
+                fields:
+                  - { name: date, label: Дата, widget: datetime, type: date, format: YYYY-MM-DD }
+                  - { name: time, label: Время, widget: datetime, type: time, format: 'HH:mm' }
+                  - { name: venue, label: Площадка (если другая), widget: string, required: false }
+                  - { name: ticketUrl, label: Ссылка на билеты (если другая), widget: string, required: false }
+              - { name: venue, label: Площадка, widget: string, hint: 'Например: Анненкирхе или Капелла' }
+              - { name: address, label: Адрес, widget: string, required: false, hint: 'Например: Кирочная ул., 8В' }
+              - { name: ticketUrl, label: Ссылка на билеты, widget: string, required: false, hint: 'Если пусто — кнопка «Билеты» ведёт на taplink' }
+              - { name: tag, label: Плашка, widget: string, required: false, hint: 'Короткое слово на карточке: Хит, Сказки с оркестром…' }
+              - { name: subtitle, label: Подзаголовок, widget: string, required: false }
+              - { name: image, label: Обложка, widget: image, required: false, hint: 'Если пусто — сайт нарисует цветной плакат с названием' }
+              - { name: description, label: Описание, widget: text, required: false }
+              - { name: details, label: Детали, widget: string, required: false, hint: 'Например: 1 час 15 минут без антракта · 6+' }
+              - { name: featured, label: Большой блок «Хит сезона» на главной, widget: boolean, default: false, required: false }
+              - { name: id, label: Адрес страницы, widget: string, required: false, hint: 'Латиницей, например moonlight. Можно не заполнять — сделается из названия. Лучше не менять у существующих концертов: старые ссылки перестанут работать.' }
+
+  # ---------------- НОВОСТИ ----------------
+  - name: news
+    label: Новости
+    icon: newspaper
+    files:
+      - name: news
+        label: Главная новость
+        file: content/news.json
+        format: json
+        fields:
+          - { name: tag, label: Плашка, widget: string, required: false }
+          - { name: title, label: Заголовок, widget: string }
+          - { name: text, label: Текст, widget: text, required: false }
+          - name: slides
+            label: Карточки-картинки
+            label_singular: карточку
+            widget: list
+            summary: '{{fields.alt}}'
+            fields:
+              - { name: image, label: Картинка, widget: image, hint: 'Лучше вертикальная, 4:5' }
+              - { name: alt, label: Подпись, widget: string, hint: 'Что на картинке — для незрячих и поисковиков' }
+
+  # ---------------- ГАЛЕРЕЯ ----------------
+  - name: gallery
+    label: Галерея
+    icon: photo_library
+    files:
+      - name: gallery
+        label: Фото
+        file: content/gallery.json
+        format: json
+        fields:
+          - name: gallery
+            label: Фотографии
+            label_singular: фото
+            widget: list
+            add_to_top: true
+            summary: '{{fields.caption}}'
+            fields:
+              - { name: image, label: Фото, widget: image }
+              - { name: caption, label: Подпись, widget: string, required: false }
+
+  # ---------------- ВИДЕО ----------------
+  - name: video
+    label: Видео
+    icon: movie
+    files:
+      - name: video
+        label: Видео на главной
+        file: content/video.json
+        format: json
+        fields:
+          - { name: title, label: Заголовок, widget: string }
+          - { name: embed, label: 'Ссылка на ролик ВКонтакте, YouTube или Rutube', widget: string, required: false, hint: 'Просто скопируйте адрес ролика из браузера. Если заполнено — показывается этот ролик.' }
+          - { name: src, label: Видеофайл (если нет ссылки), widget: file, required: false, hint: 'Лучше не загружать: тяжёлый файл замедлит сайт. Используйте ссылку выше.' }
+          - { name: poster, label: Обложка видеофайла, widget: image, required: false }
+
+  # ---------------- ПРЕССА ----------------
+  - name: press
+    label: Пресса
+    icon: article
+    files:
+      - name: press
+        label: Публикации
+        file: content/press.json
+        format: json
+        fields:
+          - name: press
+            label: Публикации
+            label_singular: публикацию
+            widget: list
+            add_to_top: true
+            summary: '{{fields.outlet}}: {{fields.title}}'
+            fields:
+              - { name: outlet, label: Издание, widget: string }
+              - { name: title, label: Заголовок статьи, widget: string }
+              - { name: url, label: Ссылка, widget: string }
+              - { name: interview, label: Это ссылка для кнопки «Читать интервью» на странице «Об оркестре», widget: boolean, default: false, required: false }
+
+  # ---------------- ОБ ОРКЕСТРЕ ----------------
+  - name: about
+    label: Об оркестре
+    icon: groups
+    files:
+      - name: about
+        label: Об оркестре
+        file: content/about.json
+        format: json
+        fields:
+          - { name: lead, label: Текст об оркестре, widget: text }
+          - name: facts
+            label: Факты-цифры
+            label_singular: факт
+            widget: list
+            max: 3
+            summary: '{{fields.value}} — {{fields.label}}'
+            fields:
+              - { name: value, label: Цифра, widget: string }
+              - { name: label, label: Подпись, widget: string }
+          - name: director
+            label: Художественный руководитель
+            widget: object
+            fields:
+              - { name: name, label: Имя, widget: string }
+              - { name: role, label: Должность, widget: string }
+              - { name: text, label: Текст, widget: text }
+              - { name: photo, label: Фото, widget: image, required: false }
+          - name: musicians
+            label: Оркестранты
+            label_singular: оркестранта
+            widget: list
+            summary: '{{fields.name}} — {{fields.role}}'
+            hint: Пока список пуст, блок на сайте не показывается.
+            fields:
+              - { name: name, label: Имя и фамилия, widget: string }
+              - { name: role, label: Инструмент, widget: string }
+              - { name: photo, label: Фото, widget: image, required: false }
+
+  # ---------------- КОНТАКТЫ ----------------
+  - name: contacts
+    label: Контакты
+    icon: contact_mail
+    files:
+      - name: contacts
+        label: Контакты и ссылки
+        file: content/contacts.json
+        format: json
+        fields:
+          - { name: email, label: Почта, widget: string }
+          - { name: phone, label: Телефон, widget: string, required: false, hint: 'Пусто — телефон не показывается' }
+          - name: socials
+            label: Соцсети
+            label_singular: соцсеть
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - { name: label, label: Название, widget: string, hint: 'Telegram, ВКонтакте, YouTube…' }
+              - { name: url, label: Ссылка, widget: string }
+          - { name: defaultTicketUrl, label: Ссылка на билеты по умолчанию, widget: string, required: false, hint: 'Сюда ведёт «Билеты», если у концерта нет своей ссылки' }

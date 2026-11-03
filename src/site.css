@@ -130,6 +130,9 @@
   .reveal.in { opacity: 1; transform: none; }
 }
 
+/* под открытым мобильным меню страницу не показываем (видео на iOS иначе просвечивает) */
+body.menu-open main, body.menu-open footer { visibility: hidden; }
+
 @layer utilities {
   .text-shadow-none { text-shadow: none; }
 }

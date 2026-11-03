@@ -1,0 +1,19 @@
+{
+  "email": "orchestra1703@gmail.com",
+  "phone": "",
+  "socials": [
+    {
+      "label": "Telegram",
+      "url": "https://t.me/orchestra_1703"
+    },
+    {
+      "label": "ВКонтакте",
+      "url": "https://vk.ru/orchestra_1703"
+    },
+    {
+      "label": "YouTube",
+      "url": "https://youtube.com/@orchestra_1703"
+    }
+  ],
+  "defaultTicketUrl": "https://taplink.cc/orchestra_1703"
+}

@@ -1,0 +1,32 @@
+{
+  "gallery": [
+    {
+      "image": "/images/gallery/hero.jpg",
+      "caption": "На сцене"
+    },
+    {
+      "image": "/images/gallery/alice.jpg",
+      "caption": "«Алиса в Стране чудес»"
+    },
+    {
+      "image": "/images/gallery/niaga.jpg",
+      "caption": "Алексей Ньяга"
+    },
+    {
+      "image": "/images/gallery/keys.jpg",
+      "caption": "За клавишными"
+    },
+    {
+      "image": "/images/gallery/snow-queen.jpg",
+      "caption": "«Снежная королева»"
+    },
+    {
+      "image": "/images/gallery/courtyard.jpg",
+      "caption": "Концерт под открытым небом"
+    },
+    {
+      "image": "/images/gallery/fedorov.jpg",
+      "caption": "Георгий Фёдоров"
+    }
+  ]
+}

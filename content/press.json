@@ -1,0 +1,28 @@
+{
+  "press": [
+    {
+      "outlet": "Фонтанка",
+      "title": "Чайковский, Штраус и немного счастья: Оркестр 1703 даст новогодний концерт в Александринском театре",
+      "url": "https://www.fontanka.ru/2025/12/25/76189994/",
+      "interview": false
+    },
+    {
+      "outlet": "Сноб",
+      "title": "«Петербург — это город не для людей, он существует сам для себя». Интервью композитора Георгия Фёдорова",
+      "url": "https://snob.ru/music/peterburg-eto-gorod-ne-dlia-liudei-on-sushchestvuet-sam-dlia-sebia-interviu-kompozitora-georgiia-fedorova/",
+      "interview": true
+    },
+    {
+      "outlet": "Люди в культуре",
+      "title": "От Шостаковича до Мэйби Бэйби — модный культурный феномен",
+      "url": "https://www.xn--b1adeklce4bric0ita.xn--p1ai/ot-shostakovicha-do-mejbi-bejbi-modnyj-kulturnyj-fenomen/",
+      "interview": false
+    },
+    {
+      "outlet": "Около",
+      "title": "Музыка против скроллинга: «Генезис» на Новой сцене Александринского театра",
+      "url": "https://okolo.me/2025/08/muzyka-protiv-skrollinga-genezis-na-novoj-stsene-aleksandrinskogo-teatra/",
+      "interview": false
+    }
+  ]
+}
