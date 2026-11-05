@@ -18,7 +18,21 @@
   <link rel="apple-touch-icon" href="images/icon-180.png">
   <link rel="preload" href="fonts/DespairDisplay-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/Steppe-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/site.css?v=7">
+  <link rel="stylesheet" href="assets/site.css?v=8">
+  <!-- Яндекс Метрика. Если посетитель нажал «Нет, спасибо» в плашке про cookie — счётчик не грузится -->
+  <script>
+    (function () {
+      var choice; try { choice = localStorage.getItem('o1703-cookies'); } catch (e) {}
+      if (choice === 'no') return;
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114093595', 'ym');
+      ym(114093595, 'init', { webvisor: true, clickmap: true, trackHash: true, referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
+    })();
+  </script>
 </head>
 <body>
   <div id="root"></div>
@@ -45,6 +59,6 @@
 
   <script src="assets/vendor/react.production.min.js"></script>
   <script src="assets/vendor/react-dom.production.min.js"></script>
-  <script src="assets/app.js?v=7"></script>
+  <script src="assets/app.js?v=8"></script>
 </body>
 </html>

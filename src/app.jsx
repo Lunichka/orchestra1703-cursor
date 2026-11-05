@@ -1193,12 +1193,62 @@ function NotFound() {
   );
 }
 
+/* ================= статистика и cookie ================= */
+
+const METRIKA_ID = 114093595;
+const COOKIE_KEY = 'o1703-cookies';
+
+/* Цель «Билеты» в Метрике: идентификатор tickets (тип «JavaScript-событие»).
+   Срабатывает на любую кнопку, которая ведёт на сайт продажи билетов. */
+function useTicketGoal() {
+  useEffect(() => {
+    const onClick = (e) => {
+      const a = e.target.closest && e.target.closest('a.btn');
+      if (!a || !isExternal(a.getAttribute('href')) || !/билет/i.test(a.textContent)) return;
+      if (typeof window.ym === 'function') {
+        window.ym(METRIKA_ID, 'reachGoal', 'tickets', { url: a.href, page: location.hash || '#/' });
+      }
+    };
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []);
+}
+
+function CookieBar() {
+  const [choice, setChoice] = useState(() => {
+    try { return localStorage.getItem(COOKIE_KEY); } catch (e) { return 'unknown'; }
+  });
+  if (choice) return null;
+  const answer = (value) => {
+    try { localStorage.setItem(COOKIE_KEY, value); } catch (e) {}
+    if (value === 'no') window['disableYaCounter' + METRIKA_ID] = true;
+    setChoice(value);
+  };
+  return (
+    <div role="dialog" aria-label="Про cookie" className="fixed inset-x-3 bottom-3 z-[70] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:max-w-[400px]">
+      <div className="card tilt-l px-5 py-4">
+        <p className="text-[15px] leading-snug">
+          <span aria-hidden="true">🍪 </span>
+          Мы используем cookie для статистики — чтобы понимать, что вам интересно на сайте.
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <Btn size="sm" onClick={() => answer('yes')}>Не проблема</Btn>
+          <button type="button" onClick={() => answer('no')} className="text-[13px] font-semibold uppercase tracking-[.08em] underline decoration-2 underline-offset-4 hover:text-coral">
+            Нет, спасибо
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ================= приложение ================= */
 
 const TITLES = { home: 'Оркестр 1703 — самый дружелюбный оркестр', afisha: 'Афиша — Оркестр 1703', about: 'Об оркестре — Оркестр 1703', gallery: 'Галерея — Оркестр 1703', contacts: 'Контакты — Оркестр 1703' };
 
 function App() {
   const { page, id } = useRoute();
+  useTicketGoal();
   useReveal(page + (id || ''));
   useEffect(() => {
     if (TITLES[page]) document.title = TITLES[page];
@@ -1223,6 +1273,7 @@ function App() {
         {content}
       </main>
       <Footer />
+      <CookieBar />
     </div>
   );
 }
