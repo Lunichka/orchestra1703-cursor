@@ -70,7 +70,7 @@ collections:
                   - { name: ticketUrl, label: Ссылка на билеты (если другая), widget: string, required: false }
               - { name: venue, label: Площадка, widget: string, hint: 'Например: Анненкирхе или Капелла' }
               - { name: address, label: Адрес, widget: string, required: false, hint: 'Например: Кирочная ул., 8В' }
-              - { name: ticketUrl, label: Ссылка на билеты, widget: string, required: false, hint: 'Если пусто — кнопка «Билеты» ведёт на taplink' }
+              - { name: ticketUrl, label: Ссылка на билеты, widget: string, required: false, hint: 'Если пусто — вместо кнопки будет надпись «Билеты скоро»' }
               - { name: tag, label: Плашка, widget: string, required: false, hint: 'Короткое слово на карточке: Хит, Сказки с оркестром…' }
               - { name: subtitle, label: Подзаголовок, widget: string, required: false }
               - { name: image, label: Обложка, widget: image, required: false, hint: 'Если пусто — сайт нарисует цветной плакат с названием' }
@@ -217,4 +217,3 @@ collections:
             fields:
               - { name: label, label: Название, widget: string, hint: 'Telegram, ВКонтакте, YouTube…' }
               - { name: url, label: Ссылка, widget: string }
-          - { name: defaultTicketUrl, label: Ссылка на билеты по умолчанию, widget: string, required: false, hint: 'Сюда ведёт «Билеты», если у концерта нет своей ссылки' }

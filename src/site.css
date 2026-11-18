@@ -35,17 +35,15 @@
   /* ---------- типографика ---------- */
   /* 1.02, а не меньше: иначе точки Ё и дужки Й упираются в строку выше */
   .h-display { @apply font-display uppercase; line-height: 1.02; letter-spacing: 0; }
-  .t-stroke {
-    color: var(--coral); -webkit-text-stroke: var(--edge) var(--green); paint-order: stroke fill;
-    text-shadow: 6px 6px 0 var(--green);
-  }
+  /* Акцент в заголовке — один: коралл с зелёной обводкой. Без тени, плашек и наклонов поверх */
+  .t-stroke { color: var(--coral); -webkit-text-stroke: var(--edge) var(--green); paint-order: stroke fill; }
   .t-box {
     @apply bg-mustard; display: inline-block; padding: 0 .14em; border: var(--edge) solid var(--green);
     box-shadow: 7px 7px 0 var(--green); transform: rotate(2deg);
   }
   .sticker {
     @apply inline-block bg-green text-cream font-sans font-semibold uppercase;
-    font-size: 12px; line-height: 1; letter-spacing: .14em; padding: .8em 1em; transform: rotate(-2deg);
+    font-size: 12px; line-height: 1; letter-spacing: .14em; padding: .8em 1em;
   }
   .sticker-mustard { @apply bg-mustard text-green; border: 3px solid var(--green); box-shadow: 3px 3px 0 var(--green); }
   .chip {
@@ -139,7 +137,6 @@ body.menu-open main, body.menu-open footer { visibility: hidden; }
 
 @media (max-width: 640px) {
   :root { --edge: 3px; --shadow: 6px; }
-  .t-stroke { text-shadow: 4px 4px 0 var(--green); }
   .t-box { box-shadow: 5px 5px 0 var(--green); }
 }
 

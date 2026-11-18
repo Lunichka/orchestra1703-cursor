@@ -116,8 +116,14 @@ const plural = (n, one, few, many) => {
 const rub = (n) => (n ? 'от ' + Number(n).toLocaleString('ru-RU') + ' ₽' : '');
 const isExternal = (url) => /^https?:\/\//.test(url || '');
 
-function ticketHref(primary) {
-  return primary || SITE.defaultTicketUrl || '#/contacts';
+/* Короткие слова (предлоги, союзы) не отрываем от следующего: «ИЗ КИНО», а не «ИЗ / КИНО» */
+const nb = (text) => String(text || '').replace(/(^|[\s\u00a0])([а-яёa-z]{1,3})\s+/gi, (m, pre, w) => pre + w + '\u00a0');
+
+/* Кнопка «Билеты»: если ссылки на продажу ещё нет — честная плашка вместо перехода куда-то ещё */
+function TicketBtn({ url, children = 'Билеты', soon = 'Билеты скоро', ...rest }) {
+  if (url) return <Btn href={url} {...rest}>{children}</Btn>;
+  const cls = ['inline-flex items-center justify-center rounded-[22px] border-[3px] border-dashed border-green/60 px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[.06em] text-green/70', rest.block && 'w-full', rest.className].filter(Boolean).join(' ');
+  return <span className={cls}>{soon}</span>;
 }
 function linkProps(href) {
   return isExternal(href) ? { href, target: '_blank', rel: 'noopener noreferrer' } : { href };
@@ -249,7 +255,7 @@ function Poster({ concert, index = 0, large = false }) {
     <div className={'halftone relative flex h-full w-full flex-col justify-end overflow-hidden p-5 sm:p-7 ' + t.bg + ' ' + t.fg} style={{ '--dot': t.dot }} aria-hidden="true">
       {large && <span className="absolute right-6 top-4 font-deco text-7xl leading-none opacity-90 sm:text-8xl">1703</span>}
       {!large && <Star className="absolute -left-4 top-6 w-16" fill={index % 3 === 1 ? '#ff5757' : '#ffba55'} />}
-      <span className={'h-display relative ' + (large ? 'text-[clamp(34px,5vw,64px)]' : 'text-[clamp(24px,2.4vw,32px)]')}>{concert.title}</span>
+      <span className={'h-display relative block [text-wrap:balance] ' + (large ? 'text-[clamp(34px,5vw,64px)]' : 'text-[clamp(24px,2.4vw,32px)]')}>{nb(concert.title)}</span>
     </div>
   );
 }
@@ -480,7 +486,7 @@ function ConcertCard({ concert, index }) {
         </p>
         <h3 className="mt-2 font-display text-[24px] uppercase leading-[1.02]">
           <a href={href} className="no-underline hover:text-coral">
-            {concert.title}
+            {nb(concert.title)}
           </a>
         </h3>
         <p className="mt-2 text-sm">{s.venue}</p>
@@ -488,9 +494,7 @@ function ConcertCard({ concert, index }) {
           <Btn href={href} variant="paper" size="sm">
             Подробнее
           </Btn>
-          <Btn href={ticketHref(s.ticketUrl)} size="sm" block>
-            Билеты
-          </Btn>
+          <TicketBtn url={s.ticketUrl} size="sm" block />
         </div>
       </div>
     </article>
@@ -534,13 +538,11 @@ function Calendar() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <a href={'#/concert/' + s.concert.id} className="font-display text-lg uppercase leading-tight no-underline hover:text-coral sm:text-xl">
-                        {s.concert.title}
+                        {nb(s.concert.title)}
                       </a>
                       <div className="text-sm">{s.venue}</div>
                     </div>
-                    <Btn href={ticketHref(s.ticketUrl)} size="sm" className="col-start-2 justify-self-start sm:col-start-3 sm:justify-self-end">
-                      Билеты
-                    </Btn>
+                    <TicketBtn url={s.ticketUrl} size="sm" className="col-start-2 justify-self-start sm:col-start-3 sm:justify-self-end" />
                   </li>
                 );
               })}
@@ -560,16 +562,11 @@ function ConcertGrid({ concerts }) {
     return (
       <div className="card mx-auto max-w-xl p-8 text-center">
         <p className="font-display text-2xl uppercase">Новые даты скоро</p>
-        <p className="mt-3">Свежее расписание первым появляется в нашем Telegram и на taplink.</p>
+        <p className="mt-3">Свежее расписание первым появляется в нашем Telegram.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           {tg && (
             <Btn href={tg.url} variant="green">
               Telegram
-            </Btn>
-          )}
-          {SITE.defaultTicketUrl && (
-            <Btn href={SITE.defaultTicketUrl} variant="paper">
-              Вся афиша на taplink
             </Btn>
           )}
         </div>
@@ -594,7 +591,7 @@ function FeaturedProgram({ program }) {
     <div className="reveal card relative overflow-hidden bg-mustard p-6 sm:p-10">
       <Star className="absolute -right-6 -top-6 w-28 sm:w-36" fill="#ff5757" />
       <span className="sticker">Хит сезона</span>
-      <h3 className="h-display relative mt-5 max-w-3xl text-[clamp(30px,5.4vw,60px)]">{program.title}</h3>
+      <h3 className="h-display relative mt-5 max-w-3xl text-[clamp(30px,5.4vw,60px)]">{nb(program.title)}</h3>
       <p className="mt-4 text-lg font-semibold">
         {program.venue}
         {program.address ? ', ' + program.address : ''}
@@ -612,9 +609,7 @@ function FeaturedProgram({ program }) {
         {program.upcoming.length > dates.length && <li className="chip bg-green text-paper">ещё {program.upcoming.length - dates.length}</li>}
       </ul>
       <div className="mt-8 flex flex-wrap gap-4">
-        <Btn href={ticketHref(program.ticketUrl)} variant="green" size="lg">
-          Выбрать дату и купить билет
-        </Btn>
+        <TicketBtn url={program.ticketUrl} variant="green" size="lg" soon="Продажа билетов скоро">Выбрать дату и купить билет</TicketBtn>
         <Btn href={'#/concert/' + program.id} variant="paper" size="lg">
           О программе
         </Btn>
@@ -634,11 +629,9 @@ function Hero() {
         <div className="relative z-10">
           <span className="sticker">Санкт-Петербург · сезон 2026/27</span>
           <h1 className="h-display mt-6 text-[clamp(34px,10vw,68px)] lg:text-[clamp(52px,5.4vw,86px)]">
-            <span className="block -rotate-1">Самый</span>
-            <span className="t-stroke block py-1 pl-[.25em]">дружелюбный</span>
-            <span className="mt-2 block pl-[.1em]">
-              <span className="t-box">оркестр</span>
-            </span>
+            <span className="block">Самый</span>
+            <span className="t-stroke block py-1">дружелюбный</span>
+            <span className="block">оркестр</span>
           </h1>
           <p className="mt-8 max-w-[30ch] text-lg font-semibold leading-snug sm:text-xl">Микс классической виртуозности, юмора и бескомпромиссной подачи</p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -661,7 +654,7 @@ function Hero() {
               <DateBadge iso={next.next.date} className="shrink-0" />
               <span className="min-w-0">
                 <span className="block text-[11px] font-semibold uppercase tracking-[.14em]">Ближайший концерт</span>
-                <span className="mt-1 block font-display text-lg uppercase leading-[1.05] sm:text-xl">{next.title}</span>
+                <span className="mt-1 block font-display text-lg uppercase leading-[1.05] sm:text-xl">{nb(next.title)}</span>
                 <span className="mt-1 block truncate text-sm">
                   {next.next.time} · {next.next.venue}
                 </span>
@@ -883,7 +876,7 @@ function ConcertPage({ id }) {
       <div className="grid items-stretch gap-10 lg:grid-cols-12">
         <div className="card flex flex-col p-6 sm:p-9 lg:col-span-5">
           {concert.tag && <span className="chip self-start bg-coral text-paper">{concert.tag}</span>}
-          <h1 className="h-display mt-5 text-[clamp(26px,7.4vw,58px)] lg:text-[clamp(34px,3.6vw,58px)]">{concert.title}</h1>
+          <h1 className="h-display mt-5 text-[clamp(26px,7.4vw,58px)] lg:text-[clamp(34px,3.6vw,58px)]">{nb(concert.title)}</h1>
           {concert.subtitle && <p className="mt-3 text-sm font-semibold uppercase tracking-[.1em] text-green/70">{concert.subtitle}</p>}
           <div className="mt-8 border-t-4 border-dashed border-green pt-8">
             <p className="text-[11px] font-semibold uppercase tracking-[.14em] text-green/60">{others.length ? 'Ближайшая дата' : 'Дата и время'}</p>
@@ -902,9 +895,7 @@ function ConcertPage({ id }) {
             {past ? (
               <p className="sticker sticker-mustard">Концерт уже прошёл</p>
             ) : (
-              <Btn href={ticketHref(main.ticketUrl)} size="lg" block>
-                Купить билеты
-              </Btn>
+              <TicketBtn url={main.ticketUrl} size="lg" block soon="Продажа билетов скоро откроется">Купить билеты</TicketBtn>
             )}
           </div>
         </div>
@@ -956,9 +947,7 @@ function ConcertPage({ id }) {
                       {od.weekday} · <span className="text-coral">{o.time}</span> · {o.venue}
                     </p>
                   </div>
-                  <Btn href={ticketHref(o.ticketUrl)} size="sm">
-                    Билеты
-                  </Btn>
+                  <TicketBtn url={o.ticketUrl} size="sm" />
                 </div>
               );
             })}
