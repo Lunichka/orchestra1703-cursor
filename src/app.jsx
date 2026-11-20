@@ -627,7 +627,7 @@ function Hero() {
       <div className="squiggle -right-40 -top-24 hidden h-[560px] w-[660px] opacity-90 lg:block" />
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 pb-20 pt-10 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:gap-10 lg:pb-24 lg:pt-16">
         <div className="relative z-10">
-          <span className="sticker">Санкт-Петербург · сезон 2026/27</span>
+          <span className="sticker">Санкт-Петербург: сезон 2026/27</span>
           <h1 className="h-display mt-6 text-[clamp(34px,10vw,68px)] lg:text-[clamp(52px,5.4vw,86px)]">
             <span className="block">Самый</span>
             <span className="t-stroke block py-1">дружелюбный</span>
@@ -717,7 +717,7 @@ function HomePage() {
         {upcoming.length > 0 && (
           <div className="mt-14 text-center">
             <Btn href="#/afisha" variant="green" size="lg">
-              Вся афиша и календарь →
+              Вся афиша и календарь тут
             </Btn>
           </div>
         )}
