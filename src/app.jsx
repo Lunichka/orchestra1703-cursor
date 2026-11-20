@@ -357,39 +357,39 @@ function Header({ page }) {
 
   return (
     <>
-    {/* Без backdrop-filter: он ломает position: fixed у меню на мобильных */}
-    <header className="sticky top-0 z-50 border-b-4 border-green bg-cream">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6">
-        <Logo />
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Основное меню">
-          {NAV.map((n) => (
-            <a
-              key={n.id}
-              href={'#/' + n.id}
-              aria-current={active === n.id ? 'page' : undefined}
-              className={'rounded-full px-4 py-2 text-[13px] font-semibold uppercase tracking-[.1em] no-underline transition-colors ' + (active === n.id ? 'bg-green text-paper' : 'hover:bg-mustard')}
-            >
-              {n.label}
-            </a>
-          ))}
-          <Btn href="#/afisha" size="sm" className="ml-4">
-            Билеты
-          </Btn>
-        </nav>
-        <button
-          type="button"
-          onClick={() => setOpen(!open)}
-          className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl border-4 border-green bg-paper shadow-[3px_3px_0_#143127] md:hidden"
-          aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-        >
-          <span className={'block h-[3px] w-6 bg-green transition-transform ' + (open ? 'translate-y-[9px] rotate-45' : '')} />
-          <span className={'block h-[3px] w-6 bg-green transition-opacity ' + (open ? 'opacity-0' : '')} />
-          <span className={'block h-[3px] w-6 bg-green transition-transform ' + (open ? '-translate-y-[9px] -rotate-45' : '')} />
-        </button>
-      </div>
-    </header>
+      {/* Без backdrop-filter: он ломает position: fixed у меню на мобильных */}
+      <header className="sticky top-0 z-50 border-b-4 border-green bg-cream">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6">
+          <Logo />
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Основное меню">
+            {NAV.map((n) => (
+              <a
+                key={n.id}
+                href={'#/' + n.id}
+                aria-current={active === n.id ? 'page' : undefined}
+                className={'rounded-full px-4 py-2 text-[13px] font-semibold uppercase tracking-[.1em] no-underline transition-colors ' + (active === n.id ? 'bg-green text-paper' : 'hover:bg-mustard')}
+              >
+                {n.label}
+              </a>
+            ))}
+            <Btn href="#/afisha" size="sm" className="ml-4">
+              Билеты
+            </Btn>
+          </nav>
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl border-4 border-green bg-paper shadow-[3px_3px_0_#143127] md:hidden"
+            aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            <span className={'block h-[3px] w-6 bg-green transition-transform ' + (open ? 'translate-y-[9px] rotate-45' : '')} />
+            <span className={'block h-[3px] w-6 bg-green transition-opacity ' + (open ? 'opacity-0' : '')} />
+            <span className={'block h-[3px] w-6 bg-green transition-transform ' + (open ? '-translate-y-[9px] -rotate-45' : '')} />
+          </button>
+        </div>
+      </header>
 
       {/* Меню — соседний элемент шапки, а не вложенный: так fixed считается от экрана */}
       {open && (
@@ -801,7 +801,7 @@ function HomePage() {
         <div className="reveal card relative mx-auto max-w-5xl overflow-hidden bg-coral px-6 py-10 text-paper sm:px-12 sm:py-14">
           <div className="squiggle -bottom-24 -right-20 h-[300px] w-[360px] opacity-60 brightness-0 invert" />
           <h2 className="h-display relative text-[clamp(28px,5vw,52px)]">Есть вопрос или идея?</h2>
-          <p className="relative mt-4 max-w-xl text-lg">Пишите — мы отвечаем на всё: от билетов до совместных проектов.</p>
+          <p className="relative mt-4 max-w-xl text-lg">Пишите, мы отвечаем на всё!</p>
           <div className="relative mt-8 flex flex-wrap gap-4">
             <Btn href="#/contacts" variant="paper" size="lg">
               Написать нам
@@ -1209,7 +1209,7 @@ function CookieBar() {
   });
   if (choice) return null;
   const answer = (value) => {
-    try { localStorage.setItem(COOKIE_KEY, value); } catch (e) {}
+    try { localStorage.setItem(COOKIE_KEY, value); } catch (e) { }
     if (value === 'no') window['disableYaCounter' + METRIKA_ID] = true;
     setChoice(value);
   };
@@ -1221,7 +1221,7 @@ function CookieBar() {
           Мы используем cookie для статистики — чтобы понимать, что вам интересно на сайте.
         </p>
         <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
-          <Btn size="sm" onClick={() => answer('yes')}>Не проблема</Btn>
+          <Btn size="sm" onClick={() => answer('yes')}>Конечно, не проблема</Btn>
           <button type="button" onClick={() => answer('no')} className="text-[13px] font-semibold uppercase tracking-[.08em] underline decoration-2 underline-offset-4 hover:text-coral">
             Нет, спасибо
           </button>
