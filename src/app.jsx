@@ -481,7 +481,7 @@ function ConcertCard({ concert, index }) {
       {concert.tag && <span className="chip absolute left-7 top-7 bg-coral text-paper sm:left-8 sm:top-8">{concert.tag}</span>}
       <div className="flex flex-1 flex-col px-1 pt-5">
         <p className="text-xs font-semibold uppercase tracking-[.12em] text-green/70">
-          {d.weekday} · <span className="text-coral">{s.time}</span>
+          {d.weekday} . <span className="text-coral">{s.time}</span>
           {more > 0 && <span className="ml-2 rounded-full bg-mustard px-2 py-0.5 text-green">ещё {more} {plural(more, 'дата', 'даты', 'дат')}</span>}
         </p>
         <h3 className="mt-2 font-display text-[24px] uppercase leading-[1.02]">
@@ -533,7 +533,7 @@ function Calendar() {
                       <span className="font-display text-2xl leading-none">{d.day}</span>
                       <span className="block text-sm font-semibold sm:ml-1.5 sm:inline">{d.month}</span>
                       <div className="mt-1 text-xs font-semibold uppercase tracking-[.1em] text-green/60">
-                        {WEEKDAYS_SHORT[parseDate(s.date).getDay()]} · <span className="text-coral">{s.time}</span>
+                        {WEEKDAYS_SHORT[parseDate(s.date).getDay()]} . <span className="text-coral">{s.time}</span>
                       </div>
                     </div>
                     <div className="min-w-0 flex-1">
@@ -602,7 +602,7 @@ function FeaturedProgram({ program }) {
           const d = fmtDate(s.date);
           return (
             <li key={s.date + s.time} className="chip bg-paper">
-              {d.full} · {s.time}
+              {d.full} . {s.time}
             </li>
           );
         })}
@@ -656,7 +656,7 @@ function Hero() {
                 <span className="block text-[11px] font-semibold uppercase tracking-[.14em]">Ближайший концерт</span>
                 <span className="mt-1 block font-display text-lg uppercase leading-[1.05] sm:text-xl">{nb(next.title)}</span>
                 <span className="mt-1 block truncate text-sm">
-                  {next.next.time} · {next.next.venue}
+                  {next.next.time} . {next.next.venue}
                 </span>
               </span>
             </a>
@@ -944,7 +944,7 @@ function ConcertPage({ id }) {
                   <div>
                     <p className="font-display text-2xl uppercase leading-none">{od.full}</p>
                     <p className="mt-2 text-sm font-semibold uppercase tracking-[.08em] text-green/70">
-                      {od.weekday} · <span className="text-coral">{o.time}</span> · {o.venue}
+                      {od.weekday} . <span className="text-coral">{o.time}</span> . {o.venue}
                     </p>
                   </div>
                   <TicketBtn url={o.ticketUrl} size="sm" />

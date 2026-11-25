@@ -75,7 +75,7 @@ collections:
               - { name: subtitle, label: Подзаголовок, widget: string, required: false }
               - { name: image, label: Обложка, widget: image, required: false, hint: 'Если пусто — сайт нарисует цветной плакат с названием' }
               - { name: description, label: Описание, widget: text, required: false }
-              - { name: details, label: Детали, widget: string, required: false, hint: 'Например: 1 час 15 минут без антракта · 6+' }
+              - { name: details, label: Детали, widget: string, required: false, hint: 'Например: 1 час 15 минут без антракта. 6+' }
               - { name: featured, label: Большой блок «Хит сезона» на главной, widget: boolean, default: false, required: false }
               - { name: id, label: Адрес страницы, widget: string, required: false, hint: 'Латиницей, например moonlight. Можно не заполнять — сделается из названия. Лучше не менять у существующих концертов: старые ссылки перестанут работать.' }
 
