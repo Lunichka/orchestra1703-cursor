@@ -389,7 +389,7 @@ const NAV = [
 
 function Logo({ light = false }) {
   return (
-    <a href="#/" className="flex items-center gap-3 no-underline" aria-label="Оркестр 1703 — на главную">
+    <a href="#/" className="flex items-center gap-3 no-underline" aria-label="Оркестр 1703, на главную">
       <img src="images/logo-badge.png" alt="" width="576" height="392" className={'h-11 w-auto sm:h-12 ' + (light ? 'brightness-0 invert' : '')} />
       <span className={'font-display text-[13px] uppercase leading-[1.05] tracking-wide sm:text-[15px] ' + (light ? 'text-paper' : 'text-green')}>
         Оркестр
@@ -618,7 +618,7 @@ function ConcertGrid({ concerts }) {
     return (
       <div className="card mx-auto max-w-xl p-8 text-center">
         <p className="font-display text-2xl uppercase">Новые даты скоро</p>
-        <p className="mt-3">Свежее расписание первым появляется в нашем Telegram.</p>
+        <p className="mt-3">Новые даты сначала появляются в нашем Telegram.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           {tg && (
             <Btn href={tg.url} variant="green">
@@ -911,7 +911,7 @@ function ConcertPage({ id }) {
   const concert = (SITE.concerts || []).find((c) => c.id === id);
   const index = Math.max(0, (SITE.concerts || []).indexOf(concert));
   useEffect(() => {
-    if (concert) document.title = concert.title + ' — Оркестр 1703';
+    if (concert) document.title = concert.title + ' · Оркестр 1703';
   }, [concert]);
   if (!concert) return <NotFound />;
 
@@ -1021,7 +1021,7 @@ function MusicianCard({ m, tilt, onOpen, children }) {
   const cls = 'reveal card group block p-3 text-left ' + tilt;
   if (!m.bio) return <div className={cls}>{children}</div>;
   return (
-    <button type="button" onClick={onOpen} className={cls + ' card-hover w-full'} aria-label={m.name + ' — о музыканте'}>
+    <button type="button" onClick={onOpen} className={cls + ' card-hover w-full'} aria-label={m.name + ', о музыканте'}>
       {children}
     </button>
   );
@@ -1195,7 +1195,7 @@ function AlbumPage({ album }) {
   const [open, setOpen] = useState(null);
   const close = useCallback(() => setOpen(null), []);
   useEffect(() => {
-    document.title = album.title + ' — Галерея — Оркестр 1703';
+    document.title = album.title + ' · Галерея · Оркестр 1703';
   }, [album]);
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16">
@@ -1251,7 +1251,7 @@ function ContactsPage() {
         <h1 className="h-display mt-5 text-[clamp(38px,9vw,104px)]">
           Давайте <span className="t-stroke">дружить</span>
         </h1>
-        <p className="mt-6 max-w-2xl text-lg">Предложить сотрудничество, спросить о концерте или просто поздороваться — пишите.</p>
+        <p className="mt-6 max-w-2xl text-lg">Хотите предложить сотрудничество, спросить о концерте или просто поздороваться? Пишите.</p>
       </div>
 
       <div className="grid items-start gap-10 md:grid-cols-12">
@@ -1331,7 +1331,7 @@ function NotFound() {
         <h1 className="h-display mt-5 text-[clamp(36px,6vw,64px)]">
           Тут <span className="t-stroke">пауза</span>
         </h1>
-        <p className="mt-5 text-lg">Такой страницы нет — возможно, концерт уже прошёл или ссылка устарела.</p>
+        <p className="mt-5 text-lg">Такой страницы нет. Возможно, концерт уже прошёл или ссылка устарела.</p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Btn href="#/">На главную</Btn>
           <Btn href="#/afisha" variant="paper">
@@ -1379,7 +1379,7 @@ function CookieBar() {
       <div className="card tilt-l px-5 py-4">
         <p className="text-[15px] leading-snug">
           <span aria-hidden="true">🍪 </span>
-          Мы используем cookie для статистики — чтобы понимать, что вам интересно на сайте.
+          Мы используем cookie для статистики. Так мы видим, что вам интересно на сайте.
         </p>
         <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
           <Btn size="sm" onClick={() => answer('yes')}>Конечно, не проблема</Btn>
@@ -1394,7 +1394,7 @@ function CookieBar() {
 
 /* ================= приложение ================= */
 
-const TITLES = { home: 'Оркестр 1703 — самый дружелюбный оркестр', afisha: 'Афиша — Оркестр 1703', about: 'Об оркестре — Оркестр 1703', gallery: 'Галерея — Оркестр 1703', contacts: 'Контакты — Оркестр 1703' };
+const TITLES = { home: 'Оркестр 1703 · самый дружелюбный оркестр', afisha: 'Афиша · Оркестр 1703', about: 'Об оркестре · Оркестр 1703', gallery: 'Галерея · Оркестр 1703', contacts: 'Контакты · Оркестр 1703' };
 
 function App() {
   const { page, id } = useRoute();
