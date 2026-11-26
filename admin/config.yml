@@ -201,6 +201,7 @@ collections:
               - { name: name, label: Имя и фамилия, widget: string }
               - { name: role, label: Инструмент, widget: string }
               - { name: photo, label: Фото, widget: image, required: false }
+              - { name: bio, label: Биография, widget: text, required: false, hint: 'Если заполнено — карточку на сайте можно нажать, и откроется окно с этим текстом. Новый абзац — через пустую строку.' }
 
   # ---------------- КОНТАКТЫ ----------------
   - name: contacts

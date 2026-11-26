@@ -1016,10 +1016,53 @@ function ConcertPage({ id }) {
 
 /* ================= об оркестре ================= */
 
+/* Карточка оркестранта: если есть биография — нажимается и открывает окно */
+function MusicianCard({ m, tilt, onOpen, children }) {
+  const cls = 'reveal card group block p-3 text-left ' + tilt;
+  if (!m.bio) return <div className={cls}>{children}</div>;
+  return (
+    <button type="button" onClick={onOpen} className={cls + ' card-hover w-full'} aria-label={m.name + ' — о музыканте'}>
+      {children}
+    </button>
+  );
+}
+
+function MusicianModal({ person, onClose }) {
+  const closeRef = useRef(null);
+  useModal(!!person, onClose);
+  useEffect(() => {
+    if (person && closeRef.current) closeRef.current.focus();
+  }, [person]);
+  if (!person) return null;
+  return (
+    <div className="fixed inset-0 z-[70] flex items-end justify-center bg-green/80 p-3 sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={person.name} onClick={onClose}>
+      <div className="card relative max-h-[88vh] w-full max-w-2xl overflow-y-auto p-5 sm:p-8" onClick={(e) => e.stopPropagation()}>
+        <button ref={closeRef} type="button" onClick={onClose} aria-label="Закрыть" className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-full border-[3px] border-green bg-coral text-lg font-semibold text-paper shadow-[3px_3px_0_#143127]">
+          ✕
+        </button>
+        <div className="flex items-center gap-5 pr-12">
+          <div className="frame aspect-square w-24 flex-none sm:w-32">
+            {person.photo ? <img src={person.photo} alt="" className="duotone h-full w-full object-cover" /> : <Initials name={person.name} className="h-full w-full text-xl" />}
+          </div>
+          <div>
+            <h3 className="font-display text-2xl uppercase leading-[1.08] sm:text-3xl">{person.name}</h3>
+            <span className="chip mt-3 bg-mustard">{person.role}</span>
+          </div>
+        </div>
+        <div className="mt-6 text-base leading-relaxed sm:text-lg">
+          <Paras text={person.bio} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function AboutPage() {
   const about = SITE.about || {};
   const dir = SITE.director;
   const musicians = SITE.musicians || [];
+  const [person, setPerson] = useState(null);
+  const closePerson = useCallback(() => setPerson(null), []);
   const interview = (SITE.press || []).find((p) => p.interview) || (SITE.press || [])[0];
   const albums = SITE.albums || [];
   const gallery = [...albums.map((a) => ({ image: a.cover, caption: a.title, href: '#/gallery/' + a.id })), ...albums.flatMap((a) => a.photos.map((ph) => ({ image: ph.image, caption: a.title, href: '#/gallery/' + a.id })))]
@@ -1070,7 +1113,7 @@ function AboutPage() {
           <SectionHead title="Оркестранты" />
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-7 lg:grid-cols-5">
             {musicians.map((m, i) => (
-              <div key={m.name} className={'reveal card group p-3 ' + (i % 2 ? 'tilt-r' : 'tilt-l')}>
+              <MusicianCard key={m.name} m={m} tilt={i % 2 ? 'tilt-r' : 'tilt-l'} onOpen={() => setPerson(m)}>
                 <div className="frame aspect-square">{m.photo ? <img src={m.photo} alt="" loading="lazy" className="duotone h-full w-full object-cover" /> : <Initials name={m.name} className="h-full w-full text-2xl" />}</div>
                 <h3 className="mt-3 font-display text-[15px] uppercase leading-[1.12] sm:text-lg">
                   {String(m.name).split(/\s+/).map((w, j) => (
@@ -1078,9 +1121,11 @@ function AboutPage() {
                   ))}
                 </h3>
                 <span className="chip mt-2 bg-mustard">{m.role}</span>
-              </div>
+                {m.bio && <span className="mt-3 block text-[12px] font-semibold uppercase tracking-[.1em] underline decoration-2 underline-offset-4 group-hover:text-coral">О музыканте</span>}
+              </MusicianCard>
             ))}
           </div>
+          <MusicianModal person={person} onClose={closePerson} />
         </section>
       )}
 
