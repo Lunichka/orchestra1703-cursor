@@ -58,10 +58,27 @@ async function loadContent() {
     about: { lead: (about && about.lead) || '', facts: (about && about.facts) || [] },
     director: about && about.director && about.director.name ? about.director : null,
     musicians: (about && about.musicians) || [],
-    gallery: (gallery && gallery.gallery) || [],
+    albums: normalizeAlbums(gallery),
     contacts: contactInfo,
     defaultTicketUrl: defaultTicketUrl || '',
   };
+}
+
+/* Галерея: альбомы. Старый формат (просто список фото) тоже понимаем */
+function normalizeAlbums(g) {
+  const src = (g && g.albums) || (g && g.gallery ? [{ title: 'Фото оркестра', photos: g.gallery }] : []);
+  const used = new Set();
+  return src
+    .map((a) => {
+      const photos = (a.photos || [])
+        .map((ph) => (typeof ph === 'string' ? { image: ph } : ph))
+        .filter((ph) => ph && ph.image);
+      let id = slugify(a.title) || 'album';
+      while (used.has(id)) id += '-2';
+      used.add(id);
+      return { ...a, id, photos, cover: a.cover || (photos[0] && photos[0].image) };
+    })
+    .filter((a) => a.photos.length);
 }
 
 /* ================= утилиты ================= */
@@ -150,22 +167,48 @@ function useRoute() {
 /* ---------- появление блоков при прокрутке ---------- */
 function useReveal(dep) {
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll('.reveal:not(.in)'));
+    const shown = new WeakSet();
+    const show = (el) => {
+      shown.add(el);
+      el.classList.add('in');
+    };
     if (!('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('in'));
+      document.querySelectorAll('.reveal').forEach(show);
       return;
     }
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => {
         if (e.isIntersecting) {
-          e.target.classList.add('in');
+          show(e.target);
           io.unobserve(e.target);
         }
       }),
       { rootMargin: '0px 0px -8% 0px' }
     );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const watch = (root) => {
+      if (root.nodeType !== 1) return;
+      if (root.matches('.reveal:not(.in)')) io.observe(root);
+      root.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el));
+    };
+    watch(document.body);
+    // блоки, которые появились позже (например, после фильтра в афише), тоже показываем;
+    // а если React перезаписал className у уже показанного блока — возвращаем ему видимость
+    const mo = new MutationObserver((list) =>
+      list.forEach((m) => {
+        if (m.type === 'attributes') {
+          const el = m.target;
+          if (el.classList.contains('reveal') && !el.classList.contains('in')) {
+            if (shown.has(el)) el.classList.add('in');
+            else io.observe(el);
+          }
+        } else m.addedNodes.forEach(watch);
+      })
+    );
+    mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, [dep]);
 }
 
@@ -217,12 +260,25 @@ function Btn({ href, children, variant = '', size = '', block = false, className
   );
 }
 
+/* Текст из админки: пустая строка — новый абзац, перенос строки — перенос */
+function Paras({ text }) {
+  const ps = String(text || '')
+    .split(/\n\s*\n/)
+    .map((t) => t.trim())
+    .filter(Boolean);
+  return ps.map((t, i) => (
+    <p key={i} className={i ? 'mt-4' : ''}>
+      {t.split('\n').map((line, j) => (j ? [<br key={j} />, line] : line))}
+    </p>
+  ));
+}
+
 function SectionHead({ eyebrow, title, children, center = false }) {
   return (
     <div className={'reveal mb-10 sm:mb-14 ' + (center ? 'text-center' : '')}>
       {eyebrow && <span className="sticker mb-5">{eyebrow}</span>}
       <h2 className="h-display text-[clamp(32px,7.4vw,76px)]">{title}</h2>
-      {children && <p className={'mt-4 max-w-2xl text-base sm:text-lg ' + (center ? 'mx-auto' : '')}>{children}</p>}
+      {children && <div className={'mt-4 max-w-2xl text-base sm:text-lg ' + (center ? 'mx-auto' : '')}>{typeof children === 'string' ? <Paras text={children} /> : children}</div>}
     </div>
   );
 }
@@ -596,7 +652,7 @@ function FeaturedProgram({ program }) {
         {program.venue}
         {program.address ? ', ' + program.address : ''}
       </p>
-      {program.description && <p className="mt-3 max-w-2xl text-base leading-relaxed sm:text-lg">{program.description}</p>}
+      {program.description && <div className="mt-3 max-w-2xl text-base leading-relaxed sm:text-lg"><Paras text={program.description} /></div>}
       <ul className="mt-6 flex flex-wrap gap-3" aria-label="Ближайшие даты">
         {dates.map((s) => {
           const d = fmtDate(s.date);
@@ -910,7 +966,7 @@ function ConcertPage({ id }) {
       {concert.description && (
         <section className="reveal card mt-16 p-6 pt-10 sm:p-12 sm:pt-14">
           <span className="sticker sticker-mustard absolute -top-5 left-6 sm:left-10">О концерте</span>
-          <p className="max-w-3xl text-lg leading-relaxed sm:text-xl">{concert.description}</p>
+          <div className="max-w-3xl text-lg leading-relaxed sm:text-xl"><Paras text={concert.description} /></div>
         </section>
       )}
 
@@ -965,7 +1021,10 @@ function AboutPage() {
   const dir = SITE.director;
   const musicians = SITE.musicians || [];
   const interview = (SITE.press || []).find((p) => p.interview) || (SITE.press || [])[0];
-  const gallery = (SITE.gallery || []).slice(0, 3);
+  const albums = SITE.albums || [];
+  const gallery = [...albums.map((a) => ({ image: a.cover, caption: a.title, href: '#/gallery/' + a.id })), ...albums.flatMap((a) => a.photos.map((ph) => ({ image: ph.image, caption: a.title, href: '#/gallery/' + a.id })))]
+    .filter((g, i, arr) => arr.findIndex((x) => x.image === g.image) === i)
+    .slice(0, 3);
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
       <div className="reveal grid items-end gap-10 lg:grid-cols-[1.3fr_1fr]">
@@ -974,7 +1033,7 @@ function AboutPage() {
           <h1 className="h-display mt-5 text-[clamp(40px,9vw,104px)]">
             Оркестр <span className="t-stroke">1703</span>
           </h1>
-          {about.lead && <p className="mt-8 max-w-2xl text-lg leading-relaxed sm:text-xl">{about.lead}</p>}
+          {about.lead && <div className="mt-8 max-w-2xl text-lg leading-relaxed sm:text-xl"><Paras text={about.lead} /></div>}
         </div>
         {(about.facts || []).length > 0 && (
           <div className="grid grid-cols-3 gap-3 sm:gap-5">
@@ -996,7 +1055,7 @@ function AboutPage() {
           <div className="flex flex-col justify-center">
             <span className="chip self-start bg-mustard">{dir.role}</span>
             <h2 className="h-display mt-5 text-[clamp(32px,5vw,60px)] !leading-[1.12] !tracking-[.02em]">{dir.name}</h2>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed">{dir.text}</p>
+            <div className="mt-5 max-w-xl text-lg leading-relaxed"><Paras text={dir.text} /></div>
             {interview && (
               <Btn href={interview.url} variant="green" className="mt-8 self-start">
                 Читать интервью в «{interview.outlet}е» →
@@ -1009,12 +1068,16 @@ function AboutPage() {
       {musicians.length > 0 && (
         <section className="mt-20">
           <SectionHead title="Оркестранты" />
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-7 lg:grid-cols-5">
             {musicians.map((m, i) => (
-              <div key={m.name} className={'reveal card group p-4 ' + (i % 2 ? 'tilt-r' : 'tilt-l')}>
+              <div key={m.name} className={'reveal card group p-3 ' + (i % 2 ? 'tilt-r' : 'tilt-l')}>
                 <div className="frame aspect-square">{m.photo ? <img src={m.photo} alt="" loading="lazy" className="duotone h-full w-full object-cover" /> : <Initials name={m.name} className="h-full w-full text-2xl" />}</div>
-                <h3 className="mt-4 font-display text-xl uppercase leading-none">{m.name}</h3>
-                <span className="chip mt-3 bg-mustard">{m.role}</span>
+                <h3 className="mt-3 font-display text-[15px] uppercase leading-[1.12] sm:text-lg">
+                  {String(m.name).split(/\s+/).map((w, j) => (
+                    <span key={j} className="block">{w}</span>
+                  ))}
+                </h3>
+                <span className="chip mt-2 bg-mustard">{m.role}</span>
               </div>
             ))}
           </div>
@@ -1025,7 +1088,7 @@ function AboutPage() {
         <section className="mt-20">
           <div className="grid gap-6 sm:grid-cols-3">
             {gallery.map((g, i) => (
-              <a key={g.image} href="#/gallery" className={'reveal frame group block aspect-[4/3] shadow-[6px_6px_0_#143127] ' + (i % 2 ? 'rotate-1' : '-rotate-1')} aria-label={'Галерея: ' + g.caption}>
+              <a key={g.image} href={g.href} className={'reveal frame group block aspect-[4/3] shadow-[6px_6px_0_#143127] ' + (i % 2 ? 'rotate-1' : '-rotate-1')} aria-label={'Галерея: ' + g.caption}>
                 <img src={g.image} alt="" loading="lazy" className="duotone h-full w-full object-cover" />
               </a>
             ))}
@@ -1043,10 +1106,12 @@ function AboutPage() {
 
 /* ================= галерея ================= */
 
-function GalleryPage() {
-  const items = SITE.gallery || [];
-  const [open, setOpen] = useState(null);
-  const close = useCallback(() => setOpen(null), []);
+function GalleryPage({ id }) {
+  const albums = SITE.albums || [];
+  if (id) {
+    const album = albums.find((a) => a.id === id);
+    return album ? <AlbumPage album={album} /> : <NotFound />;
+  }
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
       <div className="reveal mb-14">
@@ -1055,15 +1120,66 @@ function GalleryPage() {
           <span className="t-stroke">Галерея</span>
         </h1>
       </div>
-      <div className="columns-1 gap-8 sm:columns-2 lg:columns-3">
+      {albums.length === 0 && <p className="text-lg">Скоро здесь появятся фотографии.</p>}
+      <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        {albums.map((a, i) => (
+          <a key={a.id} href={'#/gallery/' + a.id} className="reveal group relative block text-green no-underline">
+            {/* «стопка» фотографий под обложкой */}
+            <span aria-hidden="true" className={'absolute inset-0 rounded-[26px] border-[length:var(--edge)] border-green ' + (i % 3 === 1 ? 'bg-coral rotate-[-3deg]' : i % 3 === 2 ? 'bg-green rotate-[2.5deg]' : 'bg-mustard rotate-[3deg]')} />
+            <span className={'card card-hover relative block overflow-hidden p-0 ' + (i % 2 ? 'tilt-r' : 'tilt-l')}>
+              <span className="block aspect-[4/3] overflow-hidden border-b-[length:var(--edge)] border-green bg-green">
+                <img src={a.cover} alt="" loading="lazy" className="duotone h-full w-full object-cover" />
+              </span>
+              <span className="block p-5">
+                <span className="block font-display text-[22px] uppercase leading-[1.08] sm:text-2xl">{nb(a.title)}</span>
+                <span className="mt-4 flex flex-wrap gap-2">
+                  <span className="chip bg-mustard">{a.photos.length} фото</span>
+                  {a.date && <span className="chip bg-paper">{a.date}</span>}
+                </span>
+              </span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AlbumPage({ album }) {
+  const items = album.photos;
+  const [open, setOpen] = useState(null);
+  const close = useCallback(() => setOpen(null), []);
+  useEffect(() => {
+    document.title = album.title + ' — Галерея — Оркестр 1703';
+  }, [album]);
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16">
+      <a href="#/gallery" className="mb-10 inline-block font-semibold uppercase tracking-[.1em] text-sm no-underline hover:text-coral">
+        ← Все альбомы
+      </a>
+      <div className="reveal mb-12">
+        <span className="sticker">{items.length} фото{album.date ? ', ' + album.date : ''}</span>
+        <h1 className="h-display mt-5 text-[clamp(34px,7.4vw,84px)]">{nb(album.title)}</h1>
+        {album.description && (
+          <div className="mt-6 max-w-2xl text-lg leading-relaxed">
+            <Paras text={album.description} />
+          </div>
+        )}
+      </div>
+      <div className="columns-2 gap-4 sm:gap-6 lg:columns-3">
         {items.map((g, i) => (
-          <figure key={g.image} className="reveal mb-10 break-inside-avoid">
-            <button type="button" onClick={() => setOpen(i)} className={'card card-hover group block w-full overflow-hidden p-0 ' + (i % 2 ? 'tilt-r' : 'tilt-l')} aria-label={'Открыть фото: ' + (g.caption || i + 1)}>
+          <figure key={g.image + i} className="mb-4 break-inside-avoid sm:mb-6">
+            <button type="button" onClick={() => setOpen(i)} className="frame card-hover group block w-full p-0 shadow-[5px_5px_0_#143127]" aria-label={'Открыть фото ' + (i + 1) + ' из ' + items.length}>
               <img src={g.image} alt={g.caption || ''} loading="lazy" className="duotone block w-full" />
             </button>
-            {g.caption && <figcaption className="chip mt-4 bg-paper">{g.caption}</figcaption>}
+            {g.caption && <figcaption className="mt-2 text-sm">{g.caption}</figcaption>}
           </figure>
         ))}
+      </div>
+      <div className="mt-14 text-center">
+        <Btn href="#/gallery" variant="paper">
+          Все альбомы
+        </Btn>
       </div>
       <Lightbox items={items} index={open} onClose={close} onIndex={setOpen} />
     </div>
@@ -1248,7 +1364,7 @@ function App() {
   else if (page === 'afisha') content = <AfishaPage />;
   else if (page === 'concert') content = <ConcertPage id={id} />;
   else if (page === 'about') content = <AboutPage />;
-  else if (page === 'gallery') content = <GalleryPage />;
+  else if (page === 'gallery') content = <GalleryPage id={id} />;
   else if (page === 'contacts') content = <ContactsPage />;
   else content = <NotFound />;
 

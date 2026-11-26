@@ -74,7 +74,7 @@ collections:
               - { name: tag, label: Плашка, widget: string, required: false, hint: 'Короткое слово на карточке: Хит, Сказки с оркестром…' }
               - { name: subtitle, label: Подзаголовок, widget: string, required: false }
               - { name: image, label: Обложка, widget: image, required: false, hint: 'Если пусто — сайт нарисует цветной плакат с названием' }
-              - { name: description, label: Описание, widget: text, required: false }
+              - { name: description, label: Описание, widget: text, required: false, hint: 'Новый абзац — через пустую строку' }
               - { name: details, label: Детали, widget: string, required: false, hint: 'Например: 1 час 15 минут без антракта. 6+' }
               - { name: featured, label: Большой блок «Хит сезона» на главной, widget: boolean, default: false, required: false }
               - { name: id, label: Адрес страницы, widget: string, required: false, hint: 'Латиницей, например moonlight. Можно не заполнять — сделается из названия. Лучше не менять у существующих концертов: старые ссылки перестанут работать.' }
@@ -91,7 +91,7 @@ collections:
         fields:
           - { name: tag, label: Плашка, widget: string, required: false }
           - { name: title, label: Заголовок, widget: string }
-          - { name: text, label: Текст, widget: text, required: false }
+          - { name: text, label: Текст, widget: text, required: false, hint: 'Новый абзац — через пустую строку (дважды Enter)' }
           - name: slides
             label: Карточки-картинки
             label_singular: карточку
@@ -105,21 +105,26 @@ collections:
   - name: gallery
     label: Галерея
     icon: photo_library
+    description: Фотоальбомы. На сайте они идут в том же порядке, что здесь.
     files:
       - name: gallery
-        label: Фото
+        label: Альбомы
         file: content/gallery.json
         format: json
         fields:
-          - name: gallery
-            label: Фотографии
-            label_singular: фото
+          - name: albums
+            label: Альбомы
+            label_singular: альбом
             widget: list
+            collapsed: true
             add_to_top: true
-            summary: '{{fields.caption}}'
+            summary: '{{fields.title}}'
             fields:
-              - { name: image, label: Фото, widget: image }
-              - { name: caption, label: Подпись, widget: string, required: false }
+              - { name: title, label: Название альбома, widget: string, hint: 'Например: «Музыка из кино на органе» или «Закулисье»' }
+              - { name: date, label: 'Подпись: дата, площадка', widget: string, required: false, hint: 'Например: Анненкирхе, октябрь 2026' }
+              - { name: description, label: Пара слов об альбоме, widget: text, required: false }
+              - { name: cover, label: Обложка, widget: image, required: false, hint: 'Если пусто — обложкой станет первое фото альбома' }
+              - { name: photos, label: Фотографии, widget: image, multiple: true, hint: 'Можно выбрать сразу много файлов. Порядок меняется перетаскиванием. Лучше 20–50 лучших кадров на альбом: место на сайте не бесконечное.' }
 
   # ---------------- ВИДЕО ----------------
   - name: video
@@ -191,7 +196,7 @@ collections:
             label_singular: оркестранта
             widget: list
             summary: '{{fields.name}} — {{fields.role}}'
-            hint: Пока список пуст, блок на сайте не показывается.
+            hint: 'Пока список пуст, блок на сайте не показывается. Без фото показываются инициалы.'
             fields:
               - { name: name, label: Имя и фамилия, widget: string }
               - { name: role, label: Инструмент, widget: string }
