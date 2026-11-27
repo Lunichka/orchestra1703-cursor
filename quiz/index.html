@@ -1,0 +1,4132 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кто ты из мира музыки? · Оркестр 1703</title>
+  <meta name="description" content="Короткий тест из 7 вопросов, чтобы узнать своего композитора-двойника и выбрать концерт под настроение.">
+  <link rel="icon" type="image/png" sizes="48x48" href="../images/icon-48.png">
+  <!-- Яндекс Метрика. Если посетитель нажал «Нет, спасибо» в плашке про cookie — счётчик не грузится -->
+  <script>
+    (function () {
+      var choice; try { choice = localStorage.getItem('o1703-cookies'); } catch (e) {}
+      if (choice === 'no') return;
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114093595', 'ym');
+      ym(114093595, 'init', { webvisor: true, clickmap: true, trackHash: true, referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;700&family=Rubik+Mono+One&display=swap">
+  <style>
+    :root {
+      --green: #1D3028;
+      --coral: #EC635D;
+      --mustard: #F4BE68;
+      --cream: #EFE8E1;
+      --paper: #E2D6C8;
+      --f-display: "Despair Display", "Arial Black", Impact, sans-serif;
+      --f-bold: "Steppe Bold", "Arial Black", Arial, sans-serif;
+      --f-book: "Steppe Book", Arial, sans-serif;
+      --f-deco: "DRUZHOK", "Arial Black", sans-serif;
+      --edge: 4px;
+      --shadow: 10px;
+    }
+
+    @font-face {
+      font-family: 'Steppe';
+      src: url('fonts/Steppe-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Steppe';
+      src: url('fonts/Steppe-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'DRUZHOK';
+      src: url('./fonts/DRUZHOK.woff') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Despair Display';
+      src: url('./fonts/DespairDisplay-Bold.woff') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--green);
+      font-family: var(--f-book);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    #root {
+      height: 100%
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      cursor: pointer
+    }
+
+    a {
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 4px solid var(--coral);
+      outline-offset: 4px
+    }
+
+    svg {
+      overflow: visible
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap
+    }
+
+    .shd {
+      filter: drop-shadow(var(--shadow) var(--shadow) 0 var(--green))
+    }
+
+    .shd.sm {
+      filter: drop-shadow(6px 6px 0 var(--green))
+    }
+
+    .app {
+      position: relative;
+      height: 100%;
+      min-height: 640px;
+      overflow: hidden;
+      background: var(--cream)
+    }
+
+
+    .app::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: .5;
+      mix-blend-mode: multiply;
+      background-image: radial-gradient(rgba(29, 48, 40, .09) 1px, transparent 1.2px);
+      background-size: 5px 5px
+    }
+
+    .hero {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      overflow-x: clip
+    }
+
+    .stage {
+      position: absolute;
+      inset: 0
+    }
+
+    .px,
+    .px * {
+      pointer-events: none
+    }
+
+    .px {
+      position: absolute;
+      inset: 0;
+      transform: translate3d(var(--mx, 0px), var(--my, 0px), 0)
+    }
+
+    .in {
+      position: absolute;
+      opacity: 0;
+      animation: slide 1s cubic-bezier(.2, .9, .25, 1.05) forwards;
+      animation-delay: var(--d, 0s)
+    }
+
+    .in.flow {
+      position: relative
+    }
+
+    @keyframes slide {
+      from {
+        opacity: 0;
+        transform: translate3d(var(--fx, 0), var(--fy, 0), 0) rotate(var(--fr, 0deg))
+      }
+
+      to {
+        opacity: 1;
+        transform: var(--rest, none)
+      }
+    }
+
+    .staff {
+      left: 0;
+      width: 100%;
+      top: 14%;
+      height: 34%
+    }
+
+    .staff svg {
+      opacity: .55
+    }
+
+    .disc {
+      width: 34vw;
+      height: 34vw;
+      max-width: 560px;
+      max-height: 560px;
+      border-radius: 50%;
+      background: var(--mustard);
+      border: var(--edge) solid var(--green);
+      box-shadow: var(--shadow) var(--shadow) 0 var(--green)
+    }
+
+    .disc.d1 {
+      left: -6vw;
+      bottom: -14vw;
+      --fy: 40vh
+    }
+
+    .board {
+      left: 37vw;
+      top: 5vh;
+      width: 15vw;
+      min-width: 150px;
+      --fx: -40vw
+    }
+
+    .star {
+      right: 27vw;
+      top: 9vh;
+      width: 9vw;
+      min-width: 90px;
+      --fy: -50vh;
+      --fr: -90deg
+    }
+
+    .silhouette {
+      right: -2vw;
+      bottom: -3vh;
+      height: 96vh;
+      width: auto;
+      aspect-ratio: 3/4;
+      --fx: 60vw
+    }
+
+    .note-a {
+      right: 3vw;
+      top: 6vh;
+      width: 11vw;
+      min-width: 100px;
+      --fy: -40vh;
+      --fr: 20deg
+    }
+
+    .note-b {
+      left: 36vw;
+      bottom: 5vh;
+      width: 8vw;
+      min-width: 80px;
+      --fy: 40vh;
+      --fr: -30deg
+    }
+
+    .arrow {
+      left: 20vw;
+      bottom: 8vh;
+      width: 7vw;
+      min-width: 70px;
+      --fx: -30vw
+    }
+
+    .dice {
+      right: 36vw;
+      bottom: 4vh;
+      width: 7vw;
+      min-width: 70px;
+      --fy: 50vh;
+      --fr: 60deg
+    }
+
+    .slot {
+      left: 45vw;
+      bottom: 4vh;
+      width: 12vw;
+      min-width: 140px;
+      padding: 10px 12px;
+      border: 3px dashed var(--green);
+      font: 700 11px/1.3 var(--f-bold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: rgba(244, 190, 104, .35);
+      transform: rotate(-3deg);
+      --rest: rotate(-3deg)
+    }
+
+    .copy {
+      position: absolute;
+      left: 5vw;
+      top: 15vh;
+      z-index: 10;
+      width: 62vw;
+      max-width: 980px
+    }
+
+    .eyebrow {
+      font: 700 clamp(10px, .9vw, 13px)/1 var(--f-bold);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      display: inline-block;
+      background: var(--green);
+      color: var(--cream);
+      padding: .7em 1em;
+      transform: rotate(-2deg);
+      --rest: rotate(-2deg)
+    }
+
+    .title {
+      margin: 2.2vh 0 0;
+      font: 400 clamp(44px, 8.6vw, 150px)/.86 var(--f-display);
+      letter-spacing: -.01em;
+      text-transform: uppercase
+    }
+
+    .title .ln {
+      display: block;
+      width: max-content;
+      max-width: 100%
+    }
+
+    .title .ln>span {
+      display: inline-block
+    }
+
+    .title .l1 {
+      transform: rotate(-1.5deg);
+      --rest: rotate(-1.5deg)
+    }
+
+    .title .l2 {
+      margin-left: 9vw;
+      color: var(--coral);
+      -webkit-text-stroke: var(--edge) var(--green);
+      paint-order: stroke fill;
+      text-shadow: 7px 7px 0 var(--green)
+    }
+
+    .title .l3 {
+      margin-left: 2vw
+    }
+
+    .title .l3 em {
+      font-style: normal;
+      background: var(--mustard);
+      padding: 0 .12em;
+      border: var(--edge) solid var(--green);
+      box-shadow: 8px 8px 0 var(--green);
+      display: inline-block;
+      transform: rotate(2deg)
+    }
+
+    .sub {
+      margin: 4vh 0 0 2vw;
+      font: 700 clamp(15px, 1.7vw, 26px)/1.2 var(--f-bold);
+      max-width: 22ch;
+      --fy: 30vh
+    }
+
+    .sub s {
+      text-decoration-thickness: 4px;
+      text-decoration-color: var(--coral)
+    }
+
+    .cta-wrap {
+      position: absolute;
+      left: 8vw;
+      bottom: 5vh;
+      top: auto;
+      z-index: 12;
+      --fy: 60vh;
+    }
+
+    .footnote {
+      position: absolute;
+      left: 5vw;
+      bottom: 2vh;
+      z-index: 13;
+      max-width: min(46ch, 60vw);
+      margin: 0;
+      padding: 6px 10px;
+      background: var(--cream);
+      border-left: 4px solid var(--coral);
+      font: 500 11px/1.35 var(--f-book)
+    }
+
+    .btn {
+      position: relative;
+      display: inline-block;
+      border: 0;
+      background: none;
+      padding: 0;
+      margin: 0;
+      text-decoration: none;
+      color: inherit
+    }
+
+    .btn .face {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      background: var(--coral);
+      color: var(--cream);
+      border: var(--edge) solid var(--green);
+      border-radius: 28px;
+      padding: .75em 1.5em;
+      font: 800 clamp(20px, 2.4vw, 38px)/1 var(--f-bold);
+      letter-spacing: .03em;
+      transform: translate(0, 0);
+      transition: transform .09s ease-out
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--green);
+      border-radius: 30px;
+      transform: translate(var(--shadow), var(--shadow))
+    }
+
+    .btn:hover .face {
+      transform: translate(-3px, -3px)
+    }
+
+    .btn:active .face,
+    .btn.pressed .face {
+      transform: translate(var(--shadow), var(--shadow));
+      transition-duration: .05s
+    }
+
+    @media (hover:none) {
+      .btn:hover .face {
+        transform: none
+      }
+    }
+
+    .btn.ghost .face {
+      background: var(--cream);
+      color: var(--green)
+    }
+
+    .btn.small .face {
+      min-height: 46px;
+      font-size: clamp(14px, 1.3vw, 18px);
+      padding: .6em 1.2em;
+      border-radius: 20px
+    }
+
+    .btn.small::before {
+      border-radius: 22px
+    }
+
+
+    .btn[disabled] {
+      cursor: not-allowed
+    }
+
+    .btn[disabled] .face {
+      transform: none;
+      background: var(--cream);
+      color: rgba(29, 48, 40, .6);
+      border: var(--edge) dashed rgba(29, 48, 40, .55)
+    }
+
+    .btn[disabled]::before {
+      background: rgba(29, 48, 40, .2)
+    }
+
+
+    .curtain {
+      position: absolute;
+      inset: 0;
+      z-index: 40;
+      pointer-events: none;
+      display: flex
+    }
+
+    .curtain .half {
+      position: relative;
+      flex: 1;
+      border: var(--edge) solid var(--green);
+      transform: translateX(var(--from));
+      transition: transform .55s cubic-bezier(.7, 0, .2, 1)
+    }
+
+    .curtain .left {
+      --from: calc(-100% - 24px);
+      background: var(--coral);
+      box-shadow: 12px 0 0 var(--green)
+    }
+
+    .curtain .right {
+      --from: calc(100% + 24px);
+      background: var(--mustard);
+      box-shadow: -12px 0 0 var(--green)
+    }
+
+    .curtain.closed .half {
+      transform: none
+    }
+
+    .curtain svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%
+    }
+
+    .quiz {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      overflow-y: auto;
+      overflow-x: clip;
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      grid-template-rows: 1fr auto;
+      column-gap: 4vw;
+      row-gap: 2.5vh;
+      padding: 5vh 5vw 4vh
+    }
+
+    .quiz .deco,
+    .result .deco {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden
+    }
+
+    .q-left {
+      position: relative;
+      z-index: 2;
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      gap: 3vh;
+      min-width: 0
+    }
+
+    .q-right {
+      position: relative;
+      z-index: 2;
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      gap: 3vh;
+      min-width: 0
+    }
+
+    .prog {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font: 800 clamp(12px, 1.1vw, 16px)/1 var(--f-bold);
+      letter-spacing: .08em
+    }
+
+    .prog .bars {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+      max-width: 300px
+    }
+
+    .prog .bars i {
+      flex: 1;
+      height: 16px;
+      border: 3px solid var(--green);
+      background: var(--cream);
+      transform: skewX(-12deg)
+    }
+
+    .prog .bars i.on {
+      background: var(--coral);
+      box-shadow: 3px 3px 0 var(--green)
+    }
+
+    .q-title {
+      margin: 0;
+      font: 400 clamp(24px, 2.6vw, 42px)/1 var(--f-display);
+      text-transform: uppercase;
+      overflow-wrap: break-word
+    }
+
+    .q-title:focus {
+      outline: none
+    }
+
+    .scene-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      transform: rotate(-1.2deg)
+    }
+
+    .scene {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: min(40vh, 340px)
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      min-width: 0
+    }
+
+    .answers legend {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0)
+    }
+
+    .ans {
+      position: relative;
+      display: block
+    }
+
+    .ans input {
+      position: absolute;
+      opacity: 0;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      cursor: pointer;
+      z-index: 3
+    }
+
+    .ans .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: clamp(120px, 17vh, 180px);
+      padding: 18px 20px;
+      border: var(--edge) solid var(--green);
+      border-radius: 26px;
+      background: var(--bg);
+      color: var(--fg);
+      box-shadow: var(--shadow) var(--shadow) 0 var(--green);
+      transition: transform .12s ease-out, box-shadow .12s ease-out
+    }
+
+    .ans .tag {
+      font: 800 13px/1 var(--f-bold);
+      letter-spacing: .12em
+    }
+
+    .ans .txt {
+      font: 700 clamp(13px, 1.05vw, 16px)/1.3 var(--f-bold)
+    }
+
+    .ans .txt small {
+      display: block;
+      margin-top: 8px;
+      font: 500 clamp(12px, 1vw, 14px)/1.35 var(--f-book);
+      opacity: .88;
+      text-transform: none
+    }
+
+    .ans:nth-child(1) {
+      --bg: var(--mustard);
+      --fg: var(--green)
+    }
+
+    .ans:nth-child(2) {
+      --bg: #ECE3DA;
+      --fg: var(--green)
+    }
+
+    .ans:nth-child(3) {
+      --bg: var(--coral);
+      --fg: var(--cream)
+    }
+
+    .ans:nth-child(4) {
+      --bg: var(--green);
+      --fg: var(--cream)
+    }
+
+    .ans:nth-child(odd) .card {
+      transform: rotate(-.6deg)
+    }
+
+    .ans:nth-child(even) .card {
+      transform: rotate(.5deg)
+    }
+
+    .ans:hover .card {
+      transform: translate(-3px, -3px) rotate(0);
+      box-shadow: calc(var(--shadow) + 3px) calc(var(--shadow) + 3px) 0 var(--green)
+    }
+
+    @media (hover:none) {
+      .ans:hover .card {
+        transform: none;
+        box-shadow: var(--shadow) var(--shadow) 0 var(--green)
+      }
+    }
+
+    .ans input:focus-visible+.card {
+      outline: 4px solid var(--coral);
+      outline-offset: 5px
+    }
+
+    .ans input:checked+.card {
+      transform: translate(var(--shadow), var(--shadow));
+      box-shadow: 0 0 0 var(--green);
+      outline: 5px solid var(--green);
+      outline-offset: 3px
+    }
+
+    .ans input:checked+.card .tag::after {
+      content: " ✓ ВЫБРАНО"
+    }
+
+    .q-foot {
+      position: relative;
+      z-index: 6;
+      grid-column: 1/-1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px
+    }
+
+    .q-foot .msg {
+      font: 500 14px/1.3 var(--f-book)
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .quiz.enter .q-left>*,
+    .quiz.enter .ans {
+      animation: rise .55s cubic-bezier(.2, .9, .25, 1) both
+    }
+
+    .quiz.enter .ans {
+      animation-delay: calc(.08s * var(--i, 0) + .1s)
+    }
+
+    .rise {
+      animation: rise .6s cubic-bezier(.2, .9, .25, 1) both;
+      animation-delay: var(--d, 0s)
+    }
+
+    @keyframes scene-in {
+      from {
+        opacity: 0;
+        transform: translateY(26px) rotate(-3.5deg)
+      }
+
+      60% {
+        opacity: 1;
+        transform: translateY(-3px) rotate(.6deg)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .quiz.enter .q-left>.scene-wrap {
+      animation: scene-in .45s cubic-bezier(.2, .8, .3, 1) .3s both
+    }
+
+    .quiz.enter.after-sweep .q-left>.scene-wrap {
+      animation-delay: .55s
+    }
+
+    .music-slot {
+      min-height: clamp(168px, 22vh, 214px)
+    }
+
+
+    .music-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 16px 22px;
+      align-items: start;
+      padding: 16px 20px 16px 16px;
+      background: var(--cream);
+      border: var(--edge) solid var(--green);
+      border-radius: 24px;
+      box-shadow: 8px 8px 0 var(--green);
+      transform: rotate(.5deg);
+      scroll-margin-bottom: 110px;
+      animation: slip .5s cubic-bezier(.2, .9, .25, 1.05) both
+    }
+
+    @keyframes slip {
+      from {
+        opacity: 0;
+        transform: translateY(28px) rotate(-3deg)
+      }
+
+      to {
+        opacity: 1;
+        transform: rotate(.5deg)
+      }
+    }
+
+    .mc-ico {
+      width: 64px;
+      flex: none;
+      margin-top: 4px
+    }
+
+    .mc-ico svg {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .mc-body {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start
+    }
+
+    .mc-label {
+      display: inline-block;
+      background: var(--coral);
+      color: var(--cream);
+      font: 800 10px/1 var(--f-bold);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .6em .8em;
+      transform: rotate(-1.5deg)
+    }
+
+    .mc-lead {
+      margin: 2px 0 0;
+      font: 500 clamp(13px, 1.1vw, 15px)/1.4 var(--f-book)
+    }
+
+    .mc-work {
+      margin: 0;
+      font: 800 clamp(13px, 1.1vw, 15px)/1.25 var(--f-bold);
+      overflow-wrap: anywhere
+    }
+
+    .mc-comp {
+      display: block;
+      margin-top: 3px;
+      font: 700 12px/1.3 var(--f-book);
+      opacity: .85
+    }
+
+    .mc-why {
+      margin: 0;
+      font: 500 clamp(12px, 1vw, 14px)/1.4 var(--f-book)
+    }
+
+    .mc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 18px;
+      margin-top: 6px
+    }
+
+    .mc-actions .btn {
+      margin-right: 10px;
+      margin-bottom: 10px
+    }
+
+    .mc-src {
+      font: 500 11px/1.3 var(--f-book);
+      opacity: .75;
+      max-width: 30ch
+    }
+
+    .mc-note {
+      margin: 4px 0 0;
+      font: 500 12px/1.4 var(--f-book);
+      opacity: .8
+    }
+
+    .music-card.is-result {
+      background: var(--mustard);
+      transform: rotate(-.6deg);
+      animation: none
+    }
+
+    .music-card.is-result .mc-label {
+      background: var(--green)
+    }
+
+    .music-card.is-result .mc-lead,
+    .music-card.is-result .mc-why {
+      font-size: clamp(14px, 1.2vw, 17px)
+    }
+
+    .music-card.is-result .mc-work {
+      font-size: clamp(15px, 1.3vw, 19px)
+    }
+
+    .music-card.is-result .mc-ico {
+      width: 78px
+    }
+
+    .sweep {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 30%;
+      height: 40%;
+      z-index: 30;
+      pointer-events: none;
+      background: var(--cream);
+      border-block: var(--edge) solid var(--green);
+      transform: scaleY(0);
+      transform-origin: center;
+      transition: transform .3s cubic-bezier(.7, 0, .3, 1)
+    }
+
+    .sweep.on {
+      transform: scaleY(1)
+    }
+
+    .sweep svg {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .sweep .lines path {
+      stroke-dasharray: 1600;
+      stroke-dashoffset: 1600
+    }
+
+    .sweep.on .lines path {
+      animation: draw .55s .2s ease-out forwards
+    }
+
+    .sweep .nt {
+      opacity: 0;
+      transform: translateX(-80px)
+    }
+
+    .sweep.on .nt {
+      animation: hop .7s calc(.07s*var(--i)) cubic-bezier(.2, .9, .3, 1.2) forwards
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0
+      }
+    }
+
+    @keyframes hop {
+      0% {
+        opacity: 0;
+        transform: translate(-80px, 20px)
+      }
+
+      40% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(0, 0)
+      }
+    }
+
+    .result {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      overflow-y: auto;
+      overflow-x: clip;
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      column-gap: 4vw;
+      align-items: start;
+      padding: 5vh 6vw 6vh
+    }
+
+    .poster-wrap {
+      position: sticky;
+      top: 5vh;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      transform: rotate(-2.2deg);
+      animation: poster-in .9s cubic-bezier(.2, .9, .25, 1.05) both
+    }
+
+    @keyframes poster-in {
+      from {
+        opacity: 0;
+        transform: translate(-40vw, 0) rotate(-14deg)
+      }
+
+      to {
+        opacity: 1;
+        transform: rotate(-2.2deg)
+      }
+    }
+
+    .poster {
+      display: block;
+      height: min(82vh, 660px);
+      aspect-ratio: 480/620;
+      max-width: 100%;
+      width: auto
+    }
+
+    .r-copy {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2.2vh;
+      min-width: 0;
+      padding-top: 2vh
+    }
+
+    .r-label {
+      display: inline-block;
+      background: var(--green);
+      color: var(--cream);
+      font: 700 clamp(10px, .9vw, 13px)/1 var(--f-bold);
+      letter-spacing: .14em;
+      padding: .8em 1em;
+      transform: rotate(-2deg)
+    }
+
+    .r-name {
+      --colw: 48vw;
+      margin: 0;
+      font: 400 min(104px, calc(var(--colw) / (var(--n, 8) * .95)))/.9 var(--f-display);
+      text-transform: uppercase
+    }
+
+    .r-name:focus {
+      outline: none
+    }
+
+    .r-name .w {
+      display: block;
+      width: max-content;
+      max-width: 100%
+    }
+
+    .r-name .w1 {
+      color: var(--coral);
+      -webkit-text-stroke: var(--edge) var(--green);
+      paint-order: stroke fill;
+      text-shadow: 6px 6px 0 var(--green);
+      margin-left: 4vw
+    }
+
+    .r-full {
+      margin: .6vh 0 0;
+      font: 800 clamp(10px, .9vw, 12px)/1.2 var(--f-bold);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .8
+    }
+
+    .r-epithet {
+      margin: 0;
+      display: inline-block;
+      background: var(--mustard);
+      border: var(--edge) solid var(--green);
+      box-shadow: 8px 8px 0 var(--green);
+      padding: .3em .7em;
+      font: 800 clamp(14px, 1.5vw, 22px)/1.1 var(--f-bold);
+      text-transform: uppercase;
+      transform: rotate(1.5deg)
+    }
+
+    .r-text {
+      margin: 0;
+      font: 500 clamp(15px, 1.45vw, 21px)/1.45 var(--f-book);
+      max-width: 44ch
+    }
+
+    .r-detail {
+      margin: 0;
+      max-width: 44ch;
+      padding: 14px 18px;
+      background: var(--cream);
+      border: var(--edge) solid var(--green);
+      border-radius: 22px;
+      box-shadow: 8px 8px 0 var(--green);
+      font: 500 clamp(13px, 1.2vw, 17px)/1.4 var(--f-book);
+      transform: rotate(-.8deg)
+    }
+
+    .r-detail b {
+      display: block;
+      margin-bottom: 6px;
+      font: 800 11px/1 var(--f-bold);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--coral)
+    }
+
+    .r-note {
+      margin: 0;
+      max-width: 52ch;
+      font: 500 12px/1.4 var(--f-book);
+      opacity: .8
+    }
+
+    .r-note.small {
+      opacity: .65
+    }
+
+    .r-music {
+      width: 100%;
+      max-width: 560px;
+      margin-top: 1.5vh
+    }
+
+    .r-actions {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 1vh
+    }
+
+    .orch-block {
+      width: 100%;
+      max-width: 560px;
+      padding: 16px 18px;
+      border: 3px dashed var(--green);
+      border-radius: 22px
+    }
+
+    .orch-block h3 {
+      margin: 0 0 6px;
+      font: 800 clamp(13px, 1.1vw, 15px)/1.25 var(--f-bold);
+      text-transform: uppercase;
+      letter-spacing: .04em
+    }
+
+    .orch-block p {
+      margin: 0;
+      font: 500 clamp(13px, 1.1vw, 15px)/1.45 var(--f-book)
+    }
+
+    .orch-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 22px;
+      margin-top: 12px
+    }
+
+    .orch-links .btn {
+      margin-right: 10px;
+      margin-bottom: 10px
+    }
+
+    .orch-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      font: 700 13px/1.2 var(--f-bold);
+      letter-spacing: .04em;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px
+    }
+
+    .orch-link:hover {
+      color: var(--coral)
+    }
+
+    .orch-block .orch-note {
+      margin-top: 8px;
+      font-size: 12px;
+      opacity: .75
+    }
+
+
+    @media (max-width:860px) {
+
+
+      .stage {
+        position: relative;
+        inset: auto;
+        min-height: max(100%, 620px)
+      }
+
+      .copy {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: auto;
+        max-width: none;
+        padding: 6vh 16px 0
+      }
+
+      .title {
+        font-size: clamp(36px, 12.6vw, 84px)
+      }
+
+      .title .l2 {
+        margin-left: 5vw
+      }
+
+      .sub {
+        margin-top: 3vh
+      }
+
+      .cta-wrap {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: max-content;
+        margin: 3.5vh 0 0 24px
+      }
+
+      .silhouette {
+        height: min(44vh, 108vw);
+        right: -10vw;
+        bottom: -2vh
+      }
+
+      .board,
+      .slot,
+      .dice,
+      .note-b,
+      .arrow {
+        display: none
+      }
+
+      .disc.d1 {
+        width: 56vw;
+        height: 56vw;
+        left: -20vw;
+        bottom: -18vw
+      }
+
+      .star {
+        right: 4vw;
+        top: auto;
+        bottom: 34vh;
+        width: 60px;
+        min-width: 0
+      }
+
+      .note-a {
+        right: auto;
+        left: 7vw;
+        top: auto;
+        bottom: 31vh;
+        width: 50px;
+        min-width: 0
+      }
+
+      .scene {
+        display: block;
+        width: 100%;
+        max-height: 430px;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .staff {
+        top: 45%;
+        height: 15%
+      }
+
+      .eyebrow {
+        max-width: calc(100vw - 32px)
+      }
+
+      .footnote {
+        left: 0;
+        right: auto;
+        max-width: 50vw;
+        bottom: 0;
+        font-size: 10px
+      }
+
+      .quiz {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        padding: 20px 16px 0
+      }
+
+      .q-left,
+      .q-right {
+        display: contents
+      }
+
+      .quiz>*,
+      .q-left>*,
+      .q-right>* {
+        flex: none
+      }
+
+
+      .q-title {
+        font-size: clamp(22px, 6.4vw, 38px)
+      }
+
+      .scene {
+        max-height: none
+      }
+
+      .answers {
+        gap: 18px;
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .ans .card {
+        min-height: 0
+      }
+
+      .music-slot {
+        min-height: 0
+      }
+
+      .mc-ico {
+        width: 48px
+      }
+
+      .music-card.is-result .mc-ico {
+        width: 56px
+      }
+
+      .mc-actions .btn.small .face {
+        font-size: 14px;
+        padding: .55em 1em
+      }
+
+      .q-foot .btn.ghost .face {
+        white-space: nowrap
+      }
+
+      .q-foot {
+        position: sticky;
+        bottom: 0;
+        margin: auto -16px 0;
+        padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+        background: var(--cream);
+        border-top: var(--edge) solid var(--green)
+      }
+
+      .q-foot .msg {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap
+      }
+
+      .quiz .deco>.d-star,
+      .quiz .deco>.d-note,
+      .result .deco>.d-star,
+      .result .deco>.d-note {
+        display: none
+      }
+
+      .result {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 20px 16px 40px
+      }
+
+      .poster-wrap {
+        position: relative;
+        top: auto;
+        align-self: center
+      }
+
+      .poster {
+        height: auto;
+        width: min(100%, 380px)
+      }
+
+      .r-name {
+        --colw: 86vw
+      }
+
+      .r-name .w1 {
+        margin-left: 2vw
+      }
+
+      .r-copy {
+        width: 100%;
+        padding-top: 0
+      }
+
+      .r-detail,
+      .r-text,
+      .r-music,
+      .orch-block {
+        max-width: none
+      }
+    }
+
+    .hero .stage {
+      overflow: clip;
+    }
+
+    @media (min-width:600px) and (max-width:860px) {
+      .answers {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .scene {
+        max-height: 46vh
+      }
+
+      .scene-wrap {
+        justify-content: center
+      }
+    }
+
+    @media (max-width:380px) {
+      .eyebrow {
+        letter-spacing: .06em
+      }
+
+      .btn.small .face {
+        padding: .6em .9em
+      }
+
+      .music-card {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .mc-ico {
+        display: none
+      }
+    }
+
+
+    @media (prefers-reduced-motion:reduce) {
+      .in {
+        animation: none;
+        opacity: 1
+      }
+
+      .px {
+        transition: none
+      }
+
+      .curtain .half,
+      .sweep,
+      .btn .face,
+      .ans .card {
+        transition-duration: .01s
+      }
+
+      .sweep .nt,
+      .sweep.on .nt {
+        animation: none;
+        opacity: 1;
+        transform: none
+      }
+
+      .sweep .lines path,
+      .sweep.on .lines path {
+        animation: none;
+        stroke-dashoffset: 0
+      }
+
+      .quiz.enter .q-left>*,
+      .quiz.enter .ans,
+      .rise,
+      .poster-wrap,
+      .music-card {
+        animation: none;
+        opacity: 1
+      }
+
+      .quiz.enter .q-left>.scene-wrap,
+      .quiz.enter.after-sweep .q-left>.scene-wrap {
+        animation: none;
+        opacity: 1
+      }
+
+      .poster-wrap {
+        transform: rotate(-2.2deg)
+      }
+    }
+
+
+    @media (max-width:860px) {
+      .mc-empty {
+        display: none
+      }
+    }
+
+    .fedorov-hero-figure {
+      position: absolute;
+      right: -3vw;
+      bottom: 0;
+      z-index: 4;
+      margin: 0;
+      /* 61vw — чтобы на узких десктопах (≈900–1200px) фото не заходило под заголовок */
+      height: min(94svh, 1180px, 61vw);
+      aspect-ratio: 1400 / 1477;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .fedorov-hero-depth {
+      position: absolute;
+      inset: 0;
+      transform: translate3d(calc(var(--fed-x, 0) * var(--depth, 0) * 1px), calc(var(--fed-y, 0) * var(--depth, 0) * .55px), 0);
+      will-change: transform;
+    }
+
+    .fedorov-hero-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation-play-state: paused;
+      animation-fill-mode: both;
+    }
+
+    .fedorov-hero-figure.is-ready .fedorov-hero-img {
+      animation-play-state: running;
+    }
+
+    .fedorov-hero-img--back {
+      animation: fed-paper-in .85s cubic-bezier(.2, .8, .2, 1) 0s both, fed-paper-float 7s ease-in-out 1.6s infinite alternate;
+    }
+
+    /* тень и скотч появляются, когда stop-frame последовательность остановилась на основном кадре */
+    .fedorov-hero-img--shadow {
+      animation: fed-shadow-in 1.05s cubic-bezier(.2, .8, .2, 1) 1.5s both;
+    }
+
+    .fedorov-hero-img--front {
+      animation: fed-tape-in .5s cubic-bezier(.34, 1.56, .64, 1) 2.05s both;
+    }
+
+    /* ---------- stop-frame: кадры одной фотосессии вклеиваются друг поверх друга ----------
+     Все кадры лежат в одной обертке параллакса (depth 22). Каждый кадр — своя анимация
+     одинаковой длины (1.3s, старт .25s) с steps(1,end): значения не плавно перетекают,
+     а «щелкают» кадр за кадром, как в стоп-моушене. Таймеров в JS нет. */
+    .fed-frame {
+      position: absolute;
+      /* кадры лежат точно друг на друге */
+      inset: 0;
+      transform-origin: 50% 60%;
+      visibility: hidden;
+      /* промежуточные кадры видны только внутри анимации */
+      animation-duration: 1.3s;
+      animation-delay: .25s;
+      animation-timing-function: steps(1, end);
+      animation-fill-mode: both;
+    }
+
+    .fed-frame--posed {
+      animation-name: fed-seq-posed;
+    }
+
+    .fed-frame--print {
+      animation-name: fed-seq-print;
+    }
+
+    /* основной кадр видим по умолчанию: так он остается на месте при reduced-motion и при уходе */
+    .fed-frame--laughing {
+      visibility: visible;
+      animation-name: fed-seq-laughing;
+    }
+
+    /* фото-отпечаток (кадр «выглядывает» — с ширмой, поэтому прямоугольный, а не вырезанный) */
+    .fedorov-hero-img.fed-print {
+      position: absolute;
+      right: auto;
+      bottom: auto;
+      width: 52%;
+      height: auto;
+      aspect-ratio: 882 / 1062;
+      left: 25%;
+      top: 12%;
+    }
+
+    /* маленький дополнительный кадр, остается после последовательности */
+    .fedorov-hero-img.fed-mini {
+      position: absolute;
+      right: auto;
+      bottom: auto;
+      width: 19%;
+      height: auto;
+      aspect-ratio: 882 / 1062;
+      left: 69%;
+      top: 9%;
+      transform: rotate(6deg);
+      animation: fed-mini-in .5s steps(1, end) 1.95s both;
+    }
+
+    @keyframes fed-seq-posed {
+      0% {
+        visibility: hidden;
+        transform: none
+      }
+
+      1% {
+        visibility: visible;
+        transform: translate3d(2%, 3%, 0) rotate(-3deg) scale(1.06)
+      }
+
+      7.4% {
+        visibility: visible;
+        transform: translate3d(.4%, .6%, 0) rotate(-1.4deg) scale(1.01)
+      }
+
+      13.8% {
+        visibility: visible;
+        transform: translate3d(0, 0, 0) rotate(-1deg)
+      }
+
+      24% {
+        visibility: hidden;
+        transform: none
+      }
+
+      62% {
+        visibility: visible;
+        transform: translate3d(-1.6%, .8%, 0) rotate(1.8deg) scale(1.03)
+      }
+
+      67% {
+        visibility: visible;
+        transform: translate3d(-1%, .4%, 0) rotate(1.2deg)
+      }
+
+      72%,
+      100% {
+        visibility: hidden;
+        transform: none
+      }
+    }
+
+    @keyframes fed-seq-print {
+      0% {
+        visibility: hidden;
+        transform: none
+      }
+
+      24% {
+        visibility: visible;
+        transform: translate3d(7%, -3%, 0) rotate(8deg) scale(1.1)
+      }
+
+      30.4% {
+        visibility: visible;
+        transform: translate3d(3%, -1%, 0) rotate(5deg) scale(1.02)
+      }
+
+      36.8% {
+        visibility: visible;
+        transform: translate3d(2.4%, -.6%, 0) rotate(4deg)
+      }
+
+      46% {
+        visibility: hidden;
+        transform: none
+      }
+
+      72% {
+        visibility: visible;
+        transform: translate3d(5%, 4%, 0) rotate(-7deg) scale(1.05)
+      }
+
+      77% {
+        visibility: visible;
+        transform: translate3d(4%, 3.4%, 0) rotate(-6deg)
+      }
+
+      80%,
+      100% {
+        visibility: hidden;
+        transform: none
+      }
+    }
+
+    @keyframes fed-seq-laughing {
+      0% {
+        visibility: hidden;
+        transform: none
+      }
+
+      46% {
+        visibility: visible;
+        transform: translate3d(-2%, 2%, 0) rotate(2.5deg) scale(1.05)
+      }
+
+      52.4% {
+        visibility: visible;
+        transform: translate3d(-.6%, .6%, 0) rotate(1deg)
+      }
+
+      62% {
+        visibility: hidden;
+        transform: none
+      }
+
+      80% {
+        visibility: visible;
+        transform: translate3d(1.6%, 1.6%, 0) rotate(-2.2deg) scale(1.05)
+      }
+
+      86.4% {
+        visibility: visible;
+        transform: translate3d(.5%, .3%, 0) rotate(-.6deg) scale(1.01)
+      }
+
+      92.8%,
+      100% {
+        visibility: visible;
+        transform: none
+      }
+    }
+
+    @keyframes fed-mini-in {
+      0% {
+        visibility: hidden;
+        transform: rotate(6deg)
+      }
+
+      1% {
+        visibility: visible;
+        transform: translate3d(30%, -18%, 0) rotate(20deg) scale(1.45)
+      }
+
+      20% {
+        visibility: visible;
+        transform: translate3d(8%, -4%, 0) rotate(11deg) scale(1.1)
+      }
+
+      40%,
+      100% {
+        visibility: visible;
+        transform: rotate(6deg)
+      }
+    }
+
+    /* повторный приход на главную: последовательность не повторяется,
+     основной кадр просто въезжает, как раньше въезжала фигура */
+    .fedorov-hero-figure.is-seq-done .fed-frame--posed,
+    .fedorov-hero-figure.is-seq-done .fed-frame--print {
+      animation: none;
+      visibility: hidden;
+    }
+
+    .fedorov-hero-figure.is-seq-done .fed-frame--laughing {
+      animation: fed-figure-in 1s cubic-bezier(.2, .8, .2, 1) .32s both;
+    }
+
+    .fedorov-hero-figure.is-seq-done .fedorov-hero-img--shadow {
+      animation-delay: .18s;
+    }
+
+    .fedorov-hero-figure.is-seq-done .fedorov-hero-img--front {
+      animation-delay: 1.15s;
+    }
+
+    .fedorov-hero-figure.is-seq-done .fed-mini {
+      animation-delay: 1s;
+    }
+
+    /* пока картинки не декодированы — все слои ждут (шорткат animation выше сбрасывает play-state) */
+    .fedorov-hero-figure:not(.is-ready) .fedorov-hero-img {
+      animation-play-state: paused;
+    }
+
+    @keyframes fed-paper-in {
+      from {
+        transform: translate3d(16%, 7%, 0) rotate(7deg) scale(.9);
+        opacity: 0
+      }
+
+      to {
+        transform: none;
+        opacity: 1
+      }
+    }
+
+    @keyframes fed-shadow-in {
+      0% {
+        transform: translate3d(42%, 0, 0);
+        opacity: 0
+      }
+
+      55% {
+        opacity: 1
+      }
+
+      82% {
+        transform: translate3d(-1.4%, 0, 0)
+      }
+
+      100% {
+        transform: none;
+        opacity: 1
+      }
+    }
+
+    @keyframes fed-figure-in {
+      from {
+        transform: translate3d(48%, 0, 0) rotate(3deg);
+        opacity: 0
+      }
+
+      to {
+        transform: none;
+        opacity: 1
+      }
+    }
+
+    @keyframes fed-tape-in {
+      0% {
+        transform: scale(1.7) rotate(-10deg);
+        opacity: 0
+      }
+
+      60% {
+        opacity: 1
+      }
+
+      100% {
+        transform: none;
+        opacity: 1
+      }
+    }
+
+    @keyframes fed-paper-float {
+      from {
+        transform: translate3d(0, 0, 0) rotate(0)
+      }
+
+      to {
+        transform: translate3d(0, -1.2%, 0) rotate(-.7deg)
+      }
+    }
+
+    .fedorov-hero-figure.is-leaving .fedorov-hero-img--front {
+      animation: fed-out-right .4s cubic-bezier(.5, 0, .9, .4) 0s both;
+    }
+
+    .fedorov-hero-figure.is-leaving .fed-frame--laughing {
+      animation: fed-out-right .55s cubic-bezier(.5, 0, .9, .4) .06s both;
+    }
+
+    .fedorov-hero-figure.is-leaving .fed-mini {
+      animation: fed-out-right .45s cubic-bezier(.5, 0, .9, .4) 0s both;
+    }
+
+    .fedorov-hero-figure.is-leaving .fed-frame--posed,
+    .fedorov-hero-figure.is-leaving .fed-frame--print {
+      animation: none;
+      visibility: hidden;
+    }
+
+    .fedorov-hero-figure.is-leaving .fedorov-hero-img--shadow {
+      animation: fed-out-right .6s cubic-bezier(.5, 0, .9, .4) .14s both;
+    }
+
+    .fedorov-hero-figure.is-leaving .fedorov-hero-img--back {
+      animation: fed-out-right .6s cubic-bezier(.5, 0, .9, .4) .2s both;
+    }
+
+    @keyframes fed-out-right {
+      to {
+        transform: translate3d(60%, 0, 0) rotate(4deg);
+        opacity: 0
+      }
+    }
+
+    @media (max-width:860px) {
+
+      /* фигура занимает только место под кнопкой: --fed-safe-top измеряет Hero (низ .cta-wrap + отступ).
+       Голова кадра (~44% ширины холста) держится на 58vw, как бы ни менялся размер. */
+      .fedorov-hero-figure {
+        right: auto;
+        left: 58vw;
+        transform: translateX(-44%);
+        width: auto;
+        height: max(220px, min(calc(104vw * 1477 / 1400), calc(100% - var(--fed-safe-top, 0px))));
+      }
+
+      .fedorov-hero-img.fed-mini {
+        left: 62%;
+        top: 6%;
+        width: 21%;
+      }
+
+      .fedorov-hero-depth {
+        transform: none;
+      }
+    }
+
+    @media (hover:none) {
+      .fedorov-hero-depth {
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      .fedorov-hero-img,
+      .fedorov-hero-figure.is-leaving .fedorov-hero-img {
+        animation: none !important;
+        opacity: 1;
+      }
+
+      .fedorov-hero-depth {
+        transform: none !important;
+      }
+
+      .fedorov-hero-figure.is-leaving .fedorov-hero-img {
+        opacity: 0;
+        transition: opacity .2s linear;
+      }
+    }
+
+
+    .question-illustration {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: min(44vh, 440px);
+      object-fit: contain;
+      object-position: center;
+      transform-origin: center center;
+      backface-visibility: hidden;
+    }
+
+    .archetype-illustration {
+      width: auto;
+      height: min(82vh, 660px);
+      max-width: 100%;
+      object-fit: contain;
+      aspect-ratio: auto;
+    }
+
+    .flap-horizontal {
+      animation: flap-horizontal 5.2s ease-in-out infinite;
+    }
+
+    @keyframes flap-horizontal {
+
+      0%,
+      100% {
+        transform: perspective(900px) rotateY(0deg);
+      }
+
+      12% {
+        transform: perspective(900px) rotateY(-5deg);
+      }
+
+      24% {
+        transform: perspective(900px) rotateY(0deg);
+      }
+
+      36% {
+        transform: perspective(900px) rotateY(4deg);
+      }
+
+      48% {
+        transform: perspective(900px) rotateY(0deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flap-horizontal {
+        animation: none !important;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .question-illustration {
+        max-height: 34vh;
+        width: 100%;
+      }
+
+      .archetype-illustration {
+        width: min(100%, 380px);
+        height: auto;
+        max-height: 56vh;
+      }
+    }
+
+
+
+    /* COMPOSERS_CSS:BEGIN */
+    /* =====================================================================
+     Коллажи композиторов на страницах вопросов.
+     Слои кладутся в процентах на холст 960×1200 (4:5) — как прежние картинки вопросов.
+     Каждая анимация одноразовая: проигрывается при открытии вопроса (экран
+     вопроса пересоздается при переходе), стартует после декодирования картинок.
+     Базовые стили = финальная композиция (ее же видно при reduced-motion).
+     ===================================================================== */
+    .cs {
+      position: relative;
+      width: min(100%, calc(min(44vh, 440px) * .8));
+      aspect-ratio: 4 / 5;
+      flex: none;
+      contain: layout paint;
+      user-select: none;
+    }
+
+    .cs-l {
+      position: absolute;
+      display: block;
+      max-width: none;
+      pointer-events: none;
+      backface-visibility: hidden;
+      animation-fill-mode: both;
+    }
+
+    .cs:not(.is-ready) .cs-l {
+      animation-play-state: paused !important;
+    }
+
+    @media (max-width: 760px) {
+      .cs {
+        width: min(100%, calc(34vh * .8));
+      }
+
+      /* на телефоне оставляем главное движение, второстепенные — статично */
+      .cs .cs-sec {
+        animation: none !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cs .cs-l {
+        animation: none !important;
+      }
+    }
+
+    /* ---------- Бетховен: голова раскрывается, изнутри вылетают ноты и механизмы ---------- */
+    .cs--beethoven .b-cap {
+      transform-origin: 10% 92%;
+      animation: b-lid 2.7s cubic-bezier(.3, 1.3, .5, 1) .2s both;
+    }
+
+    @keyframes b-lid {
+      0% {
+        transform: none
+      }
+
+      13% {
+        transform: translateY(-17%) rotate(-17deg)
+      }
+
+      19% {
+        transform: translateY(-14%) rotate(-13deg)
+      }
+
+      24% {
+        transform: translateY(-15%) rotate(-14deg)
+      }
+
+      66% {
+        transform: translateY(-15%) rotate(-14deg)
+      }
+
+      78% {
+        transform: translateY(1.5%) rotate(1.5deg)
+      }
+
+      84% {
+        transform: translateY(-1%) rotate(-.6deg)
+      }
+
+      90%,
+      100% {
+        transform: none
+      }
+    }
+
+    .cs--beethoven .b-fly {
+      animation: b-fly 1s cubic-bezier(.2, .75, .3, 1) both;
+      animation-delay: calc(.48s + var(--i, 0) * .08s);
+    }
+
+    @keyframes b-fly {
+      0% {
+        transform: translate(var(--sx), var(--sy)) scale(.2) rotate(-50deg);
+        opacity: 0
+      }
+
+      10% {
+        opacity: 1
+      }
+
+      45% {
+        transform: translate(var(--ax), var(--ay)) scale(.95) rotate(14deg);
+        opacity: 1
+      }
+
+      72% {
+        transform: translate(0, -7%) scale(1.04) rotate(-5deg)
+      }
+
+      86% {
+        transform: translate(0, 2%) rotate(2deg)
+      }
+
+      100% {
+        transform: none;
+        opacity: 1
+      }
+    }
+
+    /* ---------- Чайковский: сонные глаза → «удивился» (глаза резко увеличиваются), повтор после паузы ---------- */
+    .cs--tchaikovsky .t-half {
+      visibility: hidden;
+      /* финал — открытые глаза */
+      animation: t-half 3.2s steps(1, end) .25s both;
+    }
+
+    @keyframes t-half {
+      0% {
+        visibility: visible
+      }
+
+      16% {
+        visibility: hidden
+      }
+
+      58% {
+        visibility: visible
+      }
+
+      63%,
+      100% {
+        visibility: hidden
+      }
+    }
+
+    .cs--tchaikovsky .t-open {
+      transform-origin: 50% 50%;
+      animation: t-open 3.2s cubic-bezier(.2, .9, .3, 1.2) .25s both;
+    }
+
+    @keyframes t-open {
+      0% {
+        visibility: hidden;
+        transform: none
+      }
+
+      15.9% {
+        visibility: hidden;
+        transform: scale(.9)
+      }
+
+      16% {
+        visibility: visible;
+        transform: scale(.9)
+      }
+
+      22% {
+        transform: scale(1.62)
+      }
+
+      27% {
+        transform: scale(1.48)
+      }
+
+      38% {
+        transform: scale(.94)
+      }
+
+      44%,
+      57.9% {
+        visibility: visible;
+        transform: none
+      }
+
+      58% {
+        visibility: hidden
+      }
+
+      62.9% {
+        visibility: hidden;
+        transform: none
+      }
+
+      63% {
+        visibility: visible;
+        transform: scale(1)
+      }
+
+      69% {
+        transform: scale(1.4)
+      }
+
+      80% {
+        transform: scale(.97)
+      }
+
+      88%,
+      100% {
+        visibility: visible;
+        transform: none
+      }
+    }
+
+    .cs--tchaikovsky .t-sway {
+      transform-origin: 50% 20%;
+      animation: t-sway 2.6s ease-in-out both;
+      animation-delay: calc(.2s + var(--i, 0) * .18s);
+    }
+
+    @keyframes t-sway {
+      0% {
+        transform: rotate(0) translateY(-14%)
+      }
+
+      30% {
+        transform: rotate(-9deg) translateY(4%)
+      }
+
+      60% {
+        transform: rotate(6deg)
+      }
+
+      100% {
+        transform: none
+      }
+    }
+
+    .cs--tchaikovsky .t-drift {
+      animation: t-drift 2.4s cubic-bezier(.3, .7, .3, 1) both;
+      animation-delay: calc(.6s + var(--i, 0) * .1s);
+    }
+
+    @keyframes t-drift {
+      0% {
+        transform: translate(-12%, 10%) rotate(-10deg)
+      }
+
+      50% {
+        transform: translate(5%, -6%) rotate(6deg)
+      }
+
+      100% {
+        transform: none
+      }
+    }
+
+    /* ---------- Стравинский: пластинки вместо глаз крутятся, на секунду «заедают» и едут дальше ---------- */
+    .cs--stravinsky .s-vinyl {
+      transform-origin: 50% 50%;
+      animation: s-spin 3.4s linear both;
+      animation-delay: calc(.35s + var(--i, 0) * .06s);
+    }
+
+    @keyframes s-spin {
+      0% {
+        transform: rotate(0)
+      }
+
+      38% {
+        transform: rotate(540deg)
+      }
+
+      41% {
+        transform: rotate(552deg)
+      }
+
+      44% {
+        transform: rotate(536deg)
+      }
+
+      47% {
+        transform: rotate(552deg)
+      }
+
+      50% {
+        transform: rotate(540deg)
+      }
+
+      56% {
+        transform: rotate(540deg)
+      }
+
+      100% {
+        transform: rotate(1080deg)
+      }
+    }
+
+    .cs--stravinsky .s-circle {
+      animation: s-from-right .8s cubic-bezier(.2, .9, .3, 1.15) .1s both;
+    }
+
+    .cs--stravinsky .s-bar {
+      animation: s-from-left .7s cubic-bezier(.2, .9, .3, 1.1) .2s both;
+    }
+
+    .cs--stravinsky .s-tri {
+      animation: s-drop .7s cubic-bezier(.3, 1.4, .5, 1) .45s both;
+    }
+
+    @keyframes s-from-right {
+      from {
+        transform: translateX(60%) rotate(30deg)
+      }
+
+      to {
+        transform: none
+      }
+    }
+
+    @keyframes s-from-left {
+      from {
+        transform: translateX(-70%)
+      }
+
+      to {
+        transform: none
+      }
+    }
+
+    @keyframes s-drop {
+      from {
+        transform: translateY(-120%) rotate(-40deg)
+      }
+
+      to {
+        transform: none
+      }
+    }
+
+    /* ---------- Шопен: слезы по очереди стекают, капли падают и превращаются в бумажные ноты ---------- */
+    .cs--chopin .c-tless {
+      visibility: hidden;
+      animation: c-t1 3.6s steps(1, end) .2s both;
+    }
+
+    .cs--chopin .c-tmid {
+      animation: c-t2 3.6s steps(1, end) .2s both;
+    }
+
+    .cs--chopin .c-tmore {
+      visibility: hidden;
+      animation: c-t3 3.6s steps(1, end) .2s both;
+    }
+
+    @keyframes c-t1 {
+      0% {
+        visibility: visible
+      }
+
+      22%,
+      100% {
+        visibility: hidden
+      }
+    }
+
+    @keyframes c-t2 {
+      0% {
+        visibility: hidden
+      }
+
+      22% {
+        visibility: visible
+      }
+
+      48% {
+        visibility: hidden
+      }
+
+      74%,
+      100% {
+        visibility: visible
+      }
+    }
+
+    @keyframes c-t3 {
+      0% {
+        visibility: hidden
+      }
+
+      48% {
+        visibility: visible
+      }
+
+      74%,
+      100% {
+        visibility: hidden
+      }
+    }
+
+    .cs--chopin .c-drop {
+      opacity: 0;
+      /* в финале капель нет — они стали нотами */
+      animation: c-drop 1.1s cubic-bezier(.55, 0, .85, .4) both;
+      animation-delay: calc(1s + var(--i, 0) * .55s);
+    }
+
+    @keyframes c-drop {
+      0% {
+        opacity: 0;
+        transform: scale(.4)
+      }
+
+      12% {
+        opacity: 1;
+        transform: none
+      }
+
+      88% {
+        opacity: 1;
+        transform: translateY(var(--dy))
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(var(--dy)) scale(.3)
+      }
+    }
+
+    .cs--chopin .c-note {
+      animation: c-note .6s cubic-bezier(.3, 1.5, .5, 1) both;
+      animation-delay: calc(1.95s + var(--i, 0) * .55s);
+    }
+
+    @keyframes c-note {
+      from {
+        opacity: 0;
+        transform: scale(.2) rotate(-30deg)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .cs--chopin .c-phones {
+      transform-origin: 50% 60%;
+      animation: c-pulse 2.4s ease-in-out .4s both;
+    }
+
+    @keyframes c-pulse {
+
+      0%,
+      40%,
+      80%,
+      100% {
+        transform: none
+      }
+
+      20%,
+      60% {
+        transform: scale(1.025)
+      }
+    }
+
+    .cs--chopin .c-wave {
+      animation: c-wave 2.4s ease-in-out .4s both;
+    }
+
+    @keyframes c-wave {
+      0% {
+        opacity: 0
+      }
+
+      20% {
+        opacity: 1
+      }
+
+      40% {
+        opacity: .35
+      }
+
+      60% {
+        opacity: 1
+      }
+
+      80% {
+        opacity: .5
+      }
+
+      100% {
+        opacity: 1
+      }
+    }
+
+    /* ---------- Моцарт: кассета «ШАНСОН» подъезжает, катушки крутятся, из наушника утекают ноты ---------- */
+    .cs--mozart .m-cas {
+      animation: m-cas .9s cubic-bezier(.2, .9, .3, 1.15) .15s both;
+    }
+
+    @keyframes m-cas {
+      0% {
+        transform: translateY(var(--ty)) rotate(-6deg)
+      }
+
+      65% {
+        transform: translateY(-2%) rotate(1.5deg)
+      }
+
+      100% {
+        transform: none
+      }
+    }
+
+    .cs--mozart .m-reel {
+      transform-origin: 50% 50%;
+      animation: m-reel-in .9s cubic-bezier(.2, .9, .3, 1.15) .15s both, m-reel 2.6s linear 1.05s both;
+    }
+
+    @keyframes m-reel-in {
+      0% {
+        translate: 0 var(--ty)
+      }
+
+      100% {
+        translate: 0 0
+      }
+    }
+
+    @keyframes m-reel {
+      0% {
+        transform: rotate(0)
+      }
+
+      100% {
+        transform: rotate(-1080deg)
+      }
+    }
+
+    .cs--mozart .m-wire {
+      animation: m-fade .4s ease-out .7s both;
+    }
+
+    .cs--mozart .m-bud {
+      animation: m-pop .45s cubic-bezier(.3, 1.6, .5, 1) .85s both;
+    }
+
+    .cs--mozart .m-cas-tape {
+      animation: m-tape .4s cubic-bezier(.3, 1.6, .5, 1) 1s both;
+    }
+
+    @keyframes m-fade {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes m-pop {
+      from {
+        transform: scale(0)
+      }
+
+      to {
+        transform: none
+      }
+    }
+
+    @keyframes m-tape {
+      from {
+        opacity: 0;
+        transform: scale(1.6) rotate(-14deg)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .cs--mozart .m-leak {
+      animation: m-leak 1s cubic-bezier(.2, .8, .3, 1.1) both;
+      animation-delay: calc(1.3s + var(--i, 0) * .35s);
+    }
+
+    @keyframes m-leak {
+      0% {
+        opacity: 0;
+        transform: translate(var(--sx), var(--sy)) scale(.2)
+      }
+
+      25% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    /* ---------- Прокофьев: удар гитары — она влетает в кадр, все вздрагивает и разлетается ---------- */
+    .cs--prokofiev .p-guitar {
+      transform-origin: 30% 70%;
+      animation: p-guitar .6s cubic-bezier(.5, 0, .7, .5) .3s both;
+    }
+
+    @keyframes p-guitar {
+      0% {
+        opacity: 0;
+        transform: translate(70%, 40%) rotate(40deg) scale(1.3)
+      }
+
+      20% {
+        opacity: 1
+      }
+
+      70% {
+        transform: translate(-3%, 2%) rotate(-5deg) scale(1.02)
+      }
+
+      85% {
+        transform: translate(1.5%, -1%) rotate(2deg)
+      }
+
+      100% {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .cs--prokofiev .p-pop {
+      animation: p-pop .55s cubic-bezier(.15, .9, .3, 1.25) both;
+      animation-delay: calc(.74s + var(--i, 0) * .04s);
+    }
+
+    @keyframes p-pop {
+      0% {
+        opacity: 0;
+        transform: translate(var(--sx), var(--sy)) scale(.15) rotate(-60deg)
+      }
+
+      30% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .cs--prokofiev .p-shake {
+      animation: p-shake .45s linear .82s both;
+    }
+
+    .cs--prokofiev .p-shake2 {
+      animation-delay: .86s;
+    }
+
+    @keyframes p-shake {
+
+      0%,
+      100% {
+        transform: none
+      }
+
+      20% {
+        transform: translate(-2.5%, 1.5%) rotate(-1.5deg)
+      }
+
+      45% {
+        transform: translate(2%, -1%) rotate(1deg)
+      }
+
+      70% {
+        transform: translate(-1%, .5%)
+      }
+    }
+
+    .cs--prokofiev .p-hand {
+      transform-origin: 50% 100%;
+      animation: p-hand .6s cubic-bezier(.3, 1.6, .5, 1) 1.15s both;
+    }
+
+    @keyframes p-hand {
+      0% {
+        transform: translateY(40%) rotate(-18deg)
+      }
+
+      100% {
+        transform: none
+      }
+    }
+
+    /* ---------- Бах: невозмутимо сводит — пластинка крутится со «скретчем», фейдеры ходят, ноты вылетают ---------- */
+    .cs--bach .bh-record {
+      transform-origin: 50% 50%;
+      animation: bh-spin 3.2s linear .5s both;
+    }
+
+    @keyframes bh-spin {
+      0% {
+        transform: rotate(0)
+      }
+
+      40% {
+        transform: rotate(540deg)
+      }
+
+      46% {
+        transform: rotate(480deg)
+      }
+
+      52% {
+        transform: rotate(560deg)
+      }
+
+      58% {
+        transform: rotate(500deg)
+      }
+
+      64% {
+        transform: rotate(540deg)
+      }
+
+      100% {
+        transform: rotate(1080deg)
+      }
+    }
+
+    .cs--bach .bh-arm {
+      transform-origin: 82% 13%;
+      animation: bh-arm .7s cubic-bezier(.3, 1.3, .5, 1) .15s both;
+    }
+
+    @keyframes bh-arm {
+      from {
+        transform: rotate(-28deg)
+      }
+
+      to {
+        transform: none
+      }
+    }
+
+    .cs--bach .bh-fader {
+      animation: bh-fader 2.4s ease-in-out both;
+      animation-delay: calc(.7s + var(--i, 0) * .15s);
+    }
+
+    @keyframes bh-fader {
+      0% {
+        transform: translateY(160%)
+      }
+
+      35% {
+        transform: translateY(-120%)
+      }
+
+      60% {
+        transform: translateY(80%)
+      }
+
+      100% {
+        transform: none
+      }
+    }
+
+    .cs--bach .bh-note {
+      animation: bh-note .9s cubic-bezier(.2, .8, .3, 1.15) both;
+      animation-delay: calc(1.5s + var(--i, 0) * .3s);
+    }
+
+    @keyframes bh-note {
+      0% {
+        opacity: 0;
+        transform: translate(var(--sx), var(--sy)) scale(.2) rotate(90deg)
+      }
+
+      25% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .cs--bach .bh-phones {
+      animation: bh-phones .6s cubic-bezier(.3, 1.5, .5, 1) .1s both;
+    }
+
+    @keyframes bh-phones {
+      from {
+        transform: translateY(-40%) scale(1.1);
+        opacity: 0
+      }
+
+      to {
+        transform: none;
+        opacity: 1
+      }
+    }
+
+    /* COMPOSERS_CSS:END */
+  </style>
+  <div id="root"></div>
+  <script src="../assets/vendor/react.production.min.js"></script>
+  <script src="../assets/vendor/react-dom.production.min.js"></script>
+  <script>
+    if (!window.React || !window.ReactDOM) {
+      document.getElementById('root').innerHTML = '<p style="margin:0;padding:32px 20px;font:700 18px/1.4 Arial,sans-serif;color:#1D3028;background:#EFE8E1;min-height:100vh">Не удалось загрузить библиотеку интерфейса. Проверь соединение и обнови страницу.</p>';
+    } else {
+      (function () {
+        const h = React.createElement;
+        const G = '#1D3028', C = '#EC635D', M = '#F4BE68', K = '#EFE8E1';
+        const SW = 5;
+
+        function Note(props) {
+          var fill = props.fill || C;
+          return h('svg', { viewBox: '0 0 100 150', className: 'shd', width: '100%', style: { display: 'block' }, 'aria-hidden': true },
+            h('path', { d: 'M58 14 H72 V116 H58 Z', fill: G, stroke: G, strokeWidth: SW, strokeLinejoin: 'round' }),
+            h('path', { d: 'M72 14 C74 52 112 60 98 110 C94 82 82 72 72 68 Z', fill: G, stroke: G, strokeWidth: SW, strokeLinejoin: 'round' }),
+            h('ellipse', { cx: 38, cy: 118, rx: 33, ry: 22, transform: 'rotate(-22 38 118)', fill: fill, stroke: G, strokeWidth: SW })
+          );
+        }
+
+        function BeamedNotes(props) {
+          var fill = props.fill || M;
+          return h('svg', { viewBox: '0 0 170 150', className: 'shd', width: '100%', style: { display: 'block' }, 'aria-hidden': true },
+            h('path', { d: 'M62 20 L168 6 V36 L62 52 Z', fill: G, stroke: G, strokeWidth: SW, strokeLinejoin: 'round' }),
+            h('rect', { x: 56, y: 24, width: 12, height: 94, fill: G }),
+            h('rect', { x: 156, y: 12, width: 12, height: 106, fill: G }),
+            h('ellipse', { cx: 36, cy: 120, rx: 30, ry: 20, transform: 'rotate(-22 36 120)', fill: fill, stroke: G, strokeWidth: SW }),
+            h('ellipse', { cx: 136, cy: 114, rx: 30, ry: 20, transform: 'rotate(-22 136 114)', fill: fill, stroke: G, strokeWidth: SW })
+          );
+        }
+
+        function Star(props) {
+          var pts = [];
+          for (var i = 0; i < 24; i++) {
+            var r = i % 2 === 0 ? 48 : 27;
+            var a = (Math.PI * 2 * i) / 24 - Math.PI / 2;
+            pts.push((50 + r * Math.cos(a)).toFixed(1) + ',' + (50 + r * Math.sin(a)).toFixed(1));
+          }
+          return h('svg', { viewBox: '0 0 100 100', className: 'shd sm', width: '100%', style: { display: 'block' }, 'aria-hidden': true },
+            h('polygon', { points: pts.join(' '), fill: props.fill || M, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }),
+            h('circle', { cx: 50, cy: 50, r: 11, fill: K, stroke: G, strokeWidth: 4 })
+          );
+        }
+
+        function Arrow() {
+          return h('svg', { viewBox: '0 0 160 100', className: 'shd', width: '100%', style: { display: 'block' }, 'aria-hidden': true },
+            h('path', { d: 'M6 30 H92 V8 L154 50 L92 92 V70 H6 Z', fill: M, stroke: G, strokeWidth: SW, strokeLinejoin: 'round' })
+          );
+        }
+
+        function Dice() {
+          var dots = [[24, 24], [40, 40], [56, 56]];
+          return h('svg', { viewBox: '0 0 80 80', className: 'shd', width: '100%', style: { display: 'block' }, 'aria-hidden': true },
+            h('rect', { x: 3, y: 3, width: 74, height: 74, rx: 16, fill: K, stroke: G, strokeWidth: SW }),
+            dots.map(function (d, i) { return h('circle', { key: i, cx: d[0] + 0, cy: d[1], r: 7, fill: G }); })
+          );
+        }
+
+        //игровое поле//
+        function Board() {
+          var cells = [
+            { x: 0, y: 0, f: M }, { x: 100, y: 0, f: C }, { x: 200, y: 0, f: K },
+            { x: 0, y: 100, f: G }, { x: 100, y: 100, f: K }, { x: 200, y: 100, f: C }
+          ];
+          return h('svg', { viewBox: '0 0 300 200', className: 'shd', width: '100%', style: { display: 'block' }, 'aria-hidden': true },
+            h('defs', null, h('clipPath', { id: 'bclip' }, h('rect', { x: 2, y: 2, width: 296, height: 196, rx: 26 }))),
+            h('g', { clipPath: 'url(#bclip)' },
+              cells.map(function (c, i) { return h('rect', { key: i, x: c.x, y: c.y, width: 100, height: 100, fill: c.f, stroke: G, strokeWidth: SW }); }),
+              /* стрелка вниз */
+              h('path', { d: 'M38 22 H62 V54 H78 L50 84 L22 54 H38 Z', fill: K, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }),
+              /* +1 */
+              h('text', { x: 150, y: 66, textAnchor: 'middle', fontFamily: 'Dela Gothic One, Arial Black, sans-serif', fontSize: 40, fill: K, stroke: G, strokeWidth: 2.5, paintOrder: 'stroke' }, '+1'),
+              /* нота */
+              h('ellipse', { cx: 238, cy: 70, rx: 15, ry: 11, transform: 'rotate(-22 238 70)', fill: G }),
+              h('path', { d: 'M250 66 V24 C262 30 268 38 262 52', stroke: G, strokeWidth: 6, fill: 'none', strokeLinecap: 'round' }),
+              /* 7 */
+              h('text', { x: 50, y: 168, textAnchor: 'middle', fontFamily: 'Dela Gothic One, Arial Black, sans-serif', fontSize: 58, fill: M }, '7'),
+              /* фишка */
+              h('circle', { cx: 150, cy: 134, r: 15, fill: M, stroke: G, strokeWidth: 4 }),
+              h('path', { d: 'M132 182 Q150 140 168 182 Z', fill: M, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }),
+              /* ♫ штрихами */
+              h('path', { d: 'M226 168 V130 L262 122 V160', stroke: K, strokeWidth: 7, fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round' }),
+              h('circle', { cx: 218, cy: 170, r: 9, fill: K }), h('circle', { cx: 254, cy: 162, r: 9, fill: K })
+            )
+          );
+        }
+
+        //  нотный стан: волнистые линии + несколько нот
+        function Staff(p) {
+          var mode = (p && p.notes) || 'all';
+          var ys = [40, 80, 120, 160, 200], lines = [];
+          ys.forEach(function (y, i) {
+            lines.push(h('path', { key: i, d: 'M0 ' + y + ' Q 360 ' + (y - 18) + ' 720 ' + y + ' T 1440 ' + y, stroke: G, strokeWidth: 3, fill: 'none', opacity: 0.8 }));
+          });
+          var notes = [[210, 160, C], [330, 120, G], [455, 80, M], [1080, 140, C], [1190, 100, G]];
+          if (mode === 'right') notes = notes.filter(function (n) { return n[0] > 1000; });
+          if (mode === 'none') notes = [];
+          return h('svg', { viewBox: '0 0 1440 240', preserveAspectRatio: 'none', width: '100%', height: '100%', 'aria-hidden': true },
+            lines,
+            notes.map(function (n, i) {
+              return h('g', { key: 'n' + i },
+                h('line', { x1: n[0] + 20, y1: n[1], x2: n[0] + 20, y2: n[1] - 80, stroke: G, strokeWidth: 5 }),
+                h('ellipse', { cx: n[0], cy: n[1], rx: 22, ry: 15, transform: 'rotate(-20 ' + n[0] + ' ' + n[1] + ')', fill: n[2], stroke: G, strokeWidth: 4 })
+              );
+            })
+          );
+        }
+
+
+        function Vinyl(p) {
+          var fill = (p && p.fill) || M;
+          return h('svg', { viewBox: '0 0 100 100', className: 'shd sm', width: '100%', style: { display: 'block' }, 'aria-hidden': true },
+            h('circle', { cx: 50, cy: 50, r: 46, fill: G, stroke: G, strokeWidth: 4 }),
+            h('circle', { cx: 50, cy: 50, r: 34, fill: 'none', stroke: K, strokeWidth: 1.6, opacity: 0.45 }),
+            h('circle', { cx: 50, cy: 50, r: 25, fill: 'none', stroke: K, strokeWidth: 1.6, opacity: 0.45 }),
+            h('circle', { cx: 50, cy: 50, r: 16, fill: fill, stroke: G, strokeWidth: 3 }),
+            h('circle', { cx: 50, cy: 50, r: 3.5, fill: K, stroke: G, strokeWidth: 2 }),
+            h('path', { d: 'M20 30 Q 30 16 46 12', stroke: K, strokeWidth: 3, fill: 'none', strokeLinecap: 'round', opacity: 0.6 })
+          );
+        }
+
+
+        function Conductor(p) {
+          return h('svg', Object.assign({ viewBox: '0 0 600 800', width: '100%', height: '100%', preserveAspectRatio: 'xMaxYMax meet', role: 'img', 'aria-label': 'Силуэт дирижера с дирижерской палочкой' }, p || {}),
+            h('defs', null,
+              h('pattern', { id: 'ht', width: 13, height: 13, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(30)' },
+                h('circle', { cx: 6.5, cy: 6.5, r: 3, fill: K, opacity: 0.55 })),
+              h('g', { id: 'fig', strokeLinecap: 'round', strokeLinejoin: 'round' },
+                h('path', { d: 'M130 800 L150 470 Q160 350 250 322 L400 322 Q500 350 505 480 L520 800 Z' }),
+                h('rect', { x: 292, y: 280, width: 56, height: 60 }),
+                h('ellipse', { cx: 320, cy: 235, rx: 62, ry: 74 }),
+                h('path', { d: 'M248 220 Q226 150 270 140 Q282 98 330 118 Q372 92 396 140 Q424 164 394 220 Q382 170 330 160 Q284 166 248 220 Z' }),
+                h('path', { d: 'M215 395 L120 300 L95 170', fill: 'none', strokeWidth: 64 }),
+                h('path', { d: 'M440 395 L545 505 L520 640', fill: 'none', strokeWidth: 64 }),
+                h('circle', { cx: 95, cy: 150, r: 38 }),
+                h('circle', { cx: 520, cy: 660, r: 38 }))
+            ),
+            h('use', { href: '#fig', fill: C, stroke: C, transform: 'translate(24 24)' }),
+            h('use', { href: '#fig', fill: G, stroke: G }),
+            h('path', { d: 'M130 800 L150 470 Q160 350 250 322 L300 322 L300 800 Z', fill: 'url(#ht)' }),
+            h('ellipse', { cx: 300, cy: 244, rx: 52, ry: 66, fill: 'url(#ht)' }),
+            h('polygon', { points: '272,322 368,322 320,480', fill: K }),
+            h('path', { d: 'M272 322 L320 490 L255 530 M368 322 L320 490 L385 530', stroke: K, strokeWidth: 5, fill: 'none', strokeLinecap: 'round' }),
+            h('polygon', { points: '288,330 322,346 288,364', fill: C, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }),
+            h('polygon', { points: '354,330 322,346 354,364', fill: C, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }),
+            h('circle', { cx: 321, cy: 346, r: 8, fill: C, stroke: G, strokeWidth: 4 }),
+            [540, 610, 690].map(function (y, i) { return h('circle', { key: i, cx: 320, cy: y, r: 7, fill: K }); }),
+            h('line', { x1: 98, y1: 134, x2: 28, y2: 12, stroke: C, strokeWidth: 9, strokeLinecap: 'round' }),
+            h('circle', { cx: 24, cy: 6, r: 11, fill: M, stroke: G, strokeWidth: 4 })
+          );
+        }
+
+
+        var P2 = '#E2D6C8';
+
+
+        function SceneDefs() {
+          function dots(id, color, r, step, rot, op) {
+            return h('pattern', { id: id, width: step, height: step, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(' + rot + ')' },
+              h('circle', { cx: step / 2, cy: step / 2, r: r, fill: color, opacity: op }));
+          }
+          return h('svg', { width: 0, height: 0, style: { position: 'absolute' }, 'aria-hidden': true, focusable: 'false' },
+            h('defs', null,
+              dots('htG', G, 1.7, 6, 25, 0.85),
+              dots('htGl', G, 1.2, 5, 25, 0.4),
+              dots('htK', K, 2, 7, 25, 0.6),
+              dots('htC', C, 2.2, 7, 25, 0.9),
+              dots('htM', M, 2.2, 7, 25, 0.9),
+              h('pattern', { id: 'stripeC', width: 14, height: 14, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' },
+                h('rect', { width: 14, height: 14, fill: C }), h('rect', { width: 7, height: 14, fill: '#D9534D' })),
+              h('pattern', { id: 'plaid', width: 28, height: 28, patternUnits: 'userSpaceOnUse' },
+                h('rect', { width: 28, height: 28, fill: C }), h('rect', { width: 28, height: 8, y: 4, fill: '#D9534D' }),
+                h('rect', { width: 8, height: 28, x: 4, fill: '#D9534D', opacity: 0.8 }), h('rect', { width: 28, height: 2, y: 20, fill: K, opacity: 0.7 })),
+              h('filter', { id: 'rough', x: '-5%', y: '-5%', width: '110%', height: '110%' },
+                h('feTurbulence', { type: 'fractalNoise', baseFrequency: 0.035, numOctaves: 2, seed: 4, result: 'n' }),
+                h('feDisplacementMap', { in: 'SourceGraphic', in2: 'n', scale: 5 }))
+            )
+          );
+        }
+
+        function Rp(x, y, w, hh) { return 'M' + x + ' ' + y + 'h' + w + 'v' + hh + 'h' + (-w) + 'Z'; }
+
+
+        function cut(k, d, fill, o) {
+          o = o || {};
+          var dx = o.dx === undefined ? 6 : o.dx, sw = o.sw || 4;
+          var common = { d: d, strokeWidth: sw, strokeLinejoin: 'round', strokeLinecap: 'round' };
+          var out = [];
+          if (dx) out.push(h('path', Object.assign({ key: k + 's', fill: G, stroke: G, transform: 'translate(' + dx + ' ' + dx + ')' }, common)));
+          out.push(h('path', Object.assign({ key: k, fill: fill, stroke: G, filter: o.rough ? 'url(#rough)' : undefined, opacity: o.op }, common)));
+          return out;
+        }
+
+        function ell(k, cx, cy, rx, ry, fill, o) {
+          o = o || {};
+          var dx = o.dx === undefined ? 5 : o.dx, sw = o.sw || 4, out = [];
+          if (dx) out.push(h('ellipse', { key: k + 's', cx: cx + dx, cy: cy + dx, rx: rx, ry: ry, fill: G, stroke: G, strokeWidth: sw }));
+          out.push(h('ellipse', { key: k, cx: cx, cy: cy, rx: rx, ry: ry, fill: fill, stroke: G, strokeWidth: sw }));
+          return out;
+        }
+
+        function tx(k, x, y, s, t, o) {
+          o = o || {};
+          return h('text', {
+            key: k, x: x, y: y, fontFamily: o.f || 'Unbounded, Arial Black, sans-serif', fontWeight: 800, fontSize: s, fill: o.fill || G,
+            textAnchor: o.a || 'start', letterSpacing: o.ls || 0, transform: o.rot ? 'rotate(' + o.rot + ' ' + x + ' ' + y + ')' : undefined
+          }, t);
+        }
+
+        function nt(k, x, y, s, fill, rot) {
+          return h('g', { key: k, transform: 'translate(' + x + ' ' + y + ') rotate(' + (rot || 0) + ') scale(' + s + ')' },
+            h('path', { d: 'M20 -52 V0', stroke: G, strokeWidth: 6, fill: 'none', strokeLinecap: 'round' }),
+            h('path', { d: 'M20 -52 C30 -42 40 -36 34 -20', stroke: G, strokeWidth: 6, fill: 'none', strokeLinecap: 'round' }),
+            h('ellipse', { cx: 6, cy: 2, rx: 17, ry: 11, transform: 'rotate(-22 6 2)', fill: fill, stroke: G, strokeWidth: 4 }));
+        }
+
+
+        function Head(k, x, y, s, kind, mood, o) {
+          o = o || {};
+          var back = [], front = [];
+          if (kind === 'wig') {
+            [[-42, -4, 15], [42, -4, 15], [-40, 22, 12], [40, 22, 12]].forEach(function (c, i) {
+              back.push(h('g', { key: 'w' + i }, h('circle', { cx: c[0], cy: c[1], r: c[2], fill: K, stroke: G, strokeWidth: 4 }), h('circle', { cx: c[0], cy: c[1], r: c[2], fill: 'url(#htGl)' })));
+            });
+            back.push(h('path', { key: 'wp', d: 'M-40 -22 Q-30 -66 0 -62 Q30 -66 40 -22 Q0 -42 -40 -22Z', fill: K, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }));
+          } else if (kind === 'wild') {
+            var pts = [];
+            for (var i = 0; i < 18; i++) {
+              var a = Math.PI + (Math.PI * i) / 17 - 0.35 + (i * 0.04), r = i % 2 ? 66 : 50;
+              pts.push((Math.cos(a) * r * 1.05).toFixed(1) + ',' + (Math.sin(a) * r * 1.05 + 4).toFixed(1));
+            }
+            back.push(h('polygon', { key: 'wh', points: '-52,34 ' + pts.join(' ') + ' 52,34', fill: G, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }));
+          } else if (kind === 'beard') {
+            front.push(h('path', { key: 'bd', d: 'M-34 6 Q-40 56 0 66 Q40 56 34 6 Q18 30 0 26 Q-18 30 -34 6Z', fill: o.beard || G, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }));
+            back.push(h('path', { key: 'hr', d: 'M-38 -8 Q-40 -50 0 -52 Q40 -50 38 -8 Q20 -30 0 -30 Q-20 -30 -38 -8Z', fill: o.hair || P2, stroke: G, strokeWidth: 4 }));
+          } else if (kind === 'cap') {
+            front.push(h('path', { key: 'cp', d: 'M-46 -20 Q-10 -68 46 -34 Q28 -16 0 -20 Q-26 -14 -46 -20Z', fill: o.hair || M, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }));
+            front.push(h('rect', { key: 'cs', x: -3, y: -64, width: 6, height: 10, fill: G }));
+          } else if (kind === 'hat') {
+            front.push(h('ellipse', { key: 'hb', cx: 0, cy: -24, rx: 58, ry: 10, fill: o.hair || G, stroke: G, strokeWidth: 4 }));
+            if (o.beard) front.unshift(h('path', { key: 'hbd', d: 'M-34 6 Q-40 56 0 66 Q40 56 34 6 Q18 30 0 26 Q-18 30 -34 6Z', fill: o.beard, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }));
+            front.push(h('path', { key: 'hc', d: 'M-34 -26 Q-36 -66 0 -66 Q36 -66 34 -26Z', fill: o.hair || G, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }));
+            front.push(h('rect', { key: 'hr', x: -34, y: -38, width: 68, height: 8, fill: C }));
+          }
+          var face = [
+            h('ellipse', { key: 'f', cx: 0, cy: 0, rx: 36, ry: 44, fill: K, stroke: G, strokeWidth: 4 }),
+            h('path', { key: 'fs', d: 'M0 -44 A36 44 0 0 1 0 44 Z', fill: 'url(#htG)', opacity: 0.55 })
+          ];
+          var ey = kind === 'glasses' ? [
+            h('circle', { key: 'g1', cx: -14, cy: -4, r: 11, fill: K, stroke: G, strokeWidth: 4 }), h('circle', { key: 'g2', cx: 14, cy: -4, r: 11, fill: K, stroke: G, strokeWidth: 4 }),
+            h('path', { key: 'gb', d: 'M-3 -4 h6', stroke: G, strokeWidth: 4 })] : [];
+          var brows = mood === 'frown' ? 'M-24 -20 L-6 -12 M24 -20 L6 -12' : mood === 'o' ? 'M-22 -22 Q-14 -28 -6 -22 M22 -22 Q14 -28 6 -22' : 'M-22 -18 Q-14 -22 -6 -18 M22 -18 Q14 -22 6 -18';
+          var mouth = mood === 'smile' ? 'M-12 20 Q0 32 12 20' : mood === 'o' ? '' : mood === 'frown' ? 'M-12 26 Q0 18 12 26' : 'M-9 24 H9';
+          var feat = [
+            h('circle', { key: 'e1', cx: -14, cy: -4, r: 3.4, fill: G }), h('circle', { key: 'e2', cx: 14, cy: -4, r: 3.4, fill: G }),
+            h('path', { key: 'br', d: brows, stroke: G, strokeWidth: 4, fill: 'none', strokeLinecap: 'round' }),
+            h('path', { key: 'ns', d: 'M0 2 L-5 16 H3', stroke: G, strokeWidth: 3, fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round' })
+          ];
+          if (mouth) feat.push(h('path', { key: 'mo', d: mouth, stroke: G, strokeWidth: 4, fill: 'none', strokeLinecap: 'round' }));
+          else feat.push(h('ellipse', { key: 'mo', cx: 0, cy: 26, rx: 7, ry: 9, fill: G }));
+          return h('g', { key: k, transform: 'translate(' + x + ' ' + y + ') rotate(' + (o.rot || 0) + ') scale(' + s + ')' },
+            h('g', { transform: 'translate(5 5)', opacity: 1 }, h('ellipse', { cx: 0, cy: 0, rx: 36, ry: 44, fill: G })),
+            back, face, feat, ey, front);
+        }
+
+
+        function Torso(k, x, y, w, hh, fill, o) {
+          o = o || {};
+          var d = 'M' + x + ' ' + (y + hh) + ' L' + (x + w * 0.08) + ' ' + (y + hh * 0.25) + ' Q' + (x + w * 0.2) + ' ' + y + ' ' + (x + w * 0.5) + ' ' + y + ' Q' + (x + w * 0.8) + ' ' + y + ' ' + (x + w * 0.92) + ' ' + (y + hh * 0.25) + ' L' + (x + w) + ' ' + (y + hh) + 'Z';
+          var out = cut(k, d, fill, o);
+          if (o.shirt) out.push(h('path', { key: k + 'v', d: 'M' + (x + w * 0.38) + ' ' + y + ' L' + (x + w * 0.5) + ' ' + (y + hh * 0.5) + ' L' + (x + w * 0.62) + ' ' + y + 'Z', fill: K, stroke: G, strokeWidth: 3, strokeLinejoin: 'round' }));
+          if (o.halftone) out.push(h('path', { key: k + 'h', d: d, fill: 'url(#' + o.halftone + ')', opacity: 0.5 }));
+          return out;
+        }
+
+        function Stage(p) {
+          var ys = [60, 90, 120, 150, 180], hid = 0, i;
+          for (i = 0; i < p.label.length; i++) hid = (hid * 31 + p.label.charCodeAt(i)) % 100000;
+          var cid = 'sk' + hid;
+          return h('svg', { viewBox: '0 0 600 420', className: 'scene', role: 'img', 'aria-label': p.label, preserveAspectRatio: 'xMidYMid meet' },
+            h('rect', { x: 8, y: 8, width: 584, height: 404, fill: G }),
+            h('rect', { x: 2, y: 2, width: 584, height: 404, fill: p.bg || K, stroke: G, strokeWidth: 5 }),
+            ys.map(function (y, i) { return h('path', { key: 'l' + i, d: 'M2 ' + (y + 190) + ' H586', stroke: G, strokeWidth: 2, opacity: 0.18 }); }),
+            h('defs', null, h('clipPath', { id: cid }, h('rect', { x: 2, y: 2, width: 584, height: 404 }))),
+            h('g', { clipPath: 'url(#' + cid + ')' }, p.children)
+          );
+        }
+
+
+        var SCENES = {};
+
+        SCENES.q1 = function () {
+          return h('img', {
+            // src: '/images/collage_01.png',
+            // className: 'scene',
+            // alt: 'Чайковский у окна в дождливый день'
+          });
+        };
+
+        var POSTERS = {};
+
+        function Poster(p) {
+          var cid = 'pc-' + p.id;
+          return h('svg', { viewBox: '0 0 480 620', className: 'poster', role: 'img', 'aria-label': p.label, preserveAspectRatio: 'xMidYMid meet' },
+            h('defs', null, h('clipPath', { id: cid }, h('rect', { x: 0, y: 0, width: 470, height: 560 }))),
+            h('rect', { x: 10, y: 10, width: 470, height: 610, fill: G }),
+            h('g', { clipPath: 'url(#' + cid + ')' }, h('rect', { width: 470, height: 560, fill: p.bg }), p.children),
+            h('rect', { x: 2, y: 2, width: 468, height: 558, fill: 'none', stroke: G, strokeWidth: 6 }),
+            h('rect', { x: 2, y: 560, width: 468, height: 56, fill: K, stroke: G, strokeWidth: 5 }),
+            tx('ft1', 22, 596, 14, p.footer, { ls: 1.5 }), tx('ft2', 450, 596, 14, p.num + ' / 7', { a: 'end' })
+          );
+        }
+        function crowd(y, n, seed) {
+          var out = [];
+          for (var i = 0; i < n; i++) {
+            var x = 20 + i * (440 / (n - 1)), dy = ((i * 37 + seed) % 5) * 5;
+            out.push(h('g', { key: 'cr' + i }, h('ellipse', { cx: x, cy: y + 40 + dy, rx: 34, ry: 44, fill: i % 4 === 0 ? C : G, stroke: K, strokeWidth: 3 }), h('circle', { cx: x, cy: y + dy, r: 17, fill: G, stroke: K, strokeWidth: 3 })));
+          }
+          return out;
+        }
+
+        POSTERS.mozart = function () {
+          var bits = [[60, 90, 1.4, K, -20], [390, 70, 1.1, M, 18], [420, 250, 1.6, K, 30], [40, 300, 1.2, M, -28], [120, 40, 0.9, K, 10], [350, 400, 1.2, K, -14]];
+          var keys = [];
+          for (var i = 0; i < 12; i++) keys.push(h('rect', { key: 'k' + i, x: -10 + i * 42, y: 488, width: 42, height: 80, fill: K, stroke: G, strokeWidth: 4 }));
+          [0, 1, 3, 4, 5, 7, 8, 10].forEach(function (i) { keys.push(h('rect', { key: 'bk' + i, x: -10 + i * 42 + 30, y: 488, width: 24, height: 48, fill: G })); });
+          return h(Poster, { id: 'mozart', bg: C, label: 'Афиша Моцарта: бумажная вырезка в парике среди разлетающихся нот', footer: 'ТЕМПЕРАМЕНТ', num: '1' },
+            h('circle', { cx: 236, cy: 270, r: 190, fill: M, stroke: G, strokeWidth: 5 }), h('circle', { cx: 236, cy: 270, r: 190, fill: 'url(#htC)', opacity: 0.5 }),
+            Torso('mt', 70, 380, 330, 190, M, { shirt: true, rough: true }), Head('mh', 236, 270, 2.3, 'wig', 'smile', { rot: -6 }),
+            h('path', { d: 'M236 396 l-34 -16 v34Z M236 396 l34 -16 v34Z', fill: C, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }), h('circle', { cx: 236, cy: 396, r: 8, fill: C, stroke: G, strokeWidth: 4 }),
+            bits.map(function (b, i) { return nt('n' + i, b[0], b[1] + 60, b[2] * 1.5, b[3], b[4]); }),
+            h('path', { d: 'M30 150 q20 -30 40 0 t40 0 t40 0', stroke: G, strokeWidth: 6, fill: 'none', strokeLinecap: 'round' }),
+            h('path', { d: 'M330 130 l24 -40 l24 40Z', fill: K, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }),
+            h('circle', { cx: 420, cy: 160, r: 14, fill: G }), h('circle', { cx: 60, cy: 440, r: 18, fill: K, stroke: G, strokeWidth: 4 }),
+            keys
+          );
+        };
+
+        POSTERS.beethoven = function () {
+          var staff = [];
+          for (var i = 0; i < 5; i++) staff.push(h('path', { key: 's' + i, d: 'M-60 ' + (470 - i * 22) + ' L540 ' + (150 - i * 22), stroke: G, strokeWidth: 5, opacity: 0.9 }));
+          return h(Poster, { id: 'beethoven', bg: M, label: 'Афиша Бетховена: бумажная вырезка с гривой на сильной диагонали и коралловой молнией', footer: 'ТЕМПЕРАМЕНТ', num: '2' },
+            h('path', { d: 'M-20 600 L-20 380 L500 60 L500 240 L120 600Z', fill: G }), h('path', { d: 'M-20 600 L-20 380 L500 60 L500 240 L120 600Z', fill: 'url(#htK)', opacity: 0.35 }),
+            staff,
+            h('path', { d: 'M330 40 L250 200 H310 L240 330 L400 150 H335 L400 40Z', fill: C, stroke: G, strokeWidth: 5, strokeLinejoin: 'round' }),
+            Torso('bt', 60, 400, 300, 170, K, { shirt: false, rough: true }), h('path', { d: 'M150 400 L210 480 L270 400Z', fill: C, stroke: G, strokeWidth: 4, strokeLinejoin: 'round' }),
+            Head('bh', 214, 290, 2.4, 'wild', 'frown', { rot: -12 }),
+            h('path', { d: 'M360 480 L420 420', stroke: G, strokeWidth: 36, strokeLinecap: 'round' }), ell('fs', 430, 410, 30, 30, K, { dx: 6 }), h('path', { d: 'M412 402 H448 M414 416 H446', stroke: G, strokeWidth: 4 }),
+            cut('sh', 'M340 470 H450 V530 H340Z', K, { rough: true }), tx('sh1', 395, 508, 14, 'ВПЕРеД', { a: 'middle' }),
+            nt('n1', 70, 130, 1.3, C, -18), nt('n2', 420, 520, 0.9, M, 12)
+          );
+        };
+
+        POSTERS.tchaikovsky = function () {
+          var rain = [];
+          for (var i = 0; i < 26; i++) rain.push(h('path', { key: 'r' + i, d: 'M' + (40 + (i * 53) % 400) + ' ' + (60 + (i * 91) % 240) + ' l-10 34', stroke: K, strokeWidth: 3, strokeLinecap: 'round', opacity: 0.7 }));
+          return h(Poster, { id: 'tchaikovsky', bg: G, label: 'Афиша Чайковского: бумажная вырезка с бородой под пледом у дождливого окна и лампы', footer: 'ТЕМПЕРАМЕНТ', num: '3' },
+            cut('win', Rp(50, 44, 370, 340), '#2B4A3E', { dx: 8, rough: true }), rain,
+            h('path', { d: 'M235 44 V384 M50 214 H420', stroke: K, strokeWidth: 12 }), h('rect', { x: 50, y: 44, width: 370, height: 340, fill: 'none', stroke: K, strokeWidth: 12 }),
+            h('circle', { cx: 100, cy: 440, r: 120, fill: 'url(#htM)', opacity: 0.7 }), h('circle', { cx: 100, cy: 440, r: 62, fill: M, opacity: 0.6 }),
+            cut('cur', 'M10 20 H70 Q50 200 80 400 H10Z', C, { rough: true }), cut('cur2', 'M460 20 H400 Q420 200 390 400 H460Z', C, { rough: true }),
+            Torso('bl', 40, 390, 390, 180, 'url(#plaid)', { rough: true }),
+            Head('th', 250, 300, 2.1, 'beard', 'calm', { hair: P2 }),
+            cut('hood', 'M120 410 Q250 330 380 410 Q310 380 250 400 Q190 380 120 410Z', 'url(#plaid)'),
+            cut('cup', 'M330 470 h70 l-8 50 h-54Z', K), h('path', { d: 'M400 480 q26 6 0 28', stroke: G, strokeWidth: 5, fill: 'none' }), h('path', { d: 'M350 462 q-8 -16 4 -28 M372 462 q-8 -16 4 -28', stroke: K, strokeWidth: 4, fill: 'none', strokeLinecap: 'round' }),
+            nt('n1', 400, 110, 1.1, M, 14), nt('n2', 90, 150, 0.9, K, -12)
+          );
+        };
+
+        POSTERS.wagner = function () {
+          var grid = [];
+          for (var i = 0; i < 12; i++) { grid.push(h('path', { key: 'v' + i, d: 'M' + (i * 40) + ' 0 V560', stroke: G, strokeWidth: 1.5, opacity: 0.22 })); grid.push(h('path', { key: 'g' + i, d: 'M0 ' + (i * 48) + ' H470', stroke: G, strokeWidth: 1.5, opacity: 0.22 })); }
+          var blocks = [[150, 440, 170, 70, M], [170, 370, 130, 70, C], [185, 300, 100, 70, K], [200, 230, 70, 70, M], [212, 160, 46, 70, C], [222, 90, 26, 70, K]];
+          return h(Poster, { id: 'wagner', bg: K, label: 'Афиша Вагнера: гигантский чертеж башни, который не помещается на афишу, и крошечный человек в берете', footer: 'ТЕМПЕРАМЕНТ', num: '4' },
+            grid,
+            blocks.map(function (b, i) { return cut('b' + i, Rp(b[0], b[1], b[2], b[3]), b[4], { rough: i % 2 === 0 }); }),
+            h('path', { d: 'M222 90 L235 20 L248 90', fill: G, stroke: G, strokeWidth: 4 }), h('path', { d: 'M215 12 q-18 -14 -14 -34 M255 12 q18 -14 14 -34', stroke: G, strokeWidth: 7, fill: 'none', strokeLinecap: 'round' }),
+            h('path', { d: 'M110 40 V560 M110 100 h-12 M110 200 h-12 M110 300 h-12 M110 400 h-12 M110 500 h-12', stroke: C, strokeWidth: 4 }),
+            tx('d1', 96, 306, 12, 'ВЫСОТА: ЕЩе', { a: 'middle', rot: -90, fill: C }),
+            h('path', { d: 'M340 100 H450 M340 130 H430 M340 160 H440', stroke: G, strokeWidth: 3 }), tx('d2', 340, 90, 11, 'ПРОЛОГ + 3 ДНЯ'),
+            h('path', { d: 'M310 220 Q380 190 440 230', stroke: G, strokeWidth: 3, strokeDasharray: '8 6', fill: 'none' }),
+            cut('st', Rp(330, 300, 120, 54), C, { rough: true }), tx('st1', 390, 334, 16, 'БЮДЖЕТ: ДА', { a: 'middle', fill: K, rot: -6 }),
+            Torso('wt', 340, 480, 80, 80, G, { shirt: true }), Head('wh', 380, 456, 0.62, 'cap', 'o'),
+            cut('sc', 'M40 470 H100 Q120 470 120 490 V540 Q120 556 100 556 H40Z', K), h('path', { d: 'M58 490 h44 M58 510 h36 M58 530 h44', stroke: G, strokeWidth: 3 }),
+            nt('n1', 400, 430, 0.8, M, 10)
+          );
+        };
+
+        POSTERS.debussy = function () {
+          var waves = [];
+          for (var i = 0; i < 6; i++) waves.push(h('path', { key: 'w' + i, d: 'M-10 ' + (440 + i * 22) + ' Q60 ' + (424 + i * 22) + ' 120 ' + (440 + i * 22) + ' T240 ' + (440 + i * 22) + ' T360 ' + (440 + i * 22) + ' T480 ' + (440 + i * 22), stroke: G, strokeWidth: 3, fill: 'none', opacity: 0.35 + i * 0.1 }));
+          return h(Poster, { id: 'debussy', bg: '#F3EDE6', label: 'Афиша Дебюсси: бумажная вырезка в шляпе среди полупрозрачных кругов света и воды', footer: 'ТЕМПЕРАМЕНТ', num: '5' },
+            h('circle', { cx: 150, cy: 180, r: 150, fill: M, opacity: 0.6 }), h('circle', { cx: 320, cy: 250, r: 170, fill: C, opacity: 0.45 }), h('circle', { cx: 240, cy: 380, r: 140, fill: G, opacity: 0.28 }),
+            h('circle', { cx: 320, cy: 250, r: 170, fill: 'url(#htGl)' }), h('circle', { cx: 150, cy: 180, r: 150, fill: 'url(#htM)', opacity: 0.6 }),
+            h('path', { d: 'M360 60 a50 50 0 1 0 50 80 a40 40 0 1 1 -50 -80Z', fill: K, stroke: G, strokeWidth: 4 }),
+            waves,
+            Torso('dt', 110, 400, 260, 170, G, { shirt: true, rough: true }), Head('dh', 240, 300, 2.0, 'hat', 'calm', { hair: G, beard: P2 }),
+            h('circle', { cx: 100, cy: 330, r: 22, fill: M, stroke: G, strokeWidth: 4 }), h('path', { d: 'M100 352 V420', stroke: G, strokeWidth: 5 }),
+            nt('n1', 390, 380, 0.9, K, 14), nt('n2', 70, 120, 0.9, K, -10),
+            h('path', { d: 'M40 520 Q240 490 440 520', stroke: G, strokeWidth: 2, fill: 'none', opacity: 0.6 })
+          );
+        };
+
+        POSTERS.stravinsky = function () {
+          var strips = [[0, 160, C, 0], [160, 160, M, -34], [320, 150, K, 30]];
+          function figure() {
+            return [Torso('st', 60, 400, 350, 170, G, { shirt: true }), h('path', { key: 'bt', d: 'M200 410 l40 20 l-40 20Z M280 410 l-40 20 l40 20Z', fill: C, stroke: G, strokeWidth: 3 }), Head('sh', 236, 290, 2.3, 'glasses', 'o')];
+          }
+          return h(Poster, { id: 'stravinsky', bg: K, label: 'Афиша Стравинского: бумажный портрет, разрезанный на три смещенные полосы разных цветов', footer: 'ТЕМПЕРАМЕНТ', num: '6' },
+            h('defs', null, strips.map(function (s, i) { return h('clipPath', { key: i, id: 'sv' + i }, h('rect', { x: s[0], y: 0, width: s[1], height: 560 })); })),
+            strips.map(function (s, i) {
+              return h('g', { key: 'g' + i, clipPath: 'url(#sv' + i + ')' }, h('rect', { x: s[0], width: s[1], height: 560, fill: s[2] }), h('rect', { x: s[0], width: s[1], height: 560, fill: 'url(#htGl)', opacity: 0.6 }),
+                h('g', { transform: 'translate(0 ' + s[3] + ')' }, figure()));
+            }),
+            h('path', { d: 'M160 0 V560 M320 0 V560', stroke: G, strokeWidth: 6 }),
+            h('path', { d: 'M20 40 L120 40 L70 130Z', fill: M, stroke: G, strokeWidth: 5, strokeLinejoin: 'round' }),
+            h('circle', { cx: 410, cy: 90, r: 44, fill: C, stroke: G, strokeWidth: 5 }), h('rect', { x: 340, y: 150, width: 100, height: 22, fill: G, transform: 'rotate(-14 390 160)' }),
+            cut('met', 'M376 500 L392 420 H420 L436 500Z', M), h('path', { d: 'M406 500 L420 430', stroke: G, strokeWidth: 5 }),
+            nt('n1', 60, 470, 1.1, K, 160), nt('n2', 240, 70, 0.9, G, -30)
+          );
+        };
+
+        POSTERS.fedorov = function () {
+          return h(Poster, { id: 'fedorov', bg: G, label: 'Афиша Георгия Федорова: сцена, зал и силуэт дирижера со спины; место под настоящую фотографию', footer: 'ТЕМПЕРАМЕНТ', num: '7' },
+            h('path', { d: 'M235 -10 L110 450 H360Z', fill: M, opacity: 0.38 }),
+            cut('cl', 'M-10 -10 H110 Q80 200 120 470 H-10Z', C, { rough: true }), cut('cr', 'M480 -10 H360 Q390 200 350 470 H480Z', C, { rough: true }),
+            cut('flr', Rp(-10, 440, 500, 60), M, { dx: 0, rough: true }),
+            h('g', { key: 'cd' }, h(Conductor, { x: 100, y: 120, width: 270, height: 360, preserveAspectRatio: 'xMidYMax meet' })),
+            nt('n1', 70, 270, 1.2, K, -14), nt('n2', 400, 230, 1.0, M, 16), nt('n3', 380, 120, 0.8, K, 8),
+            h('path', { d: 'M40 40 l10 -24 l10 24 l24 10 l-24 10 l-10 24 l-10 -24 l-24 -10Z', fill: M, stroke: G, strokeWidth: 3, strokeLinejoin: 'round' }),
+            cut('ph', Rp(330, 28, 112, 138), K, { dx: 5, sw: 3 }), h('rect', { x: 340, y: 38, width: 92, height: 92, fill: 'none', stroke: G, strokeWidth: 3, strokeDasharray: '7 5' }),
+            tx('ph1', 386, 82, 9, 'МЕСТО ПОД', { a: 'middle' }), tx('ph2', 386, 96, 9, 'ПОДЛИННОЕ', { a: 'middle' }), tx('ph3', 386, 110, 9, 'ФОТО', { a: 'middle' }),
+            h('rect', { x: 366, y: 18, width: 44, height: 16, fill: C, opacity: 0.9, transform: 'rotate(-6 388 26)' }),
+            crowd(470, 11, 3)
+          );
+        };
+
+        var QUIZ_DATA = {
+          meta: {
+            title: 'Кто ты из мира музыки?',
+            subtitle: 'Никакого сольфеджио.',
+            resultLabel: 'ТВОЙ МУЗЫКАЛЬНЫЙ ТЕМПЕРАМЕНТ',
+            retryLabel: 'Пройти еще раз',
+            disclaimer: 'Игровой тест, а не диагноз от психотерапевта.',
+            musicPause: { label: 'Музыкальная пауза', listen: 'Послушать трек' },
+            resultMusic: { label: 'Осенняя рекомендация', listen: 'Послушать трек' },
+            orchestra: {
+              title: 'Хочешь услышать музыку вживую?',
+              text: 'Знакомство с классикой удобно продолжить на концерте. Оркестр 1703 играет в Санкт-Петербурге.',
+              concerts: {
+                label: 'Посмотреть концерты Оркестра 1703',
+                url: 'https://orchestra1703.com/#/afisha',
+
+              },
+              links: [
+                {
+                  label: 'Оркестр 1703 во ВКонтакте', url: 'https://vk.com/orchestra_1703',
+                  source: 'Указана как официальная на странице оркестра на сайте клуба A2 (a2.fm/events/1703), проверено 2026-10-13'
+                },
+              ]
+            }
+          },
+
+          archetypeOrder: ['mozart', 'beethoven', 'tchaikovsky', 'wagner', 'debussy', 'stravinsky', 'fedorov'],
+
+          archetypes: {
+            mozart: {
+              name: 'Моцарт', fullName: 'Вольфганг Амадей Моцарт', epithet: 'виртуоз импровизации', poster: 'mozart',
+              text: 'Ты находишь выход там, где остальные еще читают инструкцию. Как ты это сделал? Сам не понял, но сработало же идеально.',
+              detail: 'Твой девиз на вечер: «По ходу разберемся». Ситуация обычно соглашается.',
+              music: { work: 'nachtmusik', lead: 'Осенний вечер, хаос под контролем. Для настроения «наугад, но гениально» идеально заходит серенада.' },
+              asset: { file: 'assets/portraits/mozart.jpg', status: 'нужен архивный портрет, public domain, с указанием источника' }
+            },
+            beethoven: {
+              name: 'Бетховен', fullName: 'Людвиг ван Бетховен', epithet: 'сила намерения', poster: 'beethoven',
+              text: 'Ты не ждешь знаков свыше, ты ломаешь стены сам. Препятствия на твоем пути просто не успевают понять, что произошло.',
+              detail: 'Дверь с табличкой «Толкать от себя» ты все равно дернешь на себя. Для проверки на прочность.',
+              music: { work: 'pastoral', lead: 'План А, план Б и план «идти напролом». Возьми с собой симфонию целиком.' },
+              asset: { file: 'assets/portraits/beethoven.jpg', status: 'нужен архивный портрет, public domain, с указанием источника' }
+            },
+            tchaikovsky: {
+              name: 'Чайковский', fullName: 'Петр Ильич Чайковский', epithet: 'главный драма-квин', poster: 'tchaikovsky',
+              text: 'Ты не просто проживаешь будни — ты пишешь к ним оркестровый саундтрек. Обычный поход в КБ у тебя выглядит как финал третьего акта.',
+              detail: 'В твоем плейлисте с меланхоличным инди неожиданно взрывается симфонический оркестр.',
+              music: { work: 'october', lead: 'Осень, дождь, экзистенциальный вайб. Пьеса буквально создана для этого настроения.' },
+              asset: { file: 'assets/portraits/tchaikovsky.jpg', status: 'нужен архивный портрет, public domain, с указанием источника' }
+            },
+            wagner: {
+              name: 'Вагнер', fullName: 'Рихард Вагнер', epithet: 'архитектор вселенных', poster: 'wagner',
+              text: 'Тебе тесно в рамках одной задачи. Пока нормальные люди планируют пятницу, ты проектируешь грандиозный лонгрид с предысторией и фэнтези-мир.',
+              detail: 'Список покупок в супермаркет разбит на пролог, три акта и эпилог.',
+              music: { work: 'idyll', lead: 'Глобальные замыслы требуют тишины. Для осеннего вечера за чертежами подойдет камерная музыка.' },
+              asset: { file: 'assets/portraits/wagner.jpg', status: 'нужен архивный портрет, public domain, с указанием источника' }
+            },
+            debussy: {
+              name: 'Дебюсси', fullName: 'Клод Дебюсси', epithet: 'мастер атмосферы', poster: 'debussy',
+              text: 'Ты считываешь вайб пространства быстрее, чем дочитаешь меню. Свет, полутени и паузы для тебя важнее любых дедлайнов.',
+              detail: 'Выбор идеальной настольной лампы отнимает у тебя сорок минут, и ни капли не жалко.',
+              music: { work: 'clair', lead: 'Мягкий свет, тишина, минимум шума. «Лунный свет» закроет все вопросы.' },
+              asset: { file: 'assets/portraits/debussy.jpg', status: 'нужен архивный портрет, public domain, с указанием источника' }
+            },
+            stravinsky: {
+              name: 'Стравинский', fullName: 'Игорь Стравинский', epithet: 'ломатель шаблонов', poster: 'stravinsky',
+              text: 'Ты не против правил как таковых. Тебе просто до зубовного скрежета интересно: а что будет, если сделать все ровно наоборот?',
+              detail: 'Навигатор для тебя — не указ, а пища для дерзких экспериментов с маршрутом.',
+              music: { work: 'firebird', lead: 'Если ломать шаблоны, то с оркестром и диким ритмом. Включай контрасты.' },
+              asset: { file: 'assets/portraits/stravinsky.jpg', status: 'нужен архивный портрет, public domain, с указанием источника' }
+            },
+            fedorov: {
+              name: 'Георгий Федоров', fullName: 'Георгий Федоров', epithet: 'мастер перформанса', poster: 'fedorov',
+              text: 'Ты умеешь подать любую дичь так, что все вокруг слушают с открытым ртом. Обычный созвон превращаешь в шоу.',
+              detail: 'После твоего рассказа о пропущенном автобусе хочется встать и зааплодировать.',
+              caption: 'Композитор и пианист, художественный руководитель Оркестра 1703.',
+              captionSource: 'Страница оркестра на сайте клуба A2: a2.fm/events/1703 (проверено 2026-10-13)',
+              music: { work: 'ravel', lead: 'Музыку нужно не просто слушать, ее нужно проживать в моменте. Вот живой трек от оркестра.' },
+              asset: { file: 'assets/portraits/fedorov.jpg', status: 'нужна подлинная фотография из надежного источника с разрешенными условиями использования; лицо не рисовать' }
+            }
+          },
+
+          works: {
+            nachtmusik: {
+              composer: 'Вольфганг Амадей Моцарт', title: 'Eine kleine Nachtmusik, KV 525', kind: 'Серенада № 13 соль мажор',
+              why: 'Быстро цепляет, не грузит мозг и звучит бодро в любой ситуации.',
+              listen: {
+                url: 'https://www.youtube.com/watch?v=ERV8gVfdDjw', platform: 'YouTube',
+                recording: 'Berliner Philharmoniker, Herbert von Karajan (1965/2015)', verified: 'title',
+                source: 'Заголовок в выдаче: «Mozart Eine kleine Nachtmusik / Berliner Philharmoniker, Karajan (1965/2015) - YouTube»'
+              }
+            },
+            pastoral: {
+              composer: 'Людвиг ван Бетховен', title: 'Симфония № 6 фа мажор, соч. 68, «Пасторальная»', kind: 'Симфония',
+              why: 'Идеальный трек для движения: от спокойного старта до эпической грозы.',
+              listen: {
+                url: 'https://music.youtube.com/playlist?list=OLAK5uy_mI1q9Vru1YgI06Gd6O4Q7t83bA0HCbvPg', platform: 'YouTube Music',
+                recording: 'London Philharmonic Orchestra (альбом)', verified: 'title',
+                source: 'Заголовок в выдаче: «Beethoven: Symphony No. 6, Op. 68 "Pastoral" - Album by London Philharmonic Orchestra»'
+              }
+            },
+            october: {
+              composer: 'Петр Ильич Чайковский', title: '«Октябрь. Осенняя песнь» из цикла «Времена года», соч. 37a', kind: 'Пьеса для фортепиано',
+              why: 'Чистая меланхолия в каждой ноте. Чтобы погрустить красиво.',
+              listen: {
+                url: 'https://www.youtube.com/watch?v=FnQgBOvgg6I', platform: 'YouTube',
+                recording: 'Bruce Liu (Official Music Video)', verified: 'title',
+                source: 'Заголовок в выдаче: «Bruce Liu - Tchaikovsky: The Seasons, Op. 37a: X. October. Autumn Song (Official Music Video) - YouTube»'
+              }
+            },
+            idyll: {
+              composer: 'Рихард Вагнер', title: 'Siegfried-Idyll, WWV 103', kind: 'Произведение для камерного состава',
+              why: 'Теплое камерное звучание, когда внешний мир наконец-то замолк.',
+              listen: {
+                url: 'https://www.youtube.com/watch?v=HqW_Jl3nTeg', platform: 'YouTube',
+                recording: 'Herbert von Karajan', verified: 'title',
+                source: 'Заголовок в выдаче: «Wagner: Siegfried-Idyll, WWV 103 (Herbert von Karajan) - YouTube»'
+              }
+            },
+            clair: {
+              composer: 'Клод Дебюсси', title: 'Clair de lune из «Бергамасской сюиты»', kind: 'Пьеса для фортепиано',
+              why: 'Знаменитый «Лунный свет» — синоним абсолютного дзен.',
+              listen: {
+                url: 'https://www.youtube.com/watch?v=DEtuNQZQdTg', platform: 'YouTube',
+                recording: 'Philippe Cassard', verified: 'title',
+                source: 'Заголовок в выдаче: «Debussy : Clair de lune par Philippe Cassard - YouTube»'
+              }
+            },
+            firebird: {
+              composer: 'Игорь Стравинский', title: 'Адский танец царя Кащея из балета «Жар-птица»', kind: 'Фрагмент балета',
+              why: 'Дикий драйв, ломаный ритм и взрывные оркестровые краски.',
+              listen: {
+                url: 'https://www.youtube.com/watch?v=jmRU6cJeVDs', platform: 'YouTube',
+                recording: 'Sir Simon Rattle, London Symphony Orchestra', verified: 'title',
+                source: 'Заголовок в выдаче: «Stravinsky: Infernal Dance from The Firebird // Sir Simon Rattle & London Symphony Orchestra - YouTube»'
+              }
+            },
+            ravel: {
+              composer: 'Морис Равель', title: '«Гробница Куперена»: Менуэт', kind: 'Запись Оркестра 1703',
+              why: 'Изящный менуэт в живом исполнении питерского оркестра.',
+              listen: {
+                url: 'https://www.youtube.com/watch?v=Y2fts7us074', platform: 'YouTube',
+                recording: 'Оркестр 1703', verified: 'title',
+                source: 'Заголовок в выдаче: «ОРКЕСТР 1703 - Морис Равель - "Гробница Куперена" Менуэт - YouTube». Равель назван в программе оркестра на a2.fm/events/1703. Автора загрузки не проверял.'
+              }
+            }
+          },
+
+          questions: [
+            {
+              id: 'q1', scene: 'q1', text: 'Планы полетели по классике в тартарары. Твоя реакция?',
+              answers: [
+                {
+                  hook: 'Импровизирую на ходу.', rest: 'Если реальность меняет тональность, соберем из этого сочный трек.', archetype: 'mozart',
+                  music: { work: 'firebird', lead: 'День сменил тональность? Лови музыку, где резкие перепады — фича, а не баг.' }
+                },
+                {
+                  hook: 'Забиваю на все, укутываюсь в плед.', rest: 'Включаю режим «драматичный сериал у окна» под дождь.', archetype: 'tchaikovsky',
+                  music: { work: 'october', lead: 'Плед, окно, капли. Для этого вайба нужна идеальная осенняя пьеса.' }
+                },
+                {
+                  hook: 'Собираю движ.', rest: 'Раз вечер испорчен, устроим из этого масштабную авантюру для всех.', archetype: 'fedorov',
+                  music: { work: 'nachtmusik', lead: 'Спонтанную тусовку лучше всего открывать классической серенадой.' }
+                },
+                {
+                  hook: 'Беру все в свои руки.', rest: 'Проблема сама себя не решит. А если решит, я все равно перепроверю.', archetype: 'beethoven',
+                  music: { work: 'pastoral', lead: 'Любишь держать контроль? В этой симфонии есть и буря, и штиль после нее.' }
+                }
+              ]
+            },
+            {
+              id: 'q2', scene: 'q2', text: 'Неожиданно образовался свободный вечер. Куда направишь энергию?',
+              answers: [
+                {
+                  hook: 'Зажигаю приглушенный свет.', rest: 'Создаю эстетичную атмосферу, название которой еще не придумали.', archetype: 'debussy',
+                  music: { work: 'clair', lead: 'Полумрак, тишина и ноль планов. Нужна медитативная фортепианная классика.' }
+                },
+                {
+                  hook: 'Резко меняю локацию.', rest: 'Сидеть на месте скучно, пойду проверю, что там за углом.', archetype: 'stravinsky',
+                  music: { work: 'nachtmusik', lead: 'Маршрут перестроился? Пусть на фоне играет бодрая серенада.' }
+                },
+                {
+                  hook: 'Затеваю грандиозный проект.', rest: 'Расписываю все до 2030 года с подпунктами и майлстоунами.', archetype: 'wagner',
+                  music: { work: 'firebird', lead: 'Глобальному проекту нужен мощный саундтрек с оркестровым размахом.' }
+                },
+                {
+                  hook: 'Берусь за три дела одновременно.', rest: 'В итоге ни одно не доделал, но получилось концептуально.', archetype: 'mozart',
+                  music: { work: 'idyll', lead: 'Хаос в задачах? Успокоим нервы спокойной камерной музыкой.' }
+                }
+              ]
+            },
+            {
+              id: 'q3', scene: 'q3', text: 'Командный кружок по интересам буксует. Твоя роль в спасении?',
+              answers: [
+                {
+                  hook: 'Тяну лямку до победного.', rest: 'Даже если финал придется дописывать в одиночку в 4 утра.', archetype: 'beethoven',
+                  music: { work: 'nachtmusik', lead: 'Дожимаем финал! Последняя часть серенады как раз создана для резкого рывка.' }
+                },
+                {
+                  hook: 'Зажигаю команду вайбом.', rest: 'Превращаю унылую рутину в перформанс с овациями.', archetype: 'fedorov',
+                  music: { work: 'pastoral', lead: 'Рабочий процесс превратился в праздник? Лови третью часть симфонии.' }
+                },
+                {
+                  hook: 'Драматизирую масштабы катастрофы.', rest: 'Хотя на кону всего лишь презентация картошки фри.', archetype: 'tchaikovsky',
+                  music: { work: 'firebird', lead: 'Драма на ровном месте требует мощной оркестровой подзвучки.' }
+                },
+                {
+                  hook: 'Замечаю то, что все упустили.', rest: 'Например, что концепция трещит по швам еще на первом слайде.', archetype: 'debussy',
+                  music: { work: 'idyll', lead: 'Внимательность к деталям любит камерное и близкое звучание.' }
+                }
+              ]
+            },
+            {
+              id: 'q4', scene: 'q4', text: 'Если бы твою жизнь экранизировали, в каком жанре был бы фильм?',
+              answers: [
+                {
+                  hook: 'Эпическое фэнтези.', rest: 'Сложная лорная база, масштабные декорации и открытый финал.', archetype: 'wagner',
+                  music: { work: 'pastoral', lead: 'Эпическому хронометражу — пейзажи симфонии сменяют друг друга, как кадры.' }
+                },
+                {
+                  hook: 'Безумная комедия положений.', rest: 'Где все шло не так с первой минуты, но вышло чертовски смешно.', archetype: 'mozart',
+                  music: { work: 'nachtmusik', lead: 'Комедии положен бодрый финал. Серенада как раз заканчивается на высокой ноте.' }
+                },
+                {
+                  hook: 'Артхаусное инди-кино.', rest: 'Которое на фестивалях хвалят за «глубокую тишину и несказанное».', archetype: 'stravinsky',
+                  music: { work: 'clair', lead: 'В хорошем артхаусе всегда есть сцена с залипательным визуалом под тихую музыку.' }
+                },
+                {
+                  hook: 'Живое тревел-шоу.', rest: 'Где после титров все идут в бар обсуждать увиденный хаос.', archetype: 'fedorov',
+                  music: { work: 'firebird', lead: 'После яркого шоу хочется драйва. Сказочные мотивы «Жар-птицы» подойдут.' }
+                }
+              ]
+            },
+            {
+              id: 'q5', scene: 'q5', text: 'Как у тебя складываются отношения с дедлайнами и правилами?',
+              answers: [
+                {
+                  hook: 'Правила существуют, чтобы', rest: 'Красиво нарушать их ради красивого же жеста.', archetype: 'tchaikovsky',
+                  music: { work: 'clair', lead: 'Нарушать правила эстетично лучше под завораживающий «Лунный свет».' }
+                },
+                {
+                  hook: 'Интуиция важнее инструкций.', rest: 'Зачем читать мануал на 50 страниц, если можно разобраться методом тыка?', archetype: 'debussy',
+                  music: { work: 'idyll', lead: 'Доверяем внутреннему компасу. Эта музыка не требует лишних пояснений.' }
+                },
+                {
+                  hook: 'Сначала результат, потом споры.', rest: 'Правила можно обсудить, но после сдачи проекта.', archetype: 'beethoven',
+                  music: { work: 'firebird', lead: 'Сначала дело, потом дискуссии. Заряжаем ритм оркестра.' }
+                },
+                {
+                  hook: 'Скучно жить по шаблонам.', rest: 'Я бы не просто нарушил правило, я бы переписал весь кодекс.', archetype: 'wagner',
+                  music: { work: 'pastoral', lead: 'Масштабный подход к переменам: пять частей, пять разных состояний.' }
+                }
+              ]
+            },
+            {
+              id: 'q6', scene: 'q6', text: 'Твой фирменный способ привлечь к себе всеобщее внимание?',
+              answers: [
+                {
+                  hook: 'Сделать что-то абсолютно непредсказуемое.', rest: 'Так, чтобы у всех в комнате завис внутренний процессор.', archetype: 'stravinsky',
+                  music: { work: 'firebird', lead: 'Внезапные твисты — наше все. Оркестр здесь тоже любит неожиданные смены темпа.' }
+                },
+                {
+                  hook: 'Зайти с козырей и рассказать байку.', rest: 'Даже покупка стирального порошка в твоем исполнении звучит как боевик.', archetype: 'fedorov',
+                  music: { work: 'pastoral', lead: 'Любую рутину можно подать как сюжет. У симфонии тоже есть четкая история.' }
+                },
+                {
+                  hook: 'Выдать перформанс экспромтом.', rest: 'Без подготовки, зато с огоньком и аплодисментами в конце.', archetype: 'mozart',
+                  music: { work: 'nachtmusik', lead: 'Экспромт требует яркой точки. Слушаем стремительный финал.' }
+                },
+                {
+                  hook: 'Просто молча занять угол.', rest: 'И через пять минут все будут смотреть только на тебя.', archetype: 'debussy',
+                  music: { work: 'october', lead: 'Тихая уверенность громче криков. Осенняя пьеса звучит ровно об этом.' }
+                }
+              ]
+            },
+            {
+              id: 'q7', scene: 'q7', text: 'Чемодан собран. Какую главную вещь ты бросаешь внутрь в последний момент?',
+              answers: [
+                {
+                  hook: 'Чек-лист, билет, резервный план.', rest: 'И железобетонная уверенность, что мы все успеем.', archetype: 'beethoven',
+                  music: { work: 'pastoral', lead: 'Полный контроль над поездкой: открываем симфонию с бодрого настроения.' }
+                },
+                {
+                  hook: 'Пол-арсенала вещей «на всякий случай».', rest: 'Вдруг в пункте назначения придется основать колонию.', archetype: 'wagner',
+                  music: { work: 'idyll', lead: 'Если багажа хватит на небольшую цивилизацию, в дороге пригодится камерный покой.' }
+                },
+                {
+                  hook: 'Кастомный плейлист для драмы.', rest: 'И блокнот, куда срочно записывать гениальные мысли под окном поезда.', archetype: 'tchaikovsky',
+                  music: { work: 'october', lead: 'В дорогу нужен саундтрек для рефлексии. Включаем фортепианную классику.' }
+                },
+                {
+                  hook: 'Рваный билетик в неизвестность.', rest: 'Главное — не ехать по скучным туристическим тропам.', archetype: 'stravinsky',
+                  music: { work: 'clair', lead: 'Нестандартный трип приводит в красивые тихие места. Передохнем под Дебюсси.' }
+                }
+              ]
+            }
+          ]
+        };
+
+        if (typeof module !== 'undefined') module.exports = { QUIZ_DATA: QUIZ_DATA };
+
+        //подсчет результата//
+        var QuizLogic = (function () {
+          function validate(data) {
+            var errors = [], counts = {};
+            data.archetypeOrder.forEach(function (id) {
+              counts[id] = 0;
+              if (!data.archetypes[id]) errors.push('нет архетипа ' + id);
+            });
+            data.questions.forEach(function (q) {
+              if (q.answers.length !== 4) errors.push(q.id + ': вариантов не 4');
+              q.answers.forEach(function (a, i) {
+                if (!(a.archetype in counts)) errors.push(q.id + '/' + i + ': неизвестный архетип ' + a.archetype);
+                else counts[a.archetype]++;
+              });
+            });
+            data.archetypeOrder.forEach(function (id) {
+              if (counts[id] !== 4) errors.push(id + ' встречается ' + counts[id] + ' раз, нужно 4');
+            });
+            if (data.questions.length !== 7) errors.push('вопросов не 7');
+            return { ok: errors.length === 0, errors: errors, counts: counts };
+          }
+
+          function score(data, picks) {
+            var scores = {}, last = {};
+            data.archetypeOrder.forEach(function (id) { scores[id] = 0; last[id] = -1; });
+            data.questions.forEach(function (q, qi) {
+              var p = picks[qi];
+              if (p === null || p === undefined || !q.answers[p]) return;
+              var id = q.answers[p].archetype;
+              scores[id] += 1;
+              last[id] = qi;
+            });
+            var max = Math.max.apply(null, data.archetypeOrder.map(function (id) { return scores[id]; }));
+            var leaders = data.archetypeOrder.filter(function (id) { return scores[id] === max; });
+            var winner = leaders.reduce(function (best, id) { return last[id] > last[best] ? id : best; }, leaders[0]);
+            return { winner: winner, scores: scores, leaders: leaders, answered: picks.filter(function (p) { return p !== null && p !== undefined; }).length };
+          }
+
+          function isComplete(data, picks) {
+            return data.questions.every(function (_, i) { return picks[i] !== null && picks[i] !== undefined; });
+          }
+
+          return { validate: validate, score: score, isComplete: isComplete };
+        })();
+
+        if (typeof module !== 'undefined') module.exports = { QuizLogic: QuizLogic };
+
+        var useState = React.useState, useEffect = React.useEffect, useRef = React.useRef;
+        var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var T = function (ms) { return RM ? 40 : ms; };
+
+        var TOTAL = QUIZ_DATA.questions.length;
+
+        function Px(p) {
+          return h('div', { className: 'px', 'data-depth': p.depth }, p.children);
+        }
+        function In(p) {
+          var st = { '--d': p.d + 's' };
+          if (p.fx) st['--fx'] = p.fx; if (p.fy) st['--fy'] = p.fy; if (p.fr) st['--fr'] = p.fr;
+          return h('div', { className: 'in ' + p.cls, style: Object.assign(st, p.style || {}) }, p.children);
+        }
+
+        // stop-frame последовательность фото на главной проигрывается один раз за сессию страницы;
+        // при возвращении на главную сразу показывается итоговая композиция
+        var FED_SEQ_PLAYED = false;
+
+        function Hero(p) {
+          var rootRef = useRef(null);
+          var seqDone = useRef(FED_SEQ_PLAYED).current;
+          useEffect(function () { FED_SEQ_PLAYED = true; }, []);
+
+          // мобильная раскладка: фото не должно заходить под заголовок и кнопку.
+          // Меряем низ кнопки по layout-координатам (offsetTop не учитывает анимационные transform).
+          useEffect(function () {
+            var root = rootRef.current;
+            var fig = root && root.querySelector('[data-fedorov-figure]');
+            var cta = root && root.querySelector('.cta-wrap');
+            if (!fig || !cta || !window.matchMedia) return;
+            var mq = matchMedia('(max-width:860px)');
+            var raf = 0;
+            function measure() {
+              raf = 0;
+              if (!mq.matches) { fig.style.removeProperty('--fed-safe-top'); return; }
+              var y = 0, el = cta;
+              while (el && el !== root) { y += el.offsetTop; el = el.offsetParent; }
+              fig.style.setProperty('--fed-safe-top', Math.round(y + cta.offsetHeight + 16) + 'px');
+            }
+            function schedule() { if (!raf) raf = requestAnimationFrame(measure); }
+            measure();
+            var ro = window.ResizeObserver ? new ResizeObserver(schedule) : null;
+            if (ro) { ro.observe(root); var copy = root.querySelector('.copy'); if (copy) ro.observe(copy); }
+            else window.addEventListener('resize', schedule);
+            return function () {
+              if (ro) ro.disconnect(); else window.removeEventListener('resize', schedule);
+              if (raf) cancelAnimationFrame(raf);
+            };
+          }, []);
+          useEffect(function () {
+            var fig = rootRef.current && rootRef.current.querySelector('[data-fedorov-figure]');
+            if (!fig) return;
+            var imgs = Array.prototype.slice.call(fig.querySelectorAll('img'));
+            var decoded = Promise.all(imgs.map(function (img) { return img.decode ? img.decode().catch(function () { }) : Promise.resolve(); }));
+            var fallbackTimer = 0;
+            var fallback = new Promise(function (resolve) { fallbackTimer = setTimeout(resolve, 1500); });
+            Promise.race([decoded, fallback]).then(function () { clearTimeout(fallbackTimer); if (fig.isConnected) fig.classList.add('is-ready'); });
+            if (p.pressed) fig.classList.add('is-leaving'); else fig.classList.remove('is-leaving');
+            var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var coarse = window.matchMedia && matchMedia('(hover: none)').matches;
+            if (reduce || coarse) return function () { clearTimeout(fallbackTimer); };
+            var root = rootRef.current;   // ref обнуляется до cleanup — держим узел в замыкании
+            var tx = 0, ty = 0, x = 0, y = 0, raf = 0, visible = true;
+            function move(e) {
+              var r = root.getBoundingClientRect();
+              tx = (e.clientX - r.left) / r.width - .5;
+              ty = (e.clientY - r.top) / r.height - .5;
+            }
+            function leave() { tx = 0; ty = 0; }
+            function tick() {
+              x += (tx - x) * .08; y += (ty - y) * .08;
+              fig.style.setProperty('--fed-x', x.toFixed(4));
+              fig.style.setProperty('--fed-y', y.toFixed(4));
+              raf = visible ? requestAnimationFrame(tick) : 0;
+            }
+            var observer = new IntersectionObserver(function (entries) {
+              visible = entries[0].isIntersecting;
+              if (visible && !raf) raf = requestAnimationFrame(tick);
+              if (!visible && raf) { cancelAnimationFrame(raf); raf = 0; }
+            });
+            observer.observe(root);
+            root.addEventListener('pointermove', move, { passive: true });
+            root.addEventListener('pointerleave', leave);
+            raf = requestAnimationFrame(tick);
+            return function () {
+              clearTimeout(fallbackTimer);
+              observer.disconnect();
+              root.removeEventListener('pointermove', move);
+              root.removeEventListener('pointerleave', leave);
+              if (raf) cancelAnimationFrame(raf);
+            };
+          }, [p.pressed]);
+
+          useEffect(function () {
+            var coarse = window.matchMedia && matchMedia('(hover: none)').matches;
+            if (RM || coarse) return;
+            var raf = 0, nx = 0, ny = 0;
+            function apply() {
+              raf = 0;
+              var els = rootRef.current ? rootRef.current.querySelectorAll('[data-depth]') : [];
+              for (var i = 0; i < els.length; i++) {
+                var d = parseFloat(els[i].getAttribute('data-depth'));
+                els[i].style.setProperty('--mx', (-nx * d).toFixed(1) + 'px');
+                els[i].style.setProperty('--my', (-ny * d * 0.7).toFixed(1) + 'px');
+              }
+            }
+            function move(e) {
+              nx = (e.clientX / window.innerWidth - 0.5) * 2;
+              ny = (e.clientY / window.innerHeight - 0.5) * 2;
+              if (!raf) raf = requestAnimationFrame(apply);
+            }
+            window.addEventListener('mousemove', move);
+            return function () { window.removeEventListener('mousemove', move); if (raf) cancelAnimationFrame(raf); };
+          }, []);
+
+          return h('section', { className: 'hero', ref: rootRef, 'aria-labelledby': 'ttl' },
+            h('figure', { className: 'fedorov-hero-figure' + (seqDone ? ' is-seq-done' : ''), 'data-fedorov-figure': true, 'aria-label': 'Георгий Федоров, художественный руководитель оркестра' },
+              h('div', { className: 'fedorov-hero-depth', style: { '--depth': -70 }, 'aria-hidden': true }, h('img', { className: 'fedorov-hero-img fedorov-hero-img--back', src: 'images/fedorov-hero/fedorov-paper-back.webp', alt: '', width: 1400, height: 1477, decoding: 'async' })),
+              h('div', { className: 'fedorov-hero-depth', style: { '--depth': 46 }, 'aria-hidden': true }, h('img', { className: 'fedorov-hero-img fedorov-hero-img--shadow', src: 'images/fedorov-hero/fedorov-shadow-laughing.webp', alt: '', width: 1400, height: 1477, decoding: 'async' })),
+              // stop-frame: кадры одной фотосессии; итоговый — «смеется»
+              h('div', { className: 'fedorov-hero-depth', style: { '--depth': 22 }, 'aria-hidden': true },
+                h('img', { className: 'fedorov-hero-img fed-frame fed-frame--posed', src: 'images/fedorov-hero/fedorov-frame-posed.webp', alt: '', width: 1400, height: 1477, decoding: 'async', fetchPriority: 'high' }),
+                h('img', { className: 'fedorov-hero-img fed-print fed-frame fed-frame--print', src: 'images/fedorov-hero/fedorov-print-peeking.webp', alt: '', width: 882, height: 1062, decoding: 'async' }),
+                h('img', { className: 'fedorov-hero-img fed-frame fed-frame--laughing', src: 'images/fedorov-hero/fedorov-frame-laughing.webp', alt: '', width: 1400, height: 1477, decoding: 'async', fetchPriority: 'high' })
+              ),
+              h('div', { className: 'fedorov-hero-depth', style: { '--depth': -30 }, 'aria-hidden': true },
+                h('img', { className: 'fedorov-hero-img fedorov-hero-img--front', src: 'images/fedorov-hero/fedorov-tape-laughing.webp', alt: '', width: 1400, height: 1477, decoding: 'async' }),
+                // маленький дополнительный кадр (тот же файл, что и отпечаток в последовательности)
+                h('img', { className: 'fedorov-hero-img fed-print fed-mini', src: 'images/fedorov-hero/fedorov-print-peeking.webp', alt: '', width: 882, height: 1062, decoding: 'async' })
+              )
+            ),
+            h('div', { className: 'stage' },
+              h(Px, { depth: 6 }, h('div', { className: 'in staff', style: { '--d': '0s', '--fy': '-20vh' } }, h(Staff, { notes: 'none' }))),
+              h(Px, { depth: 12 }, h(In, { cls: 'disc d1', d: 0.1 })),
+              h(Px, { depth: 22 }, h(In, { cls: 'board', d: 0.25 }, h(Board))),
+
+              h(Px, { depth: 34 }, h(In, { cls: 'star', d: 0.7 }, h(Star))),
+              h(Px, { depth: 48 }, h(In, { cls: 'note-a', d: 0.8 }, h(Note, { fill: C }))),
+              h(Px, { depth: 58 }, h(In, { cls: 'note-b', d: 0.95 }, h(BeamedNotes, { fill: M }))),
+              h(Px, { depth: 28 }, h(In, { cls: 'arrow', d: 1.0 }, h(Arrow))),
+              h(Px, { depth: 52 }, h(In, { cls: 'dice', d: 1.05 }, h(Dice))),
+
+
+              h('div', { className: 'copy' },
+                h('div', { className: 'in flow eyebrow', style: { '--d': '0.55s', '--fx': '-30vw' } }, 'Музыкальный тест от Оркестра 1703'),
+                h('h1', { className: 'title', id: 'ttl' },
+                  h('span', { className: 'in flow ln l1', style: { '--d': '0.65s', '--fx': '-50vw' } }, h('span', null, 'Кто ты')),
+                  h('span', { className: 'in flow ln l2', style: { '--d': '0.8s', '--fx': '50vw' } }, h('span', null, 'из мира')),
+                  h('span', { className: 'in flow ln l3', style: { '--d': '0.95s', '--fy': '40vh' } }, h('span', null, h('em', null, 'музыки?')))
+                ),
+                h('p', { className: 'in flow sub', style: { '--d': '1.15s' } }, '', 'Никаких сольфеджио, теории  ', h('s', null, 'и прочей нуди'),)
+              ),
+
+              h('div', { className: 'in cta-wrap', style: { '--d': '1.3s' } },
+                h('button', { className: 'btn' + (p.pressed ? ' pressed' : ''), onClick: p.onStart, 'aria-label': 'Начать тест' },
+                  h('span', { className: 'face' }, 'Начать тест'))
+              ),
+
+            ));
+        }
+
+        function CurtainSvg(p) {
+          var ys = [34, 42, 50, 58, 66];
+          return h('svg', { viewBox: '0 0 100 100', preserveAspectRatio: 'none', 'aria-hidden': true },
+            ys.map(function (y, i) { return h('line', { key: i, x1: 0, x2: 100, y1: y, y2: y, stroke: G, strokeWidth: 0.9, vectorEffect: 'non-scaling-stroke' }); })
+          );
+        }
+        function Curtain(p) {
+          return h('div', { className: 'curtain' + (p.closed ? ' closed' : ''), 'aria-hidden': true },
+            h('div', { className: 'half left' }, h(CurtainSvg), h('div', { style: { position: 'absolute', right: '12%', top: '30%', width: '14vw', maxWidth: 200 } }, h(Note, { fill: M }))),
+            h('div', { className: 'half right' }, h(CurtainSvg), h('div', { style: { position: 'absolute', left: '14%', top: '36%', width: '11vw', maxWidth: 160 } }, h(Note, { fill: C })))
+          );
+        }
+
+        function Sweep(p) {
+          var ys = [40, 70, 100, 130, 160];
+          var ns = [[160, 130, C], [320, 100, G], [480, 70, M], [640, 100, C], [800, 130, G], [960, 160, M]];
+          return h('div', { className: 'sweep' + (p.on ? ' on' : ''), 'aria-hidden': true },
+            h('svg', { viewBox: '0 0 1200 200', preserveAspectRatio: 'xMidYMid slice' },
+              h('g', { className: 'lines' }, ys.map(function (y, i) { return h('path', { key: i, d: 'M0 ' + y + ' H1200', stroke: G, strokeWidth: 3, fill: 'none' }); })),
+              ns.map(function (n, i) {
+                return h('g', { key: i, className: 'nt', style: { '--i': i } },
+                  h('line', { x1: n[0] + 22, y1: n[1], x2: n[0] + 22, y2: n[1] - 70, stroke: G, strokeWidth: 5 }),
+                  h('ellipse', { cx: n[0], cy: n[1], rx: 24, ry: 16, transform: 'rotate(-20 ' + n[0] + ' ' + n[1] + ')', fill: n[2], stroke: G, strokeWidth: 4 }));
+              })
+            )
+          );
+        }
+
+        function Progress(p) {
+          var bars = [];
+          for (var i = 0; i < TOTAL; i++) bars.push(h('i', { key: i, className: i < p.n ? 'on' : '' }));
+          return h('div', { className: 'prog', role: 'progressbar', 'aria-valuemin': 1, 'aria-valuemax': TOTAL, 'aria-valuenow': p.n, 'aria-label': 'Вопрос ' + p.n + ' из ' + TOTAL },
+            h('span', null, 'ВОПРОС ' + p.n + ' / ' + TOTAL), h('div', { className: 'bars', 'aria-hidden': true }, bars));
+        }
+
+        function QuizDeco() {
+          return h('div', { className: 'deco', 'aria-hidden': true },
+            h('div', { style: { position: 'absolute', inset: '1.5% 0 auto 0', height: '12%', opacity: 0.22 } }, h(Staff, { notes: 'none' })),
+            h('div', { className: 'disc', style: { position: 'absolute', right: '-8vw', bottom: '-16vw', width: '30vw', height: '30vw' } }),
+            h('div', { className: 'd-star', style: { position: 'absolute', right: '2vw', top: '3vh', width: 'clamp(60px,7vw,110px)' } }, h(Star)),
+            h('div', { className: 'd-note', style: { position: 'absolute', left: '-2vw', bottom: '2vh', width: 'clamp(70px,9vw,140px)', transform: 'rotate(-14deg)' } }, h(Note, { fill: C }))
+          );
+        }
+
+
+
+
+
+        /* COMPOSER_SCENES:BEGIN — коллажи композиторов для экранов вопросов (данные слоев из PSD-сборки) */
+        var COMPOSER_SCENES = { "q1": { "id": "beethoven", "alt": "Коллаж: у Бетховена раскрывается голова, изнутри вылетают ноты, пружина и часы", "layers": [{ "n": "back", "src": "images/composers/beethoven/back.webp", "x": 0, "y": 0, "w": 100, "h": 100 }, { "n": "interior", "src": "images/composers/beethoven/interior.webp", "x": 35.417, "y": 18.333, "w": 48.646, "h": 26.667, "c": "b-interior" }, { "n": "body", "src": "images/composers/beethoven/body.webp", "x": 7.604, "y": 14.25, "w": 92.708, "h": 87.833, "c": "b-body" }, { "n": "cap", "src": "images/composers/beethoven/cap.webp", "x": 35.312, "y": 18.25, "w": 51.042, "h": 27.083, "c": "b-cap" }, { "n": "note1", "src": "images/composers/beethoven/note1.webp", "x": 5.625, "y": 2.667, "w": 18.542, "h": 20.25, "c": "b-fly", "v": { "--sx": "238.7%", "--sy": "115.0%", "--ax": "107.4%", "--ay": "-5.9%" } }, { "n": "gear1", "src": "images/composers/beethoven/gear1.webp", "x": 22.969, "y": 0.792, "w": 17.812, "h": 14.333, "c": "b-fly", "v": { "--sx": "153.1%", "--sy": "196.2%", "--ax": "68.9%", "--ay": "6.9%" } }, { "n": "spring", "src": "images/composers/beethoven/spring.webp", "x": 42.917, "y": -2.167, "w": 13.646, "h": 16.25, "c": "b-fly", "v": { "--sx": "69.0%", "--sy": "185.4%", "--ax": "31.0%", "--ay": "11.6%" } }, { "n": "clock", "src": "images/composers/beethoven/clock.webp", "x": 60.156, "y": -3.125, "w": 22.292, "h": 20.833, "c": "b-fly", "v": { "--sx": "-54.5%", "--sy": "138.2%", "--ax": "-24.5%", "--ay": "6.2%" } }, { "n": "note2", "src": "images/composers/beethoven/note2.webp", "x": 78.229, "y": 12.333, "w": 21.771, "h": 18.75, "c": "b-fly", "v": { "--sx": "-137.6%", "--sy": "76.7%", "--ax": "-61.9%", "--ay": "-27.7%" } }, { "n": "gear2", "src": "images/composers/beethoven/gear2.webp", "x": 79.427, "y": 29.875, "w": 13.333, "h": 10.75, "c": "b-fly", "v": { "--sx": "-202.1%", "--sy": "7.8%", "--ax": "-90.9%", "--ay": "-105.0%" } }, { "n": "note3", "src": "images/composers/beethoven/note3.webp", "x": 6.094, "y": 27.292, "w": 10.104, "h": 16.333, "c": "b-fly", "v": { "--sx": "475.1%", "--sy": "3.8%", "--ax": "213.8%", "--ay": "-69.7%" } }] }, "q2": { "id": "bach", "alt": "Коллаж: невозмутимый Бах в наушниках сводит музыку за пультом диджея", "layers": [{ "n": "back", "src": "images/composers/bach/back.webp", "x": 0, "y": 0, "w": 100, "h": 100 }, { "n": "portrait", "src": "images/composers/bach/portrait.webp", "x": 11.667, "y": 10.167, "w": 79.271, "h": 79.0 }, { "n": "phones", "src": "images/composers/bach/phones.webp", "x": 21.875, "y": 14.5, "w": 57.708, "h": 28.333, "c": "bh-phones" }, { "n": "desk", "src": "images/composers/bach/desk.webp", "x": 2.604, "y": 71.667, "w": 96.042, "h": 29.5, "c": "bh-desk" }, { "n": "record", "src": "images/composers/bach/record.webp", "x": 8.854, "y": 73.333, "w": 31.25, "h": 25.0, "c": "bh-record" }, { "n": "arm", "src": "images/composers/bach/arm.webp", "x": 38.333, "y": 71.417, "w": 10.729, "h": 20.083, "c": "bh-arm" }, { "n": "fader0", "src": "images/composers/bach/fader0.webp", "x": 65.312, "y": 87.917, "w": 4.792, "h": 2.5, "c": "bh-fader" }, { "n": "fader1", "src": "images/composers/bach/fader1.webp", "x": 74.688, "y": 83.75, "w": 4.792, "h": 2.5, "c": "bh-fader" }, { "n": "fader2", "src": "images/composers/bach/fader2.webp", "x": 84.062, "y": 90.417, "w": 4.792, "h": 2.5, "c": "bh-fader" }, { "n": "note0", "src": "images/composers/bach/note0.webp", "x": 3.802, "y": 46.125, "w": 15.417, "h": 14.667, "c": "bh-note", "v": { "--sx": "84.1%", "--sy": "161.1%" } }, { "n": "note1", "src": "images/composers/bach/note1.webp", "x": 83.698, "y": 39.042, "w": 8.958, "h": 16.083, "c": "bh-note", "v": { "--sx": "-711.0%", "--sy": "186.5%" } }, { "n": "note2", "src": "images/composers/bach/note2.webp", "x": 78.073, "y": 59.542, "w": 14.062, "h": 15.25, "c": "bh-note", "v": { "--sx": "-431.1%", "--sy": "65.0%" } }] }, "q3": { "id": "tchaikovsky", "alt": "Коллаж: Чайковский удивленно таращит бумажные глаза", "layers": [{ "n": "back", "src": "images/composers/tchaikovsky/back.webp", "x": 0, "y": 0, "w": 100, "h": 100 }, { "n": "eyeh0", "src": "images/composers/tchaikovsky/eyeh0.webp", "x": 43.125, "y": 28.917, "w": 10.312, "h": 8.25, "c": "t-eye t-half" }, { "n": "eye0", "src": "images/composers/tchaikovsky/eye0.webp", "x": 42.812, "y": 28.833, "w": 10.625, "h": 8.583, "c": "t-eye t-open" }, { "n": "eyeh1", "src": "images/composers/tchaikovsky/eyeh1.webp", "x": 54.062, "y": 28.917, "w": 10.312, "h": 8.25, "c": "t-eye t-half" }, { "n": "eye1", "src": "images/composers/tchaikovsky/eye1.webp", "x": 54.062, "y": 28.833, "w": 10.625, "h": 8.583, "c": "t-eye t-open" }, { "n": "flake1", "src": "images/composers/tchaikovsky/flake1.webp", "x": 3.75, "y": 5.333, "w": 18.333, "h": 13.167, "c": "t-sway cs-sec" }, { "n": "flake2", "src": "images/composers/tchaikovsky/flake2.webp", "x": 82.083, "y": 4.75, "w": 14.062, "h": 10.25, "c": "t-sway cs-sec" }, { "n": "flake3", "src": "images/composers/tchaikovsky/flake3.webp", "x": 86.354, "y": 48.75, "w": 11.771, "h": 9.25, "c": "t-sway cs-sec" }, { "n": "note1", "src": "images/composers/tchaikovsky/note1.webp", "x": 5.781, "y": 45.417, "w": 15.625, "h": 16.167, "c": "t-drift cs-sec" }, { "n": "note2", "src": "images/composers/tchaikovsky/note2.webp", "x": 65.729, "y": 1.167, "w": 18.333, "h": 14.667, "c": "t-drift cs-sec" }] }, "q4": { "id": "chopin", "alt": "Коллаж: Шопен в наушниках плачет, слезы превращаются в ноты", "layers": [{ "n": "back", "src": "images/composers/chopin/back.webp", "x": 0, "y": 0, "w": 100, "h": 100 }, { "n": "portrait", "src": "images/composers/chopin/portrait.webp", "x": 15.625, "y": 30.5, "w": 69.792, "h": 72.25 }, { "n": "headphones", "src": "images/composers/chopin/headphones.webp", "x": 21.979, "y": 32.417, "w": 61.667, "h": 45.833, "c": "c-phones" }, { "n": "tless", "src": "images/composers/chopin/tless.webp", "x": 48.646, "y": 61.75, "w": 28.958, "h": 18.667, "c": "c-tear c-tless" }, { "n": "tmid", "src": "images/composers/chopin/tmid.webp", "x": 48.646, "y": 61.75, "w": 29.583, "h": 17.167, "c": "c-tear c-tmid" }, { "n": "tmore", "src": "images/composers/chopin/tmore.webp", "x": 48.646, "y": 61.75, "w": 29.583, "h": 19.75, "c": "c-tear c-tmore" }, { "n": "drop0", "src": "images/composers/chopin/drop0.webp", "x": 51.25, "y": 73.583, "w": 5.833, "h": 6.417, "c": "c-drop", "v": { "--dy": "114.9%" } }, { "n": "nnote0", "src": "images/composers/chopin/nnote0.webp", "x": 7.5, "y": 75.625, "w": 11.562, "h": 12.667, "c": "c-note" }, { "n": "drop1", "src": "images/composers/chopin/drop1.webp", "x": 73.646, "y": 71.833, "w": 5.833, "h": 6.417, "c": "c-drop", "v": { "--dy": "116.2%" } }, { "n": "nnote1", "src": "images/composers/chopin/nnote1.webp", "x": 83.438, "y": 74.042, "w": 7.604, "h": 12.667, "c": "c-note" }, { "n": "drop2", "src": "images/composers/chopin/drop2.webp", "x": 51.25, "y": 73.583, "w": 5.833, "h": 6.417, "c": "c-drop", "v": { "--dy": "257.8%" } }, { "n": "nnote2", "src": "images/composers/chopin/nnote2.webp", "x": 77.812, "y": 84.792, "w": 11.458, "h": 12.75, "c": "c-note" }, { "n": "wave0", "src": "images/composers/chopin/wave0.webp", "x": 91.146, "y": 55.25, "w": 8.438, "h": 11.167, "c": "c-wave cs-sec" }, { "n": "wave1", "src": "images/composers/chopin/wave1.webp", "x": 6.042, "y": 55.25, "w": 8.542, "h": 11.167, "c": "c-wave cs-sec" }] }, "q5": { "id": "stravinsky", "alt": "Коллаж: у Стравинского вместо глаз вращаются виниловые пластинки", "layers": [{ "n": "back", "src": "images/composers/stravinsky/back.webp", "x": 0, "y": 0, "w": 100, "h": 100 }, { "n": "circle", "src": "images/composers/stravinsky/circle.webp", "x": 48.438, "y": 8.083, "w": 49.479, "h": 38.917, "c": "s-circle cs-sec" }, { "n": "bar", "src": "images/composers/stravinsky/bar.webp", "x": -1.458, "y": 25.083, "w": 100.729, "h": 43.25, "c": "s-bar cs-sec" }, { "n": "tri", "src": "images/composers/stravinsky/tri.webp", "x": 3.229, "y": 36.167, "w": 20.104, "h": 17.0, "c": "s-tri cs-sec" }, { "n": "portrait", "src": "images/composers/stravinsky/portrait.webp", "x": 1.771, "y": 42.083, "w": 101.354, "h": 60.583 }, { "n": "vinyl0", "src": "images/composers/stravinsky/vinyl0.webp", "x": 45.208, "y": 56.333, "w": 15.208, "h": 12.083, "c": "s-vinyl" }, { "n": "vinyl1", "src": "images/composers/stravinsky/vinyl1.webp", "x": 62.083, "y": 56.333, "w": 15.104, "h": 12.083, "c": "s-vinyl" }] }, "q6": { "id": "prokofiev", "alt": "Коллаж: Прокофьев-рокер в темных очках, гитара и молнии", "layers": [{ "n": "back", "src": "images/composers/prokofiev/back.webp", "x": 0, "y": 0, "w": 100, "h": 100 }, { "n": "poster1", "src": "images/composers/prokofiev/poster1.webp", "x": 1.458, "y": 0.667, "w": 49.062, "h": 32.333, "c": "p-shake cs-sec" }, { "n": "poster2", "src": "images/composers/prokofiev/poster2.webp", "x": 56.25, "y": 7.0, "w": 41.458, "h": 29.167, "c": "p-shake p-shake2 cs-sec" }, { "n": "portrait", "src": "images/composers/prokofiev/portrait.webp", "x": 10.312, "y": 18.417, "w": 76.667, "h": 84.5 }, { "n": "guitar", "src": "images/composers/prokofiev/guitar.webp", "x": 20.573, "y": 59.083, "w": 83.021, "h": 49.667, "c": "p-guitar" }, { "n": "hand", "src": "images/composers/prokofiev/hand.webp", "x": 53.542, "y": 76.417, "w": 29.479, "h": 33.833, "c": "p-hand" }, { "n": "burst0", "src": "images/composers/prokofiev/burst0.webp", "x": 86.042, "y": 34.75, "w": 11.562, "h": 24.0, "c": "p-pop", "v": { "--sx": "-364.9%", "--sy": "165.2%" } }, { "n": "burst1", "src": "images/composers/prokofiev/burst1.webp", "x": 3.229, "y": 55.0, "w": 14.479, "h": 17.083, "c": "p-pop", "v": { "--sx": "270.5%", "--sy": "133.8%" } }, { "n": "burst2", "src": "images/composers/prokofiev/burst2.webp", "x": 80.885, "y": 28.667, "w": 17.083, "h": 13.75, "c": "p-pop", "v": { "--sx": "-233.0%", "--sy": "369.9%" } }, { "n": "burst3", "src": "images/composers/prokofiev/burst3.webp", "x": 5.573, "y": 38.667, "w": 12.812, "h": 10.167, "c": "p-pop", "v": { "--sx": "293.9%", "--sy": "419.5%" } }, { "n": "burst4", "src": "images/composers/prokofiev/burst4.webp", "x": 66.562, "y": 34.083, "w": 13.333, "h": 10.583, "c": "p-pop", "v": { "--sx": "-177.0%", "--sy": "444.3%" } }] }, "q7": { "id": "mozart", "alt": "Коллаж: Моцарт тайком слушает кассету с шансоном", "layers": [{ "n": "back", "src": "images/composers/mozart/back.webp", "x": 0, "y": 0, "w": 100, "h": 100 }, { "n": "portrait", "src": "images/composers/mozart/portrait.webp", "x": 1.458, "y": 6.333, "w": 83.854, "h": 96.5 }, { "n": "cassette", "src": "images/composers/mozart/cassette.webp", "x": 40.156, "y": 69.25, "w": 54.271, "h": 29.25, "c": "m-cas", "v": { "--ty": "14%" } }, { "n": "reel0", "src": "images/composers/mozart/reel0.webp", "x": 54.323, "y": 80.167, "w": 6.146, "h": 4.917, "c": "m-reel", "v": { "--ty": "83.3%" } }, { "n": "reel1", "src": "images/composers/mozart/reel1.webp", "x": 73.385, "y": 80.167, "w": 6.146, "h": 4.917, "c": "m-reel", "v": { "--ty": "83.3%" } }, { "n": "tape", "src": "images/composers/mozart/tape.webp", "x": 83.281, "y": 66.0, "w": 13.854, "h": 8.5, "c": "m-cas-tape" }, { "n": "wire", "src": "images/composers/mozart/wire.webp", "x": 30.521, "y": 40.083, "w": 16.042, "h": 32.0, "c": "m-wire" }, { "n": "bud", "src": "images/composers/mozart/bud.webp", "x": 32.562, "y": 37.567, "w": 6.979, "h": 5.667, "c": "m-bud" }, { "n": "leak0", "src": "images/composers/mozart/leak0.webp", "x": 17.094, "y": 20.858, "w": 11.562, "h": 10.75, "c": "m-leak cs-sec", "v": { "--sx": "111.7%", "--sy": "129.5%" } }, { "n": "leak1", "src": "images/composers/mozart/leak1.webp", "x": 28.552, "y": 13.025, "w": 9.375, "h": 11.833, "c": "m-leak cs-sec", "v": { "--sx": "27.2%", "--sy": "179.2%" } }] } };
+
+        function ComposerScene(p) {
+          var cfg = p.cfg, ref = useRef(null);
+          // анимации ждут декодирования слоев (не дольше 1.2 с), чтобы бумажки не «моргали»
+          useEffect(function () {
+            var el = ref.current; if (!el) return;
+            var alive = true, timer = 0;
+            var imgs = Array.prototype.slice.call(el.querySelectorAll('img'));
+            var decoded = Promise.all(imgs.map(function (i) { return i.decode ? i.decode().catch(function () { }) : Promise.resolve(); }));
+            var fallback = new Promise(function (r) { timer = setTimeout(r, 1200); });
+            Promise.race([decoded, fallback]).then(function () { clearTimeout(timer); if (alive && el.isConnected) el.classList.add('is-ready'); });
+            return function () { alive = false; clearTimeout(timer); };
+          }, []);
+          var cnt = {};   // порядковый номер внутри своей группы — для задержек
+          return h('div', { className: 'cs cs--' + cfg.id, ref: ref, role: 'img', 'aria-label': cfg.alt },
+            cfg.layers.map(function (l, i) {
+              var st = { left: l.x + '%', top: l.y + '%', width: l.w + '%', height: l.h + '%' };
+              if (l.v) for (var k in l.v) st[k] = l.v[k];
+              if (l.c) { var g = l.c.split(' ')[0]; st['--i'] = cnt[g] = (cnt[g] === undefined ? 0 : cnt[g] + 1); }
+              return h('img', { key: l.n, className: 'cs-l cs-' + l.n + (l.c ? ' ' + l.c : ''), src: l.src, alt: '', draggable: false, decoding: 'async', style: st });
+            }));
+        }
+        /* COMPOSER_SCENES:END */
+
+        function Scene(p) {
+          var sceneFiles = {
+            q1: 'images/question_1_sad.webp',
+            q2: 'images/question_2_deadline.webp',
+            q3: 'images/question_3_party.webp',
+            q4: 'images/question_4_dinner.webp',
+            q5: 'images/question_5_duel.webp',
+            q6: 'images/question_6_playlist.webp',
+            q7: 'images/question_7_ovation.webp'
+          };
+          var src = sceneFiles[p.k];
+          var f = SCENES[p.k];
+          if (COMPOSER_SCENES[p.k]) return h('div', { className: 'scene-wrap' }, h(ComposerScene, { key: p.k, cfg: COMPOSER_SCENES[p.k] }));
+          return h('div', { className: 'scene-wrap' }, src
+            ? h('img', { className: 'question-illustration flap-horizontal', src: src, alt: 'Иллюстрация к вопросу', loading: 'eager', decoding: 'async' })
+            : (f ? f() : null));
+        }
+
+
+        function ListenLink(p) {
+          var l = p.work.listen;
+          if (!l || !l.url) {
+            return h('p', { className: 'mc-note' }, 'Ссылка на запись будет добавлена. Подтвержденной записи пока нет.');
+          }
+          return h('div', { className: 'mc-actions' },
+            h('a', {
+              className: 'btn small', href: l.url, target: '_blank', rel: 'noopener noreferrer',
+              'aria-label': p.label + ': ' + p.work.title + ', ' + p.work.composer + ' (откроется в новой вкладке)'
+            },
+              h('span', { className: 'face' }, p.label, ' ↗')),
+            h('span', { className: 'mc-src' }, l.platform + (l.recording ? ' ' + l.recording : '')));
+        }
+
+
+        function MusicCard(p) {
+          var w = QUIZ_DATA.works[p.music.work];
+          if (!w) return null;
+          return h('article', { className: 'music-card' + (p.result ? ' is-result' : ''), 'aria-label': p.heading },
+            h('div', { className: 'mc-ico', 'aria-hidden': true }, p.result ? h(Note, { fill: C }) : h(Vinyl)),
+            h('div', { className: 'mc-body' },
+              h('span', { className: 'mc-label' }, p.heading),
+              h('p', { className: 'mc-lead' }, p.music.lead),
+              h('p', { className: 'mc-work' }, w.title, h('span', { className: 'mc-comp' }, w.composer)),
+              h('p', { className: 'mc-why' }, w.why),
+              h(ListenLink, { work: w, label: p.listen })));
+        }
+
+        function Quiz(p) {
+          var q = QUIZ_DATA.questions[p.qi], last = p.qi === TOTAL - 1, M0 = QUIZ_DATA.meta;
+          var titleRef = useRef(null), slotRef = useRef(null), first = useRef(true);
+          var swept = useRef(p.swept).current;
+          useEffect(function () { if (titleRef.current) titleRef.current.focus({ preventScroll: true }); }, []);
+
+          useEffect(function () {
+            if (first.current) { first.current = false; return; }
+            if (p.sel === null || !slotRef.current) return;
+            if (window.matchMedia && matchMedia('(max-width: 860px)').matches) {
+              var t = setTimeout(function () {
+                var c = slotRef.current && slotRef.current.firstChild;
+                if (c && c.scrollIntoView) c.scrollIntoView({ block: 'nearest', behavior: RM ? 'auto' : 'smooth' });
+              }, 120);
+              return function () { clearTimeout(t); };
+            }
+          }, [p.sel]);
+          var tags = ['А', 'Б', 'В', 'Г'];
+          var chosen = p.sel === null ? null : q.answers[p.sel];
+          return h('section', { className: 'quiz enter' + (swept ? ' after-sweep' : ''), 'aria-labelledby': 'qt' },
+            h(QuizDeco),
+            h('div', { className: 'q-left' },
+              h(Progress, { n: p.qi + 1 }),
+              h('h2', { className: 'q-title', id: 'qt', tabIndex: -1, ref: titleRef }, q.text),
+              h(Scene, { k: q.scene })
+            ),
+            h('div', { className: 'q-right' },
+              h('fieldset', { className: 'answers' },
+                h('legend', null, q.text),
+                q.answers.map(function (a, i) {
+                  return h('label', { className: 'ans', key: i, style: { '--i': i } },
+                    h('input', { type: 'radio', name: 'q' + p.qi, value: i, checked: p.sel === i, onChange: function () { p.onSel(i); } }),
+                    h('span', { className: 'card' },
+                      h('span', { className: 'tag' }, tags[i]),
+                      h('span', { className: 'txt' }, a.hook, h('small', null, a.rest))));
+                })
+              ),
+              h('div', { className: 'music-slot', ref: slotRef, 'aria-live': 'polite' },
+                chosen
+                  ? h(MusicCard, { key: p.sel, music: chosen.music, heading: M0.musicPause.label, listen: M0.musicPause.listen })
+                  : h('p', { className: 'mc-empty' }, 'После ответа здесь появится музыкальная пауза.'))
+            ),
+            h('div', { className: 'q-foot' },
+              h('button', { className: 'btn ghost small', onClick: p.onBack }, h('span', { className: 'face' }, p.qi === 0 ? '← В начало' : '← Назад')),
+              h('button', { className: 'btn', disabled: p.sel === null, onClick: p.onNext }, h('span', { className: 'face', style: { fontSize: 'clamp(16px,1.6vw,24px)' } }, last ? 'Узнать результат' : 'Дальше →'))
+            )
+          );
+        }
+
+
+        function OrchBlock() {
+          var o = QUIZ_DATA.meta.orchestra;
+          return h('aside', { className: 'orch-block', 'aria-labelledby': 'orch-t' },
+            h('h3', { id: 'orch-t' }, o.title),
+            h('p', null, o.text),
+            h('div', { className: 'orch-links' },
+              o.concerts.url && h('a', { className: 'btn small', href: o.concerts.url, target: '_blank', rel: 'noopener noreferrer' },
+                h('span', { className: 'face' }, o.concerts.label, ' ↗')),
+              o.links.map(function (l, i) {
+                return h('a', { key: i, className: 'orch-link', href: l.url, target: '_blank', rel: 'noopener noreferrer' }, l.label, ' ↗');
+              })),
+            !o.concerts.url && o.concerts.note && h('p', { className: 'orch-note' }, o.concerts.note));
+        }
+
+        function Result(p) {
+          var a = QUIZ_DATA.archetypes[p.id], M0 = QUIZ_DATA.meta;
+          var words = a.name.split(' '), longest = Math.max.apply(null, words.map(function (w) { return w.length; }));
+          var titleRef = useRef(null);
+          useEffect(function () { if (titleRef.current) titleRef.current.focus({ preventScroll: true }); }, []);
+          var poster = POSTERS[a.poster];
+          var archetypeImages = {
+            mozart: 'images/archetype_mozart.webp',
+            beethoven: 'images/archetype_beethoven.webp',
+            tchaikovsky: 'images/archetype_tchaikovsky.webp',
+            wagner: 'images/archetype_wagner.webp',
+            debussy: 'images/archetype_debussy.webp',
+            stravinsky: 'images/archetype_stravinsky.webp',
+            fedorov: 'images/archetype_fedorov.webp'
+          };
+          return h('section', { className: 'result', 'aria-labelledby': 'rt' },
+            h(QuizDeco),
+            h('div', { className: 'poster-wrap' }, archetypeImages[p.id]
+              ? h('img', { className: 'poster archetype-illustration flap-horizontal', src: archetypeImages[p.id], alt: 'Архетип: ' + a.name, loading: 'eager', decoding: 'async' })
+              : (poster ? poster() : null)),
+            h('div', { className: 'r-copy' },
+              h('span', { className: 'r-label rise', style: { '--d': '0.35s' } }, M0.resultLabel),
+              h('h2', { className: 'r-name', id: 'rt', tabIndex: -1, ref: titleRef, style: { '--n': longest } },
+                words.map(function (w, i) { return h('span', { key: i, className: 'w w' + i + ' rise', style: { '--d': (0.45 + i * 0.12) + 's' } }, w); })),
+              a.fullName && a.fullName !== a.name && h('p', { className: 'r-full rise', style: { '--d': '0.6s' } }, a.fullName),
+              h('p', { className: 'r-epithet rise', style: { '--d': '0.7s' } }, a.epithet),
+              h('p', { className: 'r-text rise', style: { '--d': '0.8s' } }, a.text),
+              h('p', { className: 'r-detail rise', style: { '--d': '0.9s' } }, h('b', null, 'Бытовая деталь'), a.detail),
+              h('div', { className: 'r-music rise', style: { '--d': '1s' } },
+                h(MusicCard, { music: a.music, result: true, heading: M0.resultMusic.label, listen: M0.resultMusic.listen })),
+              a.caption && h('p', { className: 'r-note rise', style: { '--d': '1.05s' } }, a.caption),
+              h('div', { className: 'rise', style: { '--d': '1.1s', width: '100%' } }, h(OrchBlock)),
+              h('div', { className: 'r-actions rise', style: { '--d': '1.15s' } },
+                h('button', { className: 'btn', onClick: p.onRetry }, h('span', { className: 'face', style: { fontSize: 'clamp(16px,1.7vw,26px)' } }, M0.retryLabel))
+              ),
+              h('p', { className: 'r-note small rise', style: { '--d': '1.2s' } }, M0.disclaimer)
+            )
+          );
+        }
+
+        function App() {
+          var s = useState('hero'), screen = s[0], setScreen = s[1];
+          var qs = useState(0), qi = qs[0], setQi = qs[1];
+          var ps = useState(function () { return QUIZ_DATA.questions.map(function () { return null; }); }), picks = ps[0], setPicks = ps[1];
+          var rs = useState(null), resId = rs[0], setResId = rs[1];
+          var c = useState(false), closed = c[0], setClosed = c[1];
+          var pr = useState(false), pressed = pr[0], setPressed = pr[1];
+          var sw = useState(false), sweep = sw[0], setSweep = sw[1];
+          var busy = useRef(false);
+
+
+          function curtain(apply, press) {
+            if (busy.current) return; busy.current = true;
+            if (press) setPressed(true);
+            setTimeout(function () { setClosed(true); }, T(press ? 150 : 0));
+            setTimeout(function () {
+              apply(); setPressed(false);
+              requestAnimationFrame(function () { requestAnimationFrame(function () { setClosed(false); }); });
+              setTimeout(function () { busy.current = false; }, T(650));
+            }, T(press ? 850 : 700));
+          }
+
+          function staff(apply) {
+            if (busy.current) return; busy.current = true;
+            setSweep(true);
+            setTimeout(apply, T(480));
+            setTimeout(function () { setSweep(false); busy.current = false; }, T(1050));
+          }
+
+          function start() { curtain(function () { setScreen('quiz'); setQi(0); }, true); }
+          function pick(i) {
+            if (busy.current) return;
+            setPicks(function (prev) { var n = prev.slice(); n[qi] = i; return n; });
+          }
+          function next() {
+            if (picks[qi] === null) return;
+            if (qi < TOTAL - 1) { staff(function () { setQi(qi + 1); }); return; }
+            if (!QuizLogic.isComplete(QUIZ_DATA, picks)) return;
+            var r = QuizLogic.score(QUIZ_DATA, picks);
+            curtain(function () { setResId(r.winner); setScreen('result'); });
+          }
+          function back() {
+            if (qi > 0) staff(function () { setQi(qi - 1); });
+            else curtain(function () { setScreen('hero'); });
+          }
+          function retry() {
+            curtain(function () {
+              setPicks(QUIZ_DATA.questions.map(function () { return null; }));
+              setQi(0); setResId(null); setScreen('hero');
+            });
+          }
+
+          return h('div', { className: 'app' },
+            h(SceneDefs),
+            screen === 'hero' && h(Hero, { onStart: start, pressed: pressed }),
+            screen === 'quiz' && h(Quiz, { key: qi, qi: qi, sel: picks[qi], swept: sweep, onSel: pick, onNext: next, onBack: back }),
+            screen === 'result' && resId && h(Result, { id: resId, onRetry: retry }),
+            h(Curtain, { closed: closed }),
+            h(Sweep, { on: sweep })
+          );
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+
+      })();
+    }
+  </script>
+
+  <!-- Плашка про cookie: тот же ключ, что на сайте, поэтому ответ общий для сайта и теста -->
+  <style>
+    .ck { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 9999; max-width: 400px; margin-left: auto;
+      background: var(--cream); color: var(--green); border: 4px solid var(--green); border-radius: 22px;
+      box-shadow: 8px 8px 0 var(--green); padding: 16px 20px; transform: rotate(-1deg); font-family: var(--f-book); }
+    .ck p { margin: 0; font-size: 15px; line-height: 1.35; }
+    .ck-row { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+    .ck-yes { background: var(--coral); color: var(--cream); border: 3px solid var(--green); border-radius: 999px;
+      box-shadow: 4px 4px 0 var(--green); padding: 9px 16px; font: 700 12px/1 var(--f-bold); text-transform: uppercase;
+      letter-spacing: .06em; cursor: pointer; }
+    .ck-yes:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--green); }
+    .ck-no { background: none; border: 0; padding: 0; color: var(--green); font: 700 13px/1 var(--f-bold);
+      text-transform: uppercase; letter-spacing: .08em; text-decoration: underline; text-decoration-thickness: 2px;
+      text-underline-offset: 4px; cursor: pointer; }
+    .ck-no:hover { color: var(--coral); }
+    @media (min-width: 640px) { .ck { left: auto; right: 24px; bottom: 24px; } }
+  </style>
+  <script>
+    (function () {
+      var KEY = 'o1703-cookies', choice;
+      try { choice = localStorage.getItem(KEY); } catch (e) { choice = 'unknown'; }
+      if (choice) return;
+      var box = document.createElement('div');
+      box.className = 'ck'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Про cookie');
+      box.innerHTML = '<p><span aria-hidden="true">🍪 </span>Мы используем cookie для статистики. Так мы видим, что вам интересно на сайте.</p>' +
+        '<div class="ck-row"><button type="button" class="ck-yes">Конечно, не проблема</button>' +
+        '<button type="button" class="ck-no">Нет, спасибо</button></div>';
+      function answer(v) {
+        try { localStorage.setItem(KEY, v); } catch (e) {}
+        if (v === 'no') window['disableYaCounter114093595'] = true;
+        box.remove();
+      }
+      box.querySelector('.ck-yes').onclick = function () { answer('yes'); };
+      box.querySelector('.ck-no').onclick = function () { answer('no'); };
+      document.body.appendChild(box);
+    })();
+  </script>

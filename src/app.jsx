@@ -491,6 +491,11 @@ function Footer() {
                 </a>
               </li>
             ))}
+            <li>
+              <a href="quiz/" className="font-semibold text-paper no-underline hover:text-mustard">
+                Тест: кто ты из мира музыки?
+              </a>
+            </li>
           </ul>
         </div>
         <div>
@@ -745,6 +750,41 @@ function Marquee() {
   );
 }
 
+/* ---------- промо квиза «Кто ты из мира музыки?» (сам квиз лежит в папке quiz/) ---------- */
+function QuizPromo() {
+  const onClick = () => {
+    if (typeof window.ym === 'function') window.ym(METRIKA_ID, 'reachGoal', 'quiz_start');
+  };
+  const cards = [
+    { src: 'images/quiz/mozart.webp', cls: '-rotate-6 translate-y-4' },
+    { src: 'images/quiz/wagner.webp', cls: 'z-10 rotate-1' },
+    { src: 'images/quiz/tchaikovsky.webp', cls: 'rotate-6 translate-y-6' },
+  ];
+  return (
+    <section className="border-y-4 border-green bg-green py-16 text-paper sm:py-24">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2">
+        <div className="reveal">
+          <span className="sticker sticker-mustard">Тест</span>
+          <h2 className="h-display mt-5 text-[clamp(32px,6vw,64px)]">Кто ты из мира музыки?</h2>
+          <p className="mt-5 max-w-md text-lg">Короткий тест из 7 вопросов, чтобы узнать своего композитора-двойника и выбрать концерт под настроение.</p>
+          <div className="mt-8">
+            <Btn href="quiz/" size="lg" onClick={onClick}>
+              Пройти тест
+            </Btn>
+          </div>
+        </div>
+        <a href="quiz/" onClick={onClick} className="reveal flex justify-center no-underline" aria-label="Пройти тест «Кто ты из мира музыки?»">
+          {cards.map((c, i) => (
+            <span key={c.src} className={'frame relative block w-[34%] max-w-[200px] shadow-[8px_8px_0_#ff5757] ' + (i ? '-ml-[6%] ' : '') + c.cls}>
+              <img src={c.src} alt="" loading="lazy" width="400" height="500" className="block aspect-[4/5] w-full object-cover" />
+            </span>
+          ))}
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function HomePage() {
   const upcoming = upcomingConcerts();
   const featured = upcoming.find((c) => c.featured);
@@ -778,6 +818,8 @@ function HomePage() {
           </div>
         )}
       </section>
+
+      <QuizPromo />
 
       <div className="border-y-4 border-green bg-paper">
         <img src="images/banner.jpg" alt="Оркестр 1703: гравюра с дирижёром и музыкантами" loading="lazy" className="block h-[200px] w-full object-cover object-center sm:h-auto" width="2600" height="654" />
