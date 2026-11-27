@@ -2853,6 +2853,19 @@
       }
     }
 
+    /* Музыкальные карточки: в паузе — вступление и трек, в финале — трек и одна фраза о нём */
+    .music-card:not(.is-result) .mc-why {
+      display: none
+    }
+
+    .music-card.is-result .mc-lead {
+      display: none
+    }
+
+    .mc-label:empty {
+      display: none
+    }
+
     /* COMPOSERS_CSS:END */
 
     /* рисованная стрелка вместо символов-эмодзи */
@@ -3361,7 +3374,7 @@
             mozart: {
               name: 'Моцарт', fullName: 'Вольфганг Амадей Моцарт', epithet: 'виртуоз импровизации', poster: 'mozart',
               text: 'Ты находишь выход там, где остальные еще читают инструкцию. Как ты это сделал? Сам не понял, но сработало же идеально.',
-              detail: 'Твой девиз на вечер: «По ходу разберемся». Ситуация обычно соглашается.',
+              detail: 'Твой девиз на вечер — «по ходу разберёмся». И что удивительно, обычно всё и правда как-то разруливается.',
               music: { work: 'nachtmusik', lead: 'Осенний вечер, хаос под контролем. Для настроения «наугад, но гениально» идеально заходит серенада.' },
               asset: { file: 'assets/portraits/mozart.jpg', status: 'нужен архивный портрет, public domain, с указанием источника' }
             },
@@ -3999,7 +4012,7 @@
               h('div', { className: 'music-slot', ref: slotRef, 'aria-live': 'polite' },
                 chosen
                   ? h(MusicCard, { key: p.sel, music: chosen.music, heading: M0.musicPause.label, listen: M0.musicPause.listen })
-                  : h('p', { className: 'mc-empty' }, 'После ответа здесь появится музыкальная пауза.'))
+                  : h('p', { className: 'mc-empty' },))
             ),
             h('div', { className: 'q-foot' },
               h('button', { className: 'btn ghost small', onClick: p.onBack }, h('span', { className: 'face' }, h(HandArrow, { dir: 'left' }), p.qi === 0 ? 'В начало' : 'Назад')),
@@ -4050,7 +4063,7 @@
               a.fullName && a.fullName !== a.name && h('p', { className: 'r-full rise', style: { '--d': '0.6s' } }, a.fullName),
               h('p', { className: 'r-epithet rise', style: { '--d': '0.7s' } }, a.epithet),
               h('p', { className: 'r-text rise', style: { '--d': '0.8s' } }, a.text),
-              h('p', { className: 'r-detail rise', style: { '--d': '0.9s' } }, h('b', null, 'Бытовая деталь'), a.detail),
+              h('p', { className: 'r-detail rise', style: { '--d': '0.9s' } }, h('b', null, 'Твой вайб'), a.detail),
               h('div', { className: 'r-music rise', style: { '--d': '1s' } },
                 h(MusicCard, { music: a.music, result: true, heading: M0.resultMusic.label, listen: M0.resultMusic.listen })),
               a.caption && h('p', { className: 'r-note rise', style: { '--d': '1.05s' } }, a.caption),
