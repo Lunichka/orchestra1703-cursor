@@ -5,19 +5,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Кто ты из мира музыки? · Оркестр 1703</title>
-  <meta name="description" content="Короткий тест из 7 вопросов, чтобы узнать своего композитора-двойника и выбрать концерт под настроение.">
+  <meta name="description"
+    content="Короткий тест из 7 вопросов, чтобы узнать своего композитора-двойника и выбрать концерт под настроение.">
   <link rel="icon" type="image/png" sizes="48x48" href="../images/icon-48.png">
   <!-- Яндекс Метрика. Если посетитель нажал «Нет, спасибо» в плашке про cookie — счётчик не грузится -->
   <script>
     (function () {
-      var choice; try { choice = localStorage.getItem('o1703-cookies'); } catch (e) {}
+      var choice; try { choice = localStorage.getItem('o1703-cookies'); } catch (e) { }
       if (choice === 'no') return;
-      (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114093595', 'ym');
+      (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=114093595', 'ym');
       ym(114093595, 'init', { webvisor: true, clickmap: true, trackHash: true, referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
     })();
   </script>
@@ -741,7 +742,7 @@
     }
 
     .ans input:checked+.card .tag::after {
-      content: " ✓ ВЫБРАНО"
+      content: " — ВЫБРАНО"
     }
 
     .q-foot {
@@ -2852,6 +2853,36 @@
     }
 
     /* COMPOSERS_CSS:END */
+
+    /* рисованная стрелка вместо символов-эмодзи */
+    .o-arrow {
+      flex: none;
+      display: inline-block;
+      width: 2em;
+      height: .55em;
+      margin-left: .5em;
+      overflow: visible;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.6px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vertical-align: middle
+    }
+
+    .o-arrow path {
+      vector-effect: non-scaling-stroke
+    }
+
+    .o-arrow.left {
+      margin: 0 .5em 0 0;
+      transform: scaleX(-1)
+    }
+
+    .o-arrow.out {
+      width: 1.4em;
+      transform: rotate(-38deg) translate(.05em, .1em)
+    }
   </style>
   <div id="root"></div>
   <script src="../assets/vendor/react.production.min.js"></script>
@@ -2862,6 +2893,13 @@
     } else {
       (function () {
         const h = React.createElement;
+
+        /* Рисованная стрелка — фирменный элемент Оркестра */
+        const ARROW_D = 'M6 96 C230 94 520 95 816 96 M840 101 C806 72 752 38 712 9 C694 -3 696 22 724 42 C760 66 796 84 838 100 M842 104 C780 132 716 166 656 210';
+        function HandArrow(p) {
+          return h('svg', { className: 'o-arrow ' + ((p && p.dir) || 'right'), viewBox: '0 0 850 215', 'aria-hidden': 'true', focusable: 'false' },
+            h('path', { d: ARROW_D }));
+        }
         const G = '#1D3028', C = '#EC635D', M = '#F4BE68', K = '#EFE8E1';
         const SW = 5;
 
@@ -3367,7 +3405,6 @@
               text: 'Ты умеешь подать любую дичь так, что все вокруг слушают с открытым ртом. Обычный созвон превращаешь в шоу.',
               detail: 'После твоего рассказа о пропущенном автобусе хочется встать и зааплодировать.',
               caption: 'Композитор и пианист, художественный руководитель Оркестра 1703.',
-              captionSource: 'Страница оркестра на сайте клуба A2: a2.fm/events/1703 (проверено 2026-10-13)',
               music: { work: 'ravel', lead: 'Музыку нужно не просто слушать, ее нужно проживать в моменте. Вот живой трек от оркестра.' },
               asset: { file: 'assets/portraits/fedorov.jpg', status: 'нужна подлинная фотография из надежного источника с разрешенными условиями использования; лицо не рисовать' }
             }
@@ -3385,7 +3422,7 @@
             },
             pastoral: {
               composer: 'Людвиг ван Бетховен', title: 'Симфония № 6 фа мажор, соч. 68, «Пасторальная»', kind: 'Симфония',
-              why: 'Идеальный трек для движения: от спокойного старта до эпической грозы.',
+              why: 'Идеально ложится под движение, когда тихое начало постепенно перерастает в мощную грозу.',
               listen: {
                 url: 'https://music.youtube.com/playlist?list=OLAK5uy_mI1q9Vru1YgI06Gd6O4Q7t83bA0HCbvPg', platform: 'YouTube Music',
                 recording: 'London Philharmonic Orchestra (альбом)', verified: 'title',
@@ -3904,7 +3941,7 @@
               className: 'btn small', href: l.url, target: '_blank', rel: 'noopener noreferrer',
               'aria-label': p.label + ': ' + p.work.title + ', ' + p.work.composer + ' (откроется в новой вкладке)'
             },
-              h('span', { className: 'face' }, p.label, ' ↗')),
+              h('span', { className: 'face' }, p.label, h(HandArrow, { dir: 'out' }))),
             h('span', { className: 'mc-src' }, l.platform + (l.recording ? ' ' + l.recording : '')));
         }
 
@@ -3965,8 +4002,8 @@
                   : h('p', { className: 'mc-empty' }, 'После ответа здесь появится музыкальная пауза.'))
             ),
             h('div', { className: 'q-foot' },
-              h('button', { className: 'btn ghost small', onClick: p.onBack }, h('span', { className: 'face' }, p.qi === 0 ? '← В начало' : '← Назад')),
-              h('button', { className: 'btn', disabled: p.sel === null, onClick: p.onNext }, h('span', { className: 'face', style: { fontSize: 'clamp(16px,1.6vw,24px)' } }, last ? 'Узнать результат' : 'Дальше →'))
+              h('button', { className: 'btn ghost small', onClick: p.onBack }, h('span', { className: 'face' }, h(HandArrow, { dir: 'left' }), p.qi === 0 ? 'В начало' : 'Назад')),
+              h('button', { className: 'btn', disabled: p.sel === null, onClick: p.onNext }, h('span', { className: 'face', style: { fontSize: 'clamp(16px,1.6vw,24px)' } }, last ? 'Узнать результат' : 'Дальше', last ? null : h(HandArrow)))
             )
           );
         }
@@ -3979,9 +4016,9 @@
             h('p', null, o.text),
             h('div', { className: 'orch-links' },
               o.concerts.url && h('a', { className: 'btn small', href: o.concerts.url, target: '_blank', rel: 'noopener noreferrer' },
-                h('span', { className: 'face' }, o.concerts.label, ' ↗')),
+                h('span', { className: 'face' }, o.concerts.label, h(HandArrow, { dir: 'out' }))),
               o.links.map(function (l, i) {
-                return h('a', { key: i, className: 'orch-link', href: l.url, target: '_blank', rel: 'noopener noreferrer' }, l.label, ' ↗');
+                return h('a', { key: i, className: 'orch-link', href: l.url, target: '_blank', rel: 'noopener noreferrer' }, l.label, h(HandArrow, { dir: 'out' }));
               })),
             !o.concerts.url && o.concerts.note && h('p', { className: 'orch-note' }, o.concerts.note));
         }
@@ -4095,20 +4132,81 @@
 
   <!-- Плашка про cookie: тот же ключ, что на сайте, поэтому ответ общий для сайта и теста -->
   <style>
-    .ck { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 9999; max-width: 400px; margin-left: auto;
-      background: var(--cream); color: var(--green); border: 4px solid var(--green); border-radius: 22px;
-      box-shadow: 8px 8px 0 var(--green); padding: 16px 20px; transform: rotate(-1deg); font-family: var(--f-book); }
-    .ck p { margin: 0; font-size: 15px; line-height: 1.35; }
-    .ck-row { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
-    .ck-yes { background: var(--coral); color: var(--cream); border: 3px solid var(--green); border-radius: 999px;
-      box-shadow: 4px 4px 0 var(--green); padding: 9px 16px; font: 700 12px/1 var(--f-bold); text-transform: uppercase;
-      letter-spacing: .06em; cursor: pointer; }
-    .ck-yes:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--green); }
-    .ck-no { background: none; border: 0; padding: 0; color: var(--green); font: 700 13px/1 var(--f-bold);
-      text-transform: uppercase; letter-spacing: .08em; text-decoration: underline; text-decoration-thickness: 2px;
-      text-underline-offset: 4px; cursor: pointer; }
-    .ck-no:hover { color: var(--coral); }
-    @media (min-width: 640px) { .ck { left: auto; right: 24px; bottom: 24px; } }
+    .ck {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 9999;
+      max-width: 400px;
+      margin-left: auto;
+      background: var(--cream);
+      color: var(--green);
+      border: 4px solid var(--green);
+      border-radius: 22px;
+      box-shadow: 8px 8px 0 var(--green);
+      padding: 16px 20px;
+      transform: rotate(-1deg);
+      font-family: var(--f-book);
+    }
+
+    .ck p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .ck-row {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 20px;
+    }
+
+    .ck-yes {
+      background: var(--coral);
+      color: var(--cream);
+      border: 3px solid var(--green);
+      border-radius: 999px;
+      box-shadow: 4px 4px 0 var(--green);
+      padding: 9px 16px;
+      font: 700 12px/1 var(--f-bold);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      cursor: pointer;
+    }
+
+    .ck-yes:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--green);
+    }
+
+    .ck-no {
+      background: none;
+      border: 0;
+      padding: 0;
+      color: var(--green);
+      font: 700 13px/1 var(--f-bold);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+      cursor: pointer;
+    }
+
+    .ck-no:hover {
+      color: var(--coral);
+    }
+
+    @media (min-width: 640px) {
+      .ck {
+        left: auto;
+        right: 24px;
+        bottom: 24px;
+      }
+    }
   </style>
   <script>
     (function () {
@@ -4117,11 +4215,11 @@
       if (choice) return;
       var box = document.createElement('div');
       box.className = 'ck'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Про cookie');
-      box.innerHTML = '<p><span aria-hidden="true">🍪 </span>Мы используем cookie для статистики. Так мы видим, что вам интересно на сайте.</p>' +
+      box.innerHTML = '<p>Мы используем cookie для статистики. Так мы видим, что вам интересно на сайте.</p>' +
         '<div class="ck-row"><button type="button" class="ck-yes">Конечно, не проблема</button>' +
         '<button type="button" class="ck-no">Нет, спасибо</button></div>';
       function answer(v) {
-        try { localStorage.setItem(KEY, v); } catch (e) {}
+        try { localStorage.setItem(KEY, v); } catch (e) { }
         if (v === 'no') window['disableYaCounter114093595'] = true;
         box.remove();
       }
