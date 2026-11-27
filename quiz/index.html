@@ -220,10 +220,12 @@
     }
 
     .disc.d1 {
+
       left: -6vw;
       bottom: -20vw;
       --fy: 40vh
     }
+
 
     .board {
       left: 37vw;
@@ -944,6 +946,23 @@
 
     .music-card.is-result .mc-ico {
       width: 78px
+    }
+
+    /* Музыкальные карточки: в паузе — вступление и трек, в финале — трек и одна фраза о нём */
+    .music-card:not(.is-result) .mc-why {
+      display: none
+    }
+
+    .music-card.is-result .mc-lead {
+      display: none
+    }
+
+    .mc-label:empty {
+      display: none
+    }
+
+    .result .deco>.disc {
+      display: none
     }
 
     .sweep {
