@@ -17,68 +17,68 @@
   "director": {
     "name": "Георгий Фёдоров",
     "role": "Художественный руководитель",
-    "text": "Композитор, член Союза композиторов России, пианист, аранжировщик и преподаватель. Художественный руководитель Оркестра 1703.",
-    "photo": "/images/gallery/fedorov.jpg"
+    "text": "Композитор, член Союза композиторов России, пианист, аранжировщик и преподаватель. Художественный руководитель Оркестра 1703. Блогер и популяризатор классической музыки.",
+    "photo": "/images/uploads/dsc05198.webp"
   },
   "musicians": [
     {
       "name": "Екатерина Герман",
       "role": "скрипка",
-      "photo": "",
+      "photo": "/images/uploads/img_0920.webp",
       "bio": ""
     },
     {
       "name": "Дарья Лиховидова",
       "role": "скрипка",
-      "photo": "",
+      "photo": "/images/uploads/photo_2026-07-05_00-48-51.webp",
       "bio": ""
     },
     {
       "name": "Антон Горностай",
       "role": "альт",
-      "photo": "",
+      "photo": "/images/uploads/a_m01863-3.webp",
       "bio": ""
     },
     {
       "name": "Андрей Злоказов",
       "role": "виолончель",
-      "photo": "",
+      "photo": "/images/uploads/img_9025.webp",
       "bio": ""
     },
     {
       "name": "Юлия Розовская",
       "role": "виолончель",
-      "photo": "",
+      "photo": "/images/uploads/img_0226_e119a33a-c0c3-4f33-8b3f-9a0468117267.webp",
       "bio": ""
     },
     {
       "name": "Ярослава Малинен",
       "role": "флейта",
-      "photo": "",
+      "photo": "/images/uploads/img_0159.webp",
       "bio": ""
     },
     {
       "name": "Марианна Мурзина",
       "role": "флейта",
-      "photo": "",
+      "photo": "/images/uploads/kna_4055.webp",
       "bio": ""
     },
     {
       "name": "Семен Сердюков",
       "role": "кларнет",
-      "photo": "",
+      "photo": "/images/uploads/img_9078-2.webp",
       "bio": ""
     },
     {
       "name": "Геворк Саркисьянц",
       "role": "кларнет",
-      "photo": "",
+      "photo": "/images/uploads/img_9078-1.webp",
       "bio": ""
     },
     {
       "name": "Матвей Емлин",
       "role": "валторна",
-      "photo": "",
+      "photo": "/images/uploads/20.webp",
       "bio": ""
     },
     {
@@ -90,25 +90,25 @@
     {
       "name": "Павел Иванов",
       "role": "ударные",
-      "photo": "",
+      "photo": "/images/uploads/photo_2026-11-27_19-39-20.webp",
       "bio": ""
     },
     {
       "name": "Александр Божко",
       "role": "ударные",
-      "photo": "",
+      "photo": "/images/uploads/img_0421.webp",
       "bio": ""
     },
     {
       "name": "Тихон Антонов",
       "role": "ударные",
-      "photo": "",
+      "photo": "/images/uploads/79.webp",
       "bio": ""
     },
     {
       "name": "Анна Савенкова",
       "role": "фортепиано",
-      "photo": "",
+      "photo": "/images/uploads/1ml4tac6dmsmjgnypzcl7ksznamlsj8r-f89veewq1x17cs_mgleklmyqbckup3silgy446botypj2ouztlzkbnc2j2xzq.webp",
       "bio": ""
     }
   ]
