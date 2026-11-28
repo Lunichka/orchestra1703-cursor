@@ -18,7 +18,9 @@
     "name": "Георгий Фёдоров",
     "role": "Художественный руководитель",
     "text": "Композитор, член Союза композиторов России, пианист, аранжировщик и преподаватель. Художественный руководитель Оркестра 1703. Блогер и популяризатор классической музыки.",
-    "photo": "/images/uploads/dsc05198.webp"
+    "photo": "/images/uploads/dsc05198.webp",
+    "buttonText": "Читать интервью в «Снобе»",
+    "buttonUrl": "https://snob.ru/music/peterburg-eto-gorod-ne-dlia-liudei-on-sushchestvuet-sam-dlia-sebia-interviu-kompozitora-georgiia-fedorova/"
   },
   "musicians": [
     {

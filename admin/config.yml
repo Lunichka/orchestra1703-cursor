@@ -191,6 +191,8 @@ collections:
               - { name: role, label: Должность, widget: string }
               - { name: text, label: Текст, widget: text }
               - { name: photo, label: Фото, widget: image, required: false }
+              - { name: buttonText, label: Текст кнопки, widget: string, required: false, hint: 'Например: Читать интервью в «Снобе». Если пусто — «Читать интервью»' }
+              - { name: buttonUrl, label: Ссылка кнопки, widget: string, required: false, hint: 'Куда ведёт кнопка. Если пусто — берётся публикация из «Прессы», отмеченная как интервью' }
           - name: musicians
             label: Оркестранты
             label_singular: оркестранта

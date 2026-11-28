@@ -1141,7 +1141,11 @@ function AboutPage() {
             <span className="chip self-start bg-mustard">{dir.role}</span>
             <h2 className="h-display mt-5 text-[clamp(32px,5vw,60px)] !leading-[1.12] !tracking-[.02em]">{dir.name}</h2>
             <div className="mt-5 max-w-xl text-lg leading-relaxed"><Paras text={dir.text} /></div>
-            {interview && (
+            {dir.buttonUrl ? (
+              <Btn href={dir.buttonUrl} variant="green" className="mt-8 self-start">
+                {dir.buttonText || 'Читать интервью'}
+              </Btn>
+            ) : interview && (
               <Btn href={interview.url} variant="green" className="mt-8 self-start">
                 Читать интервью в «{interview.outlet}е» →
               </Btn>
